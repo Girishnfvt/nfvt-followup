@@ -34,19 +34,6 @@
             animation: lightSweep 4s infinite linear;
         }
 
-        .luxury-gold-title::after {
-            content: "NFVT Team Followup";
-            position: absolute;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.8) 45%, rgba(255,255,255,0.8) 55%, transparent 70%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: lightSweep 3s infinite;
-            pointer-events: none;
-        }
-
         @keyframes lightSweep {
             0% { background-position: -100% center; }
             100% { background-position: 100% center; }
@@ -82,9 +69,8 @@
         table { width: 100%; border-collapse: collapse; background: white; margin-top: 10px; }
         th { background: #f1f5f9; padding: 14px; text-align: left; font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; border-bottom: 2px solid #e2e8f0; }
         td { padding: 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
-        .id-badge { display: block; font-size: 11px; color: #94a3b8; margin-top: 3px; }
         .wa-link { color: #25D366; text-decoration: none; font-weight: 700; border: 1px solid #25D366; padding: 5px 8px; border-radius: 5px; font-size: 11px; white-space: nowrap;}
-        .delete-btn { color: #94a3b8; cursor: pointer; border: none; background: none; font-size: 12px; }
+        .delete-btn { color: #94a3b8; cursor: pointer; border: none; background: none; font-size: 16px; }
         #trashSection { display: none; background: #fff1f2; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 2px dashed #fda4af; }
     </style>
 </head>
@@ -96,7 +82,7 @@
         <h2 style="margin: 0 0 15px 0; font-size: 18px;">Team Followup Login</h2>
         <input type="number" id="loginId" placeholder="Distributor ID">
         <input type="password" id="loginPass" placeholder="Password">
-        <button onclick="checkLogin()" style="background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Login</button>
+        <button onclick="checkLogin()" style="background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px;">Login</button>
         <p id="errorMsg" style="color: red; font-size: 12px; display: none; margin-top: 10px;">ID அல்லது Password தவறு!</p>
     </div>
 </div>
@@ -158,7 +144,10 @@
 
     <div id="trashSection">
         <h3 style="font-size: 14px; margin: 0 0 10px 0; color: #be185d;">♻️ Deleted Members</h3>
-        <table style="background: transparent;"><tbody id="trashBody"></tbody></table>
+        <table style="background: transparent;">
+            <thead><tr><th>Name</th><th>Action</th></tr></thead>
+            <tbody id="trashBody"></tbody>
+        </table>
         <button onclick="toggleTrash()" style="margin-top: 10px; font-size: 11px; cursor: pointer; padding: 5px 10px;">Close Trash</button>
     </div>
 
@@ -167,7 +156,7 @@
         <div class="btn-group">
             <button class="btn-success" onclick="downloadCSV()">Excel</button>
             <button class="btn-danger" onclick="downloadPDF()">PDF</button>
-            <button class="btn-restore" onclick="toggleTrash()">Restore</button>
+            <button class="btn-restore" onclick="toggleTrash()">Restore/Trash</button>
         </div>
     </div>
 
@@ -215,6 +204,11 @@
         entries.unshift(entry); 
         localStorage.setItem('nfvt_ucd_final', JSON.stringify(entries));
         displayData();
+        
+        // Clear inputs
+        document.getElementById('downlineName').value = '';
+        document.getElementById('distId').value = '';
+        document.getElementById('selfPV').value = '';
     }
 
     function displayData() {
@@ -225,36 +219,78 @@
             let rowClass = item.consistency === "No" ? 'class="no-consistency"' : (item.pv >= 100 ? 'class="high-pv"' : (item.achiever === 'Yes' ? 'class="achiever-row"' : ''));
             const pvStyle = item.pv < 30 ? 'class="status-red"' : '';
             const waLink = `https://wa.me/?text=வணக்கம் ${item.name}, PV: ${item.pv} - Team NFVT`;
-            tableBody.innerHTML += `<tr ${rowClass}><td><strong>${item.name}</strong><br><small>${item.distId}</small></td><td>${item.level}</td><td ${pvStyle}>${item.pv} PV</td><td>${item.rawDate}</td><td>${item.consistency}</td><td>${item.achiever}</td><td>${item.meeting}</td><td><button class="delete-btn" onclick="deleteEntry(${item.id})">❌</button></td><td><a href="${waLink}" target="_blank" class="wa-link">WhatsApp</a></td></tr>`;
+            
+            tableBody.innerHTML += `
+                <tr ${rowClass}>
+                    <td><strong>${item.name}</strong><br><small>${item.distId}</small></td>
+                    <td>${item.level}</td>
+                    <td ${pvStyle}>${item.pv} PV</td>
+                    <td>${item.rawDate}</td>
+                    <td>${item.consistency}</td>
+                    <td>${item.achiever}</td>
+                    <td>${item.meeting}</td>
+                    <td><button class="delete-btn" onclick="deleteEntry(${item.id})">❌</button></td>
+                    <td><a href="${waLink}" target="_blank" class="wa-link">WhatsApp</a></td>
+                </tr>`;
         });
     }
 
     function deleteEntry(id) {
-        if(confirm("நீக்க வேண்டுமா?")) {
+        if(confirm("நிச்சயமாக நீக்க வேண்டுமா?")) {
             let entries = JSON.parse(localStorage.getItem('nfvt_ucd_final')) || [];
             let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
-            const item = entries.find(e => e.id === id);
-            trash.push(item);
-            localStorage.setItem('nfvt_ucd_final', JSON.stringify(entries.filter(e => e.id !== id)));
-            localStorage.setItem('nfvt_trash', JSON.stringify(trash));
-            displayData();
+            
+            const itemIndex = entries.findIndex(e => e.id === id);
+            if (itemIndex > -1) {
+                trash.push(entries[itemIndex]);
+                entries.splice(itemIndex, 1);
+                
+                localStorage.setItem('nfvt_ucd_final', JSON.stringify(entries));
+                localStorage.setItem('nfvt_trash', JSON.stringify(trash));
+                
+                displayData();
+                if(document.getElementById('trashSection').style.display === 'block') {
+                    updateTrashUI();
+                }
+            }
         }
     }
 
     function toggleTrash() {
         const ts = document.getElementById('trashSection');
-        ts.style.display = ts.style.display === 'none' ? 'block' : 'none';
+        if (ts.style.display === 'none' || ts.style.display === '') {
+            ts.style.display = 'block';
+            updateTrashUI();
+        } else {
+            ts.style.display = 'none';
+        }
+    }
+
+    function updateTrashUI() {
         const trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
-        document.getElementById('trashBody').innerHTML = trash.map(i => `<tr><td>${i.name}</td><td><button onclick="restoreEntry(${i.id})">Restore</button></td></tr>`).join('');
+        const trashBody = document.getElementById('trashBody');
+        trashBody.innerHTML = trash.map(i => `
+            <tr>
+                <td>${i.name} (${i.distId})</td>
+                <td><button onclick="restoreEntry(${i.id})" style="background:#2563eb; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Restore</button></td>
+            </tr>`).join('');
     }
 
     function restoreEntry(id) {
         let entries = JSON.parse(localStorage.getItem('nfvt_ucd_final')) || [];
         let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
-        entries.unshift(trash.find(e => e.id === id));
-        localStorage.setItem('nfvt_ucd_final', JSON.stringify(entries));
-        localStorage.setItem('nfvt_trash', JSON.stringify(trash.filter(e => e.id !== id)));
-        displayData();
+        
+        const itemIndex = trash.findIndex(e => e.id === id);
+        if (itemIndex > -1) {
+            entries.unshift(trash[itemIndex]);
+            trash.splice(itemIndex, 1);
+            
+            localStorage.setItem('nfvt_ucd_final', JSON.stringify(entries));
+            localStorage.setItem('nfvt_trash', JSON.stringify(trash));
+            
+            displayData();
+            updateTrashUI();
+        }
     }
 
     function filterTable() {
@@ -264,10 +300,12 @@
     }
 
     function downloadCSV() {
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_final')) || [];
+        if(entries.length === 0) return;
         let csv = "Name,ID,Level,PV,Date,100PV,8%Achiever,Meeting\n";
-        JSON.parse(localStorage.getItem('nfvt_ucd_final')).forEach(e => csv += `"${e.name}","${e.distId}","${e.level}","${e.pv}","${e.rawDate}","${e.consistency}","${e.achiever}","${e.meeting}"\n`);
+        entries.forEach(e => csv += `"${e.name}","${e.distId}","${e.level}","${e.pv}","${e.rawDate}","${e.consistency}","${e.achiever}","${e.meeting}"\n`);
         const b = new Blob([csv], {type:'text/csv'});
-        const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download="Report.csv"; a.click();
+        const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download="NFVT_Report.csv"; a.click();
     }
 
     function downloadPDF() {
