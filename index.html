@@ -1,289 +1,923 @@
+
 <!DOCTYPE html>
 <html lang="ta">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFVT Team Followup - Stable Version</title>
+    <title>NFVT Team Followup - Enhanced</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
     <style>
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; margin: 0; padding: 20px; }
-        #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a202c; display: flex; align-items: center; justify-content: center; z-index: 2000; }
-        .login-box { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); width: 300px; }
-        .container { max-width: 1400px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; display: none; }
-        .user-profile-bar { display: flex; align-items: center; justify-content: space-between; background: #f1f5f9; padding: 10px 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #e2e8f0; }
-        .user-avatar { width: 40px; height: 40px; background: #2563eb; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .stats-summary { background: #eff6ff; padding: 10px; border-radius: 8px; font-weight: 700; color: #1e40af; border: 1px solid #bfdbfe; margin-bottom: 15px; text-align: center; }
-        .header-section { text-align: center; margin-bottom: 25px; }
-        .team-logo { max-width: 100px; height: auto; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
-        .luxury-gold-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; margin: 0; text-transform: uppercase; background: linear-gradient(to bottom, #bf953f 0%, #fcf6ba 20%, #b38728 45%, #fcf6ba 55%, #bf953f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0px 0px 1px #947a39); animation: lightSweep 4s infinite linear; }
-        @keyframes lightSweep { 0% { background-position: -100% center; } 100% { background-position: 100% center; } }
-        .form-section { background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px; }
-        .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
-        .input-group label { display: block; font-size: 10px; font-weight: 700; color: #718096; margin-bottom: 5px; text-transform: uppercase; }
-        input, select { width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 13px; }
-        .add-btn { background: #2563eb; color: white; border: none; padding: 11px; border-radius: 6px; font-weight: 600; cursor: pointer; align-self: flex-end; }
-        .action-bar { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 15px; flex-wrap: wrap; }
-        #searchInput { flex-grow: 1; border: 1px solid #cbd5e0; border-radius: 6px; padding: 10px; }
-        .btn-group { display: flex; gap: 8px; }
-        .btn-success { background: #059669; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-        .btn-warning { background: #f59e0b; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-        table { width: 100%; border-collapse: collapse; background: white; margin-top: 10px; }
-        th { background: #f1f5f9; padding: 12px; text-align: left; font-size: 10px; font-weight: 700; color: #475569; text-transform: uppercase; border-bottom: 2px solid #e2e8f0; }
-        td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
-        .edit-pv-btn { background: #6366f1; color: white; border: none; padding: 6px 10px; border-radius: 5px; font-size: 10px; cursor: pointer; font-weight: bold; }
-        .meeting-btn { border: none; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer; font-weight: bold; margin-top: 4px; display: block; }
-        .met-yes { background: #dcfce7; color: #166534; }
-        .met-no { background: #fee2e2; color: #991b1b; }
-        .wa-link { color: #25D366; text-decoration: none; font-weight: 700; border: 1px solid #25D366; padding: 4px 6px; border-radius: 5px; font-size: 10px;}
-        .delete-btn { color: #94a3b8; cursor: pointer; border: none; background: none; font-size: 16px; }
-        #trashSection { display: none; background: #fff1f2; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 2px dashed #fda4af; }
-        .branding-bar { display: flex; justify-content: space-between; align-items: center; background: #fff1f2; padding: 12px; border-radius: 12px; margin-top: 40px; border: 1.5px solid #ec4899; }
-        .leader-card-inline { display: flex; align-items: center; gap: 10px; }
-        .profile-circle-small { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #ec4899; overflow: hidden; background: #fff; }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); 
+            min-height: 100vh; margin: 0; padding: 20px; 
+            animation: gradientShift 15s ease infinite;
+            background-size: 400% 400%;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #loginOverlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); 
+            display: flex; align-items: center; justify-content: center; z-index: 2000; 
+        }
+        
+        .login-box { 
+            background: white; padding: 35px; border-radius: 20px; text-align: center; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); width: 320px;
+            animation: fadeInScale 0.5s ease-out;
+        }
+        
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .container { 
+            max-width: 1400px; margin: auto; background: white; padding: 30px; 
+            border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); 
+            position: relative; display: none;
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .user-profile-bar { 
+            display: flex; align-items: center; justify-content: space-between; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            padding: 15px 25px; border-radius: 15px; margin-bottom: 25px; 
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); }
+            50% { box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5); }
+        }
+        
+        .user-details { display: flex; align-items: center; gap: 15px; }
+        .user-avatar { 
+            width: 50px; height: 50px; 
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); 
+            color: #1a202c; border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-weight: 900; font-size: 20px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .user-details div { color: white; }
+        
+        .stats-summary { 
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
+            padding: 20px; border-radius: 15px; font-weight: 800; color: white; 
+            margin-bottom: 25px; text-align: center; font-size: 18px;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .header-section { text-align: center; margin-bottom: 30px; }
+        .team-logo { 
+            max-width: 120px; height: auto; border-radius: 15px; margin-bottom: 20px; 
+            border: 3px solid #fbbf24; box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+        }
+        
+        .perm-delete-btn {
+            background: #7f1d1d;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 11px;
+            margin-left: 5px;
+        }
+        
+        .perm-delete-btn:hover {
+            background: #991b1b;
+        }
+        
+        .luxury-gold-title {
+            font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; 
+            margin: 0; text-transform: uppercase;
+            background: linear-gradient(45deg, #bf953f 0%, #fcf6ba 20%, #b38728 45%, #fcf6ba 55%, #bf953f 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            filter: drop-shadow(0px 2px 3px #947a39); 
+            animation: lightSweep 3s infinite linear;
+            background-size: 200% auto;
+        }
+
+        @keyframes lightSweep { 
+            0% { background-position: 0% center; } 
+            100% { background-position: 200% center; } 
+        }
+
+        .branding-bar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); 
+            padding: 15px; border-radius: 15px; margin-top: 40px; 
+            border: 2px solid #ec4899; box-shadow: 0 6px 20px rgba(236, 72, 153, 0.2);
+        }
+        
+        .leader-card-inline { display: flex; align-items: center; gap: 12px; }
+        .profile-circle-small { 
+            width: 70px; height: 70px; border-radius: 50%; 
+            border: 3px solid #ec4899; overflow: hidden; background: #fff; 
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
         .profile-circle-small img { width: 100%; height: 100%; object-fit: cover; }
+        .leader-name-small { font-weight: 800; font-size: 16px; margin: 0; color: #1e293b; }
+        .leader-rank-small { font-size: 9px; color: #be185d; font-weight: 800; text-transform: uppercase; }
+        .team-tag { 
+            font-size: 10px; color: #1e293b; font-weight: 700; 
+            background: #fce7f3; padding: 3px 8px; border-radius: 6px; 
+            display: inline-block; margin-top: 3px;
+        }
+        .inline-logo { width: 75px; height: auto; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+
+        .form-section { 
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); 
+            padding: 25px; border-radius: 15px; border: 2px solid #3b82f6; 
+            margin-bottom: 30px; box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
+        .input-group label { 
+            display: block; font-size: 11px; font-weight: 800; color: #475569; 
+            margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        
+        input, select { 
+            width: 100%; padding: 10px; border: 2px solid #cbd5e0; border-radius: 8px; 
+            font-size: 14px; transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus { 
+            outline: none; border-color: #3b82f6; 
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            transform: scale(1.02);
+        }
+        
+        .add-btn { 
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); 
+            color: white; border: none; padding: 12px; border-radius: 8px; 
+            font-weight: 700; cursor: pointer; align-self: flex-end;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .add-btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); 
+        }
+        
+        /* Enhanced Row Colors with Animation */
+        .high-pv { 
+            background: linear-gradient(90deg, #d1fae5 0%, #a7f3d0 100%) !important; 
+            border-left: 6px solid #10b981; 
+            animation: highlightPulse 2s ease-in-out infinite;
+        } 
+        
+        .low-pv-warning {
+            background: linear-gradient(90deg, #fed7aa 0%, #fdba74 100%) !important;
+            border-left: 6px solid #f97316;
+            animation: warningBlink 2s ease-in-out infinite;
+        }
+        
+        .inactive-warning {
+            background: linear-gradient(90deg, #fecaca 0%, #fca5a5 100%) !important;
+            border-left: 6px solid #ef4444;
+            animation: dangerPulse 2s ease-in-out infinite;
+        }
+        
+        .no-consistency { 
+            background: linear-gradient(90deg, #fee2e2 0%, #fecaca 100%) !important; 
+            border-left: 6px solid #dc2626; 
+            animation: dangerPulse 2s ease-in-out infinite;
+        } 
+        
+        .no-meeting {
+            background: linear-gradient(90deg, #ddd6fe 0%, #c4b5fd 100%) !important;
+            border-left: 6px solid #8b5cf6;
+            animation: reminderBlink 2s ease-in-out infinite;
+        }
+        
+        @keyframes highlightPulse {
+            0%, 100% { box-shadow: 0 0 0 rgba(16, 185, 129, 0); }
+            50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+        }
+        
+        @keyframes warningBlink {
+            0%, 100% { box-shadow: 0 0 0 rgba(249, 115, 22, 0); }
+            50% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.4); }
+        }
+        
+        @keyframes dangerPulse {
+            0%, 100% { box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+            50% { box-shadow: 0 0 25px rgba(239, 68, 68, 0.5); }
+        }
+        
+        @keyframes reminderBlink {
+            0%, 100% { box-shadow: 0 0 0 rgba(139, 92, 246, 0); }
+            50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
+        }
+
+        .action-bar { 
+            display: flex; justify-content: space-between; gap: 15px; 
+            margin-bottom: 20px; flex-wrap: wrap; 
+        }
+        
+        #searchInput { 
+            flex-grow: 1; border: 2px solid #cbd5e0; border-radius: 10px; 
+            padding: 12px 15px; font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        #searchInput:focus {
+            outline: none; border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+        
+        .btn-group { display: flex; gap: 10px; }
+        
+        .btn-success { 
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
+            color: white; border: none; padding: 12px 20px; border-radius: 8px; 
+            font-weight: 700; cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover { transform: translateY(-2px); }
+        
+        .btn-danger { 
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); 
+            color: white; border: none; padding: 12px 20px; border-radius: 8px; 
+            font-weight: 700; cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-danger:hover { transform: translateY(-2px); }
+        
+        .btn-trash {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white; border: none; padding: 12px 20px; border-radius: 8px;
+            font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-trash:hover { transform: translateY(-2px); }
+        
+        table { 
+            width: 100%; border-collapse: collapse; background: white; 
+            margin-top: 15px; border-radius: 10px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        th { 
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%); 
+            padding: 15px; text-align: left; font-size: 11px; font-weight: 800; 
+            color: white; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        
+        td { 
+            padding: 15px 12px; border-bottom: 1px solid #f1f5f9; 
+            font-size: 13px; transition: all 0.2s ease;
+        }
+        
+        tr:hover td { background-color: #f8fafc; }
+        
+        .wa-link { 
+            color: white; text-decoration: none; font-weight: 700; 
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            padding: 6px 12px; border-radius: 6px; font-size: 11px;
+            box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .wa-link:hover { transform: scale(1.05); }
+        
+        .delete-btn { 
+            color: #ef4444; cursor: pointer; border: none; background: none; 
+            font-size: 20px; transition: all 0.3s ease;
+        }
+        
+        .delete-btn:hover { transform: scale(1.2); }
+        
+        #trashSection { 
+            display: none; 
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); 
+            padding: 20px; border-radius: 15px; margin-bottom: 25px; 
+            border: 3px dashed #f87171; box-shadow: 0 6px 20px rgba(248, 113, 113, 0.2);
+        }
+        
+        .reminder-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-left: 5px;
+            animation: badgePulse 1.5s ease-in-out infinite;
+        }
+        
+        .badge-inactive {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #dc2626;
+        }
+        
+        .badge-low-pv {
+            background: #fed7aa;
+            color: #ea580c;
+            border: 1px solid #ea580c;
+        }
+        
+        .badge-no-meeting {
+            background: #e0e7ff;
+            color: #4f46e5;
+            border: 1px solid #4f46e5;
+        }
+        
+        .badge-pv-reminder {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #f59e0b;
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+        
+        /* Popup Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.4s ease;
+            text-align: center;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            font-size: 24px;
+            font-weight: 800;
+            color: #dc2626;
+            margin-bottom: 15px;
+        }
+        
+        .modal-body {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #334155;
+            margin-bottom: 25px;
+        }
+        
+        .modal-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 15px;
+            margin: 5px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .modal-btn-close {
+            background: #64748b;
+            box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
 
-<div id="loginOverlay"><div class="login-box"><img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" style="width:80px;border-radius:8px;"><h2 style="font-size:18px;">Team Followup Login</h2><input type="number" id="loginId" placeholder="ID"><input type="text" id="loginName" placeholder="Name" style="margin-top:10px;"><button onclick="checkLogin()" style="background:#2563eb;color:white;border:none;padding:10px;border-radius:6px;cursor:pointer;margin-top:15px;width:100%;">Login</button></div></div>
+<div id="loginOverlay">
+    <div class="login-box">
+        <img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" style="width: 90px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+        <h2 style="margin: 0 0 20px 0; font-size: 20px; color: #1e293b;">Team Followup Login</h2>
+        <input type="number" id="loginId" placeholder="Distributor ID" style="margin-bottom: 12px;">
+        <input type="text" id="loginName" placeholder="Your Name" style="margin-top: 0;">
+        <button onclick="checkLogin()" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; margin-top: 20px; width: 100%; font-weight: 700; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">Login</button>
+    </div>
+</div>
 
 <div class="container" id="mainApp">
-    <div class="user-profile-bar"><div class="user-details"><div class="user-avatar" id="userInitial">U</div><div><div style="font-size:14px;font-weight:700;" id="displayUserName">User</div><div style="font-size:11px;color:#64748b;" id="displayUserId">ID: 000</div></div></div><button onclick="location.reload()" style="background:none;border:1px solid #cbd5e0;padding:5px 10px;border-radius:4px;font-size:11px;cursor:pointer;">Logout</button></div>
-    <div class="stats-summary" id="totalStats">Total Team PV: 0 | Members: 0</div>
-    <div class="header-section"><img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" class="team-logo"><h1 class="luxury-gold-title">NFVT Team Followup</h1></div>
+    <div class="user-profile-bar">
+        <div class="user-details">
+            <div class="user-avatar" id="userInitial">U</div>
+            <div>
+                <div style="font-size: 16px; font-weight: 800;" id="displayUserName">User Name</div>
+                <div style="font-size: 12px; opacity: 0.9;" id="displayUserId">ID: 00000000</div>
+            </div>
+        </div>
+        <button onclick="location.reload()" style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 8px 16px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 700; transition: all 0.3s ease;">Logout</button>
+    </div>
+
+    <div class="stats-summary" id="totalStats">Total Team PV: 0 | Members: 0 | Alerts: 0</div>
+
+    <div class="header-section">
+        <img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" alt="NFVT Logo" class="team-logo">
+        <h1 class="luxury-gold-title">NFVT Team Followup</h1>
+    </div>
 
     <div class="form-section">
         <div class="grid-form">
             <div class="input-group"><label>Member Name</label><input type="text" id="downlineName"></div>
-            <div class="input-group"><label>Mobile</label><input type="number" id="mobileNo"></div>
-            <div class="input-group"><label>Distributor ID</label><input type="number" id="distId"></div>
+            <div class="input-group"><label>Mobile Number</label><input type="number" id="mobileNo" placeholder="Phone Number"></div>
+            <div class="input-group"><label>Distributor ID</label><input type="number" id="distId" placeholder="8 Digit ID"></div>
             <div class="input-group">
                 <label>Level</label>
                 <select id="memberLevel">
                     <option value="Distributor">Distributor</option>
                     <option value="Senior Distributor">Senior Distributor</option>
-                    <option value="Assistant Bronze Director">Assistant Bronze Director</option>
                     <option value="Bronze Director">Bronze Director</option>
                     <option value="Silver Director">Silver Director</option>
                     <option value="Gold Director">Gold Director</option>
                     <option value="Star Director">Star Director</option>
                     <option value="Diamond Director">Diamond Director</option>
                     <option value="Crown Director">Crown Director</option>
-                    <option value="Universal Crown Director">Universal Crown Director</option>
+                    <option value="UCD">UCD</option>
                 </select>
             </div>
-            <div class="input-group"><label>Self PV</label><input type="number" id="selfPV"></div>
-            <div class="input-group"><label>Group PV</label><input type="number" id="groupPV"></div>
+            <div class="input-group"><label>Self PV</label><input type="number" id="selfPV" placeholder="Self"></div>
+            <div class="input-group"><label>Group PV</label><input type="number" id="groupPV" placeholder="Group"></div>
+            <div class="input-group"><label>Date</label><input type="date" id="followUpDate"></div>
             <div class="input-group"><label>100PV CNC</label><select id="consistency"><option value="Yes">Yes</option><option value="No">No</option></select></div>
-            <button class="add-btn" onclick="addData()">Add Member</button>
+            <div class="input-group"><label>Meeting</label><select id="meeting"><option value="Yes">Yes</option><option value="No">No</option></select></div>
+            <button class="add-btn" onclick="addData()">➕ Add Member</button>
         </div>
     </div>
 
     <div id="trashSection">
-        <h3 style="font-size: 14px; margin: 0 0 10px 0; color: #be185d;">♻️ Deleted Members (Trash)</h3>
-        <table><tbody id="trashBody"></tbody></table>
-        <button onclick="toggleTrash()" style="font-size: 11px; cursor: pointer; margin-top: 10px;">Close Trash</button>
+        <h3 style="font-size: 16px; margin: 0 0 15px 0; color: #dc2626; font-weight: 800;">♻️ Deleted Members</h3>
+        <table style="background: transparent;"><tbody id="trashBody"></tbody></table>
+        <button onclick="toggleTrash()" style="font-size: 12px; cursor: pointer; padding: 8px 16px; background: #ef4444; color: white; border: none; border-radius: 6px; margin-top: 10px; font-weight: 700;">Close Trash</button>
+        <button onclick="emptyTrash()" style="font-size: 12px; cursor: pointer; padding: 8px 16px; background: #7f1d1d; color: white; border: none; border-radius: 6px; margin-top: 10px; margin-left: 10px; font-weight: 700;">🗑️ Empty Trash (Permanent)</button>
     </div>
 
     <div class="action-bar">
-        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search Name or ID...">
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Search Name or ID...">
         <div class="btn-group">
-            <button class="btn-success" onclick="downloadCSV()">Excel</button>
-            <button class="btn-warning" onclick="send7PMReminders()">7PM Reminder</button>
-            <button onclick="toggleTrash()" style="background:#64748b; color:white; border:none; padding:10px 15px; border-radius:6px; font-weight:600; cursor:pointer;">Trash</button>
+            <button class="btn-success" onclick="downloadCSV()">📊 Excel</button>
+            <button class="btn-danger" onclick="downloadPDF()">📄 PDF</button>
+            <button class="btn-trash" onclick="toggleTrash()">🗑️ Trash</button>
         </div>
     </div>
 
     <div style="overflow-x: auto;">
         <table>
-            <thead><tr><th>Member & ID</th><th>Mobile</th><th>Level</th><th>Self PV</th><th>Group PV</th><th>Total PV</th><th>Last Update</th><th>100PV</th><th>Update</th><th>Act</th><th>WA</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>Member & ID</th>
+                    <th>Mobile</th>
+                    <th>Level</th>
+                    <th>Self PV</th>
+                    <th>Group PV</th>
+                    <th>Total PV</th>
+                    <th>Date</th>
+                    <th>100PV</th>
+                    <th>Meeting</th>
+                    <th>Status</th>
+                    <th>Act</th>
+                    <th>WA</th>
+                </tr>
+            </thead>
             <tbody id="tableBody"></tbody>
         </table>
+    </div>
+
+    <div id="reminderModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">⏰ PV Consistency Reminder!</div>
+            <div class="modal-body" id="modalMessage">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+            <div>
+                <button class="modal-btn" onclick="sendReminders()">📱 Send WhatsApp Reminders</button>
+                <button class="modal-btn modal-btn-close" onclick="closeModal()">Close</button>
+            </div>
+        </div>
     </div>
 
     <div class="branding-bar">
         <div class="leader-card-inline">
             <div class="profile-circle-small"><img src="https://i.postimg.cc/XvTq85tC/Girish-S.jpg"></div>
-            <div>
-                <p style="font-weight:700;margin:0;">Girish S</p>
-                <span style="font-size:8px;color:#be185d;font-weight:800;">Universal Crown Director</span>
-                <span class="team-tag" style="font-size:8px; display:block;">DUCD Saravanan Team</span>
+            <div class="leader-info-small">
+                <p class="leader-name-small">Girish S</p>
+                <span class="leader-rank-small">Universal Crown Director of Vestige</span>
+                <span class="team-tag">DUCD Saravanan Team</span>
             </div>
         </div>
-        <img src="https://i.postimg.cc/PNWQDG2x/New-Logo.jpg" style="width: 65px; border-radius: 50%;">
+        <img src="https://i.postimg.cc/PNWQDG2x/New-Logo.jpg" alt="Team Branding" class="inline-logo">
     </div>
 </div>
 
 <script>
-    const KEY = 'nfvt_v8';
-    const TRASH_KEY = 'nfvt_trash_v8';
-
     function checkLogin() {
         const id = document.getElementById('loginId').value;
         const name = document.getElementById('loginName').value;
-        if(id.length >= 8 && name !== "") {
+        if(id.length >= 8 && name.trim() !== "") {
             document.getElementById('loginOverlay').style.display = 'none';
             document.getElementById('mainApp').style.display = 'block';
             document.getElementById('displayUserName').innerText = name;
             document.getElementById('displayUserId').innerText = "ID: " + id;
             document.getElementById('userInitial').innerText = name.charAt(0).toUpperCase();
             displayData();
+        } else {
+            alert("Please enter valid 8-digit ID and Name!");
         }
     }
 
-    function getNow() {
-        const d = new Date();
-        return d.toLocaleDateString() + " " + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
+    window.onload = function() { 
+        document.getElementById('followUpDate').value = new Date().toISOString().split('T')[0];
+    };
 
     function addData() {
         const name = document.getElementById('downlineName').value;
         const mobile = document.getElementById('mobileNo').value;
         const distId = document.getElementById('distId').value;
-        if (!name || distId.length < 8) return alert("Invalid Entry");
-        
-        const entry = { 
-            name, mobile, distId, 
-            level: document.getElementById('memberLevel').value,
-            selfPV: parseFloat(document.getElementById('selfPV').value) || 0,
-            groupPV: parseFloat(document.getElementById('groupPV').value) || 0,
-            totalPV: (parseFloat(document.getElementById('selfPV').value) || 0) + (parseFloat(document.getElementById('groupPV').value) || 0),
-            date: getNow(), 
-            consistency: document.getElementById('consistency').value,
-            lastMeetingDate: "",
-            id: Date.now() 
-        };
-        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
-        entries.unshift(entry);
-        localStorage.setItem(KEY, JSON.stringify(entries));
-        displayData();
-        ['downlineName', 'mobileNo', 'distId', 'selfPV', 'groupPV'].forEach(id => document.getElementById(id).value = '');
-    }
+        const level = document.getElementById('memberLevel').value;
+        const selfPV = parseFloat(document.getElementById('selfPV').value) || 0;
+        const groupPV = parseFloat(document.getElementById('groupPV').value) || 0;
+        const totalPV = selfPV + groupPV;
+        const date = document.getElementById('followUpDate').value;
+        const consistency = document.getElementById('consistency').value;
+        const meeting = document.getElementById('meeting').value;
 
-    function toggleMeeting(id) {
-        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
-        const idx = entries.findIndex(e => e.id === id);
-        const today = new Date().toLocaleDateString();
-        entries[idx].lastMeetingDate = (entries[idx].lastMeetingDate === today) ? "" : today;
-        localStorage.setItem(KEY, JSON.stringify(entries));
-        displayData();
-    }
-
-    function editPV(id) {
-        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
-        const idx = entries.findIndex(e => e.id === id);
-        const s = prompt("Update Self PV:", entries[idx].selfPV);
-        const g = prompt("Update Group PV:", entries[idx].groupPV);
-        if(s !== null && g !== null) {
-            entries[idx].selfPV = parseFloat(s) || 0;
-            entries[idx].groupPV = parseFloat(g) || 0;
-            entries[idx].totalPV = entries[idx].selfPV + entries[idx].groupPV;
-            entries[idx].date = getNow();
-            localStorage.setItem(KEY, JSON.stringify(entries));
-            displayData();
+        if (!name || distId.length < 8 || !mobile) { 
+            alert("⚠️ Please fill Name, ID (8 digits), and Mobile!"); 
+            return; 
         }
+
+        const entry = { name, mobile, distId, level, selfPV, groupPV, totalPV, date, consistency, meeting, id: Date.now() };
+        let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        entries.unshift(entry); 
+        localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
+        displayData();
+        
+        // Clear form
+        ['downlineName', 'mobileNo', 'distId', 'selfPV', 'groupPV'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('consistency').value = 'Yes';
+        document.getElementById('meeting').value = 'Yes';
     }
 
     function displayData() {
         const tableBody = document.getElementById('tableBody');
-        const entries = JSON.parse(localStorage.getItem(KEY)) || [];
-        const today = new Date().toLocaleDateString();
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
         tableBody.innerHTML = '';
-        let tpv = 0;
+        let totalTeamPV = 0;
+        let alertCount = 0;
+        let pvReminderList = [];
+        
+        // Check if we're in reminder period (2nd to 14th of month)
+        const today = new Date();
+        const dayOfMonth = today.getDate();
+        const isReminderPeriod = dayOfMonth >= 2 && dayOfMonth <= 14;
+        
         entries.forEach(item => {
-            tpv += item.totalPV;
-            const met = item.lastMeetingDate === today;
-            const waMsg = `வணக்கம் ${item.name}, Business Update: Self PV: ${item.selfPV}, Group PV: ${item.groupPV}. Total: ${item.totalPV}. Updated: ${item.date}.`;
-            tableBody.innerHTML += `<tr>
-                <td><strong>${item.name}</strong><br><small>${item.distId}</small>
-                    <button onclick="toggleMeeting(${item.id})" class="meeting-btn ${met?'met-yes':'met-no'}">${met?'Meeting Done ✅':'Meeting Pending ❌'}</button>
-                </td>
-                <td>${item.mobile}</td><td>${item.level}</td><td>${item.selfPV}</td><td>${item.groupPV}</td>
-                <td><strong>${item.totalPV}</strong></td><td><small>${item.date}</small></td><td>${item.consistency}</td>
-                <td><button class="edit-pv-btn" onclick="editPV(${item.id})">Update</button></td>
-                <td><button class="delete-btn" onclick="deleteEntry(${item.id})">❌</button></td>
-                <td><a href="https://wa.me/91${item.mobile}?text=${encodeURIComponent(waMsg)}" target="_blank" class="wa-link">WA</a></td>
-            </tr>`;
+            totalTeamPV += item.totalPV;
+            
+            // Determine row class and status
+            let rowClass = '';
+            let statusBadges = '';
+            let waMessage = `Hello ${item.name}! 👋\n\n`;
+            
+            // Check for PV reminder during 2nd-14th
+            if (isReminderPeriod && item.selfPV < 100) {
+                statusBadges += '<span class="reminder-badge badge-pv-reminder">⏰ PV DUE</span>';
+                pvReminderList.push({name: item.name, mobile: item.mobile, selfPV: item.selfPV, needed: 100 - item.selfPV});
+            }
+            
+            // Check for inactive ID (Self PV < 30)
+            if (item.selfPV < 30) {
+                rowClass = 'inactive-warning';
+                statusBadges += '<span class="reminder-badge badge-inactive">⚠️ INACTIVE</span>';
+                waMessage += `⚠️ *URGENT:* Your ID is INACTIVE!\nYou need to do *${30 - item.selfPV} more PV* to activate your ID.\n\n`;
+                alertCount++;
+            }
+            // Check for low PV (30-99)
+            else if (item.selfPV < 100) {
+                rowClass = 'low-pv-warning';
+                statusBadges += '<span class="reminder-badge badge-low-pv">📊 LOW PV</span>';
+                waMessage += `📊 Your Self PV is ${item.selfPV}. Keep pushing to reach 100 PV!\n\n`;
+                
+                // Add reminder about deadline if in reminder period
+                if (isReminderPeriod) {
+                    waMessage += `⏰ *REMINDER:* Complete 100 PV before 14th of this month!\nYou need *${100 - item.selfPV} more PV*.\n\n`;
+                }
+                alertCount++;
+            }
+            // High PV (>=100)
+            else {
+                rowClass = 'high-pv';
+            }
+            
+            // Check for no consistency
+            if (item.consistency === "No") {
+                if (rowClass === '') rowClass = 'no-consistency';
+                statusBadges += '<span class="reminder-badge badge-inactive">❌ NO 100PV</span>';
+                waMessage += `⚠️ You need to maintain 100PV consistency!\n\n`;
+                alertCount++;
+            }
+            
+            // Check for no meeting attendance
+            if (item.meeting === "No") {
+                if (rowClass === '' && item.selfPV >= 100) rowClass = 'no-meeting';
+                statusBadges += '<span class="reminder-badge badge-no-meeting">🔔 ATTEND MTG</span>';
+                waMessage += `🔔 *REMINDER:* Please attend daily meetings! Meetings are crucial for your growth.\n\n`;
+                alertCount++;
+            }
+            
+            waMessage += `📈 *Current Stats:*\n`;
+            waMessage += `• Self PV: ${item.selfPV}\n`;
+            waMessage += `• Group PV: ${item.groupPV}\n`;
+            waMessage += `• Total PV: ${item.totalPV}\n\n`;
+            waMessage += `💪 Keep growing with Team NFVT!\n`;
+            waMessage += `🌟 Success is yours!`;
+            
+            const waLink = `https://wa.me/91${item.mobile}?text=${encodeURIComponent(waMessage)}`;
+            
+            tableBody.innerHTML += `<tr class="${rowClass}">
+                    <td><strong style="color: #1e293b;">${item.name}</strong><br><small style="color: #64748b;">${item.distId}</small></td>
+                    <td><strong>${item.mobile}</strong></td>
+                    <td><span style="background: #ddd6fe; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; color: #5b21b6;">${item.level}</span></td>
+                    <td><strong style="color: ${item.selfPV >= 100 ? '#059669' : (item.selfPV >= 30 ? '#f59e0b' : '#dc2626')};">${item.selfPV}</strong></td>
+                    <td><strong style="color: #6366f1;">${item.groupPV}</strong></td>
+                    <td><strong style="font-size: 15px; color: #1e293b;">${item.totalPV}</strong></td>
+                    <td>${item.date}</td>
+                    <td><span style="background: ${item.consistency === 'Yes' ? '#dcfce7' : '#fee2e2'}; color: ${item.consistency === 'Yes' ? '#166534' : '#991b1b'}; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">${item.consistency}</span></td>
+                    <td><span style="background: ${item.meeting === 'Yes' ? '#dbeafe' : '#fef3c7'}; color: ${item.meeting === 'Yes' ? '#1e40af' : '#92400e'}; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">${item.meeting}</span></td>
+                    <td style="min-width: 120px;">${statusBadges || '<span style="color: #10b981; font-weight: 700;">✅ Good</span>'}</td>
+                    <td><button class="delete-btn" onclick="deleteEntry(${item.id})" title="Delete">❌</button></td>
+                    <td><a href="${waLink}" target="_blank" class="wa-link">📱 WA</a></td>
+                </tr>`;
         });
-        document.getElementById('totalStats').innerText = `Total Team PV: ${tpv.toFixed(2)} | Members: ${entries.length}`;
-    }
-
-    function send7PMReminders() {
-        const entries = JSON.parse(localStorage.getItem(KEY)) || [];
-        const today = new Date().toLocaleDateString();
-        const pending = entries.filter(e => e.lastMeetingDate !== today);
-        if(pending.length === 0) return alert("All members attended!");
-        if(confirm(`Send WhatsApp to ${pending.length} members?`)) {
-            pending.forEach((e, i) => {
-                setTimeout(() => {
-                    const msg = `வணக்கம் ${e.name}, Today's meeting is pending. Please update.`;
-                    window.open(`https://wa.me/91${e.mobile}?text=${encodeURIComponent(msg)}`, '_blank');
-                }, i * 1500);
-            });
+        
+        document.getElementById('totalStats').innerText = `Total Team PV: ${totalTeamPV.toFixed(2)} | Members: ${entries.length} | 🔔 Alerts: ${alertCount}`;
+        
+        // Show popup if in reminder period and there are members below 100 PV
+        if (isReminderPeriod && pvReminderList.length > 0) {
+            const lastShown = localStorage.getItem('lastReminderShown');
+            const todayStr = today.toDateString();
+            
+            // Show popup only once per day
+            if (lastShown !== todayStr) {
+                showReminderPopup(pvReminderList);
+                localStorage.setItem('lastReminderShown', todayStr);
+            }
         }
     }
 
     function deleteEntry(id) {
-        if(!confirm("Move to Trash?")) return;
-        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
-        let trash = JSON.parse(localStorage.getItem(TRASH_KEY)) || [];
-        const idx = entries.findIndex(e => e.id === id);
-        trash.push(entries[idx]); entries.splice(idx, 1);
-        localStorage.setItem(KEY, JSON.stringify(entries));
-        localStorage.setItem(TRASH_KEY, JSON.stringify(trash));
-        displayData();
+        if(confirm("⚠️ Delete this member?")) {
+            let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+            let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
+            const idx = entries.findIndex(e => e.id === id);
+            if (idx > -1) {
+                trash.push(entries[idx]); 
+                entries.splice(idx, 1);
+                localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
+                localStorage.setItem('nfvt_trash', JSON.stringify(trash));
+                displayData();
+            }
+        }
     }
 
     function toggleTrash() {
         const ts = document.getElementById('trashSection');
-        ts.style.display = (ts.style.display === 'none') ? 'block' : 'none';
+        ts.style.display = (ts.style.display === 'none' || ts.style.display === '') ? 'block' : 'none';
         if(ts.style.display === 'block') {
-            const trash = JSON.parse(localStorage.getItem(TRASH_KEY)) || [];
+            const trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
             document.getElementById('trashBody').innerHTML = trash.map(i => 
-                `<tr>
-                    <td><strong>${i.name}</strong> (${i.distId})</td>
-                    <td style="text-align:right;">
-                        <button onclick="restoreEntry(${i.id})" style="background:#059669; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-size:10px; margin-right:5px;">Restore</button>
-                        <button onclick="permanentDelete(${i.id})" style="background:#dc2626; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-size:10px;">Delete Forever</button>
+                `<tr style="background: white;">
+                    <td><strong>${i.name}</strong></td>
+                    <td>${i.distId}</td>
+                    <td>
+                        <button onclick="restoreEntry(${i.id})" style="background: #10b981; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 700; margin-right: 5px;">↩️ Restore</button>
+                        <button onclick="permanentDelete(${i.id})" class="perm-delete-btn">🗑️ Delete Forever</button>
                     </td>
                 </tr>`
             ).join('');
         }
     }
 
-    function restoreEntry(id) {
-        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
-        let trash = JSON.parse(localStorage.getItem(TRASH_KEY)) || [];
-        const idx = trash.findIndex(e => e.id === id);
-        entries.unshift(trash[idx]); trash.splice(idx, 1);
-        localStorage.setItem(KEY, JSON.stringify(entries));
-        localStorage.setItem(TRASH_KEY, JSON.stringify(trash));
-        displayData(); toggleTrash(); toggleTrash(); // Refresh view
+    function permanentDelete(id) {
+        if(confirm("⚠️ PERMANENT DELETE!\n\nThis member will be deleted forever and cannot be recovered.\n\nAre you absolutely sure?")) {
+            let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
+            const idx = trash.findIndex(e => e.id === id);
+            if (idx > -1) {
+                trash.splice(idx, 1);
+                localStorage.setItem('nfvt_trash', JSON.stringify(trash));
+                toggleTrash();
+                setTimeout(() => toggleTrash(), 100);
+                alert("✅ Member permanently deleted!");
+            }
+        }
     }
 
-    function permanentDelete(id) {
-        if(!confirm("Warning: This member will be permanently deleted! Continue?")) return;
-        let trash = JSON.parse(localStorage.getItem(TRASH_KEY)) || [];
+    function emptyTrash() {
+        const trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
+        if (trash.length === 0) {
+            alert("Trash is already empty!");
+            return;
+        }
+        
+        if(confirm(`⚠️ EMPTY TRASH - PERMANENT DELETE!\n\nThis will permanently delete all ${trash.length} members in trash.\nThis action CANNOT be undone!\n\nAre you absolutely sure?`)) {
+            localStorage.setItem('nfvt_trash', JSON.stringify([]));
+            toggleTrash();
+            alert("✅ Trash emptied! All members permanently deleted.");
+        }
+    }
+
+    function showReminderPopup(pvList) {
+        const modal = document.getElementById('reminderModal');
+        const message = document.getElementById('modalMessage');
+        
+        let content = `<strong style="color: #dc2626; font-size: 18px;">⏰ Monthly PV Reminder (2nd - 14th)</strong><br><br>`;
+        content += `<div style="text-align: left; background: #fef3c7; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #f59e0b;">`;
+        content += `<strong style="color: #92400e;">📋 ${pvList.length} Members need to complete 100 PV before 14th:</strong><br><br>`;
+        
+        pvList.forEach(member => {
+            content += `• <strong>${member.name}</strong> - Current: ${member.selfPV} PV | Needed: <strong style="color: #dc2626;">${member.needed} PV</strong><br>`;
+        });
+        
+        content += `</div>`;
+        content += `<p style="color: #475569; font-size: 14px;">Click below to send WhatsApp reminders to all members.</p>`;
+        
+        message.innerHTML = content;
+        modal.style.display = 'flex';
+        
+        // Store the list for sending reminders
+        window.currentReminderList = pvList;
+    }
+
+    function closeModal() {
+        document.getElementById('reminderModal').style.display = 'none';
+    }
+
+    function sendReminders() {
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const today = new Date();
+        const dayOfMonth = today.getDate();
+        
+        if (window.currentReminderList && window.currentReminderList.length > 0) {
+            let sentCount = 0;
+            
+            window.currentReminderList.forEach((member, index) => {
+                const message = `Hello ${member.name}! 👋\n\n` +
+                    `⏰ *MONTHLY PV REMINDER*\n\n` +
+                    `📅 Deadline: Before 14th of this month\n` +
+                    `📊 Your Current Self PV: ${member.selfPV}\n` +
+                    `🎯 Target: 100 PV\n` +
+                    `⚠️ Remaining: *${member.needed} PV*\n\n` +
+                    `💡 *Action Required:* Please complete your remaining ${member.needed} PV before the 14th to maintain your 100 PV consistency!\n\n` +
+                    `📞 Need help? Contact your upline today!\n\n` +
+                    `💪 Keep growing with Team NFVT!\n` +
+                    `🌟 Success is yours!`;
+                
+                const waLink = `https://wa.me/91${member.mobile}?text=${encodeURIComponent(message)}`;
+                
+                // Open WhatsApp links with delay
+                setTimeout(() => {
+                    window.open(waLink, '_blank');
+                }, index * 2000); // 2 second delay between each
+                
+                sentCount++;
+            });
+            
+            alert(`📱 Opening WhatsApp for ${sentCount} members!\n\nEach message will open in a new tab with a 2-second delay.`);
+            closeModal();
+        }
+    }
+
+    function restoreEntry(id) {
+        let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
         const idx = trash.findIndex(e => e.id === id);
         if (idx > -1) {
+            entries.unshift(trash[idx]); 
             trash.splice(idx, 1);
-            localStorage.setItem(TRASH_KEY, JSON.stringify(trash));
-            toggleTrash(); toggleTrash(); // Refresh view
+            localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
+            localStorage.setItem('nfvt_trash', JSON.stringify(trash));
+            displayData(); 
+            toggleTrash(); 
+            setTimeout(() => toggleTrash(), 100);
         }
     }
 
     function filterTable() {
         const q = document.getElementById("searchInput").value.toUpperCase();
         const r = document.getElementById("tableBody").getElementsByTagName("tr");
-        for (let row of r) { row.style.display = row.innerText.toUpperCase().includes(q) ? "" : "none"; }
+        for (let row of r) { 
+            row.style.display = row.innerText.toUpperCase().includes(q) ? "" : "none"; 
+        }
     }
 
     function downloadCSV() {
-        const entries = JSON.parse(localStorage.getItem(KEY)) || [];
-        let csv = "Name,ID,Level,TotalPV,DateUpdated\n";
-        entries.forEach(e => csv += `"${e.name}","${e.distId}","${e.level}","${e.totalPV}","${e.date}"\n`);
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        let csv = "Name,ID,Mobile,Level,SelfPV,GroupPV,TotalPV,Date,100PV_CNC,Meeting\n";
+        entries.forEach(e => csv += `"${e.name}","${e.distId}","${e.mobile}","${e.level}","${e.selfPV}","${e.groupPV}","${e.totalPV}","${e.date}","${e.consistency}","${e.meeting}"\n`);
         const b = new Blob([csv], {type:'text/csv'});
-        const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download="Report.csv"; a.click();
+        const a = document.createElement('a'); 
+        a.href=URL.createObjectURL(b); 
+        a.download=`NFVT_Report_${new Date().toISOString().split('T')[0]}.csv`; 
+        a.click();
+    }
+
+    function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // Title
+        doc.setFontSize(18);
+        doc.setTextColor(191, 149, 63);
+        doc.text("NFVT Team Followup Report", 14, 15);
+        
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Generated: ${new Date().toLocaleDateString()}`, 14, 22);
+        
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        
+        // Stats
+        const totalPV = entries.reduce((sum, e) => sum + e.totalPV, 0);
+        const alerts = entries.filter(e => e.selfPV < 30 || e.meeting === 'No').length;
+        doc.text(`Total Members: ${entries.length} | Team PV: ${totalPV.toFixed(2)} | Alerts: ${alerts}`, 14, 29);
+        
+        const rows = entries.map(e => [
+            e.name, 
+            e.distId, 
+            e.mobile, 
+            e.selfPV, 
+            e.groupPV,
+            e.totalPV, 
+            e.consistency,
+            e.meeting,
+            e.selfPV < 30 ? 'INACTIVE' : (e.selfPV < 100 ? 'LOW PV' : 'OK')
+        ]);
+        
+        doc.autoTable({ 
+            head: [['Name', 'ID', 'Mobile', 'Self', 'Group', 'Total', '100PV', 'Mtg', 'Status']], 
+            body: rows, 
+            startY: 35,
+            styles: { fontSize: 8 },
+            headStyles: { fillColor: [30, 41, 59] }
+        });
+        
+        doc.save(`NFVT_Report_${new Date().toISOString().split('T')[0]}.pdf`);
     }
 </script>
 </body>
