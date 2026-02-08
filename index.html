@@ -3,119 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFVT Team Followup - Final</title>
+    <title>NFVT Team Followup - Stable Version</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-
     <style>
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; margin: 0; padding: 20px; padding-bottom: 100px; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; margin: 0; padding: 20px; }
         #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a202c; display: flex; align-items: center; justify-content: center; z-index: 2000; }
-        .login-box { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .container { max-width: 1200px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; display: none; }
-        
+        .login-box { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); width: 300px; }
+        .container { max-width: 1400px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; display: none; }
+        .user-profile-bar { display: flex; align-items: center; justify-content: space-between; background: #f1f5f9; padding: 10px 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #e2e8f0; }
+        .user-avatar { width: 40px; height: 40px; background: #2563eb; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .stats-summary { background: #eff6ff; padding: 10px; border-radius: 8px; font-weight: 700; color: #1e40af; border: 1px solid #bfdbfe; margin-bottom: 15px; text-align: center; }
         .header-section { text-align: center; margin-bottom: 25px; }
         .team-logo { max-width: 100px; height: auto; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
-        
-        .luxury-gold-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 46px;
-            font-weight: 900;
-            margin: 0;
-            text-transform: uppercase;
-            display: inline-block;
-            letter-spacing: 2px;
-            position: relative;
-            background: linear-gradient(to bottom, #bf953f 0%, #fcf6ba 20%, #b38728 45%, #fcf6ba 55%, #bf953f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            filter: drop-shadow(0px 0px 1px #947a39) drop-shadow(0px 0px 8px rgba(212, 175, 55, 0.6));
-            animation: lightSweep 4s infinite linear;
-        }
-
-        @keyframes lightSweep {
-            0% { background-position: -100% center; }
-            100% { background-position: 100% center; }
-        }
-
-        .branding-bar { display: flex; justify-content: space-between; align-items: center; background: #fff1f2; padding: 12px; border-radius: 12px; margin-bottom: 20px; border: 1.5px solid #ec4899; }
-        .leader-card-inline { display: flex; align-items: center; gap: 10px; }
-        .profile-circle-small { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #ec4899; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .profile-circle-small img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-        .leader-info-small { display: flex; flex-direction: column; }
-        .leader-name-small { font-weight: 700; font-size: 15px; margin: 0; color: #1e293b; }
-        .leader-rank-small { font-size: 8px; color: #be185d; font-weight: 800; text-transform: uppercase; margin: 1px 0; letter-spacing: 0.2px; }
-        .team-tag { font-size: 9px; color: #1e293b; font-weight: 700; background: #fce7f3; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 2px; border: 1px solid #f9a8d4; }
-        .contact-btn-small { color: #ec4899; text-decoration: none; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 5px; margin-top: 3px; }
-        .ig-icon { width: 14px; height: 14px; }
-        .inline-logo { width: 65px; height: auto; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.1); flex-shrink: 0; }
-
+        .luxury-gold-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; margin: 0; text-transform: uppercase; background: linear-gradient(to bottom, #bf953f 0%, #fcf6ba 20%, #b38728 45%, #fcf6ba 55%, #bf953f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0px 0px 1px #947a39); animation: lightSweep 4s infinite linear; }
+        @keyframes lightSweep { 0% { background-position: -100% center; } 100% { background-position: 100% center; } }
         .form-section { background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px; }
-        .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
-        .input-group label { display: block; font-size: 11px; font-weight: 700; color: #718096; margin-bottom: 5px; text-transform: uppercase; }
-        input, select { width: 100%; padding: 10px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
-        .add-btn { background: #2563eb; color: white; border: none; padding: 11px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.2s; align-self: flex-end; }
-        .high-pv { background-color: #dcfce7 !important; border-left: 5px solid #16a34a; } 
-        .no-consistency { background-color: #fee2e2 !important; border-left: 5px solid #ef4444; } 
-        .achiever-row { background-color: #fffbeb !important; border-left: 5px solid #f59e0b; } 
-        .status-red { color: #dc2626 !important; font-weight: 800; background-color: #fef2f2; padding: 2px 6px; border-radius: 4px; }
+        .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
+        .input-group label { display: block; font-size: 10px; font-weight: 700; color: #718096; margin-bottom: 5px; text-transform: uppercase; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 13px; }
+        .add-btn { background: #2563eb; color: white; border: none; padding: 11px; border-radius: 6px; font-weight: 600; cursor: pointer; align-self: flex-end; }
         .action-bar { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 15px; flex-wrap: wrap; }
-        #searchInput { flex-grow: 1; border: 1px solid #cbd5e0; border-radius: 6px; padding: 10px; min-width: 200px; }
+        #searchInput { flex-grow: 1; border: 1px solid #cbd5e0; border-radius: 6px; padding: 10px; }
         .btn-group { display: flex; gap: 8px; }
         .btn-success { background: #059669; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-        .btn-danger { background: #e11d48; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-        .btn-restore { background: #64748b; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .btn-warning { background: #f59e0b; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: 600; cursor: pointer; }
         table { width: 100%; border-collapse: collapse; background: white; margin-top: 10px; }
-        th { background: #f1f5f9; padding: 14px; text-align: left; font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; border-bottom: 2px solid #e2e8f0; }
-        td { padding: 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
-        .wa-link { color: #25D366; text-decoration: none; font-weight: 700; border: 1px solid #25D366; padding: 5px 8px; border-radius: 5px; font-size: 11px; white-space: nowrap;}
+        th { background: #f1f5f9; padding: 12px; text-align: left; font-size: 10px; font-weight: 700; color: #475569; text-transform: uppercase; border-bottom: 2px solid #e2e8f0; }
+        td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
+        .edit-pv-btn { background: #6366f1; color: white; border: none; padding: 6px 10px; border-radius: 5px; font-size: 10px; cursor: pointer; font-weight: bold; }
+        .meeting-btn { border: none; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer; font-weight: bold; margin-top: 4px; display: block; }
+        .met-yes { background: #dcfce7; color: #166534; }
+        .met-no { background: #fee2e2; color: #991b1b; }
+        .wa-link { color: #25D366; text-decoration: none; font-weight: 700; border: 1px solid #25D366; padding: 4px 6px; border-radius: 5px; font-size: 10px;}
         .delete-btn { color: #94a3b8; cursor: pointer; border: none; background: none; font-size: 16px; }
         #trashSection { display: none; background: #fff1f2; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 2px dashed #fda4af; }
+        .branding-bar { display: flex; justify-content: space-between; align-items: center; background: #fff1f2; padding: 12px; border-radius: 12px; margin-top: 40px; border: 1.5px solid #ec4899; }
+        .leader-card-inline { display: flex; align-items: center; gap: 10px; }
+        .profile-circle-small { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #ec4899; overflow: hidden; background: #fff; }
+        .profile-circle-small img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
 <body>
 
-<div id="loginOverlay">
-    <div class="login-box">
-        <img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" style="width: 80px; margin-bottom: 15px; border-radius: 8px;">
-        <h2 style="margin: 0 0 15px 0; font-size: 18px;">Team Followup Login</h2>
-        <input type="number" id="loginId" placeholder="Distributor ID">
-        <input type="password" id="loginPass" placeholder="Password">
-        <button onclick="checkLogin()" style="background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px;">Login</button>
-        <p id="errorMsg" style="color: red; font-size: 12px; display: none; margin-top: 10px;">ID அல்லது Password தவறு!</p>
-    </div>
-</div>
+<div id="loginOverlay"><div class="login-box"><img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" style="width:80px;border-radius:8px;"><h2 style="font-size:18px;">Team Followup Login</h2><input type="number" id="loginId" placeholder="ID"><input type="text" id="loginName" placeholder="Name" style="margin-top:10px;"><button onclick="checkLogin()" style="background:#2563eb;color:white;border:none;padding:10px;border-radius:6px;cursor:pointer;margin-top:15px;width:100%;">Login</button></div></div>
 
 <div class="container" id="mainApp">
-    <div class="header-section">
-        <img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" alt="NFVT Logo" class="team-logo">
-        <br>
-        <h1 class="luxury-gold-title">NFVT Team Followup</h1>
-    </div>
-
-    <div class="branding-bar">
-        <div class="leader-card-inline">
-            <div class="profile-circle-small">
-                <img src="https://i.postimg.cc/LhqXwQ9Y/Leader.jpg" alt="Girish S">
-            </div>
-            <div class="leader-info-small">
-                <p class="leader-name-small">Girish S</p>
-                <span class="leader-rank-small">Universal Crown Director of Vestige</span>
-                <span class="team-tag">DUCD Saravanan Team</span>
-                <a href="https://www.instagram.com/girish_business/#" target="_blank" class="contact-btn-small">
-                    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="ig-icon" alt="Instagram">
-                    Contact
-                </a>
-            </div>
-        </div>
-        <img src="https://i.postimg.cc/PNWQDG2x/New-Logo.jpg" alt="Team Branding" class="inline-logo">
-    </div>
+    <div class="user-profile-bar"><div class="user-details"><div class="user-avatar" id="userInitial">U</div><div><div style="font-size:14px;font-weight:700;" id="displayUserName">User</div><div style="font-size:11px;color:#64748b;" id="displayUserId">ID: 000</div></div></div><button onclick="location.reload()" style="background:none;border:1px solid #cbd5e0;padding:5px 10px;border-radius:4px;font-size:11px;cursor:pointer;">Logout</button></div>
+    <div class="stats-summary" id="totalStats">Total Team PV: 0 | Members: 0</div>
+    <div class="header-section"><img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" class="team-logo"><h1 class="luxury-gold-title">NFVT Team Followup</h1></div>
 
     <div class="form-section">
         <div class="grid-form">
             <div class="input-group"><label>Member Name</label><input type="text" id="downlineName"></div>
-            <div class="input-group"><label>Distributor ID</label><input type="number" id="distId" oninput="if(this.value.length > 8) this.value = this.value.slice(0, 8);" placeholder="8 Digit ID"></div>
+            <div class="input-group"><label>Mobile</label><input type="number" id="mobileNo"></div>
+            <div class="input-group"><label>Distributor ID</label><input type="number" id="distId"></div>
             <div class="input-group">
                 <label>Level</label>
                 <select id="memberLevel">
@@ -128,168 +69,206 @@
                     <option value="Star Director">Star Director</option>
                     <option value="Diamond Director">Diamond Director</option>
                     <option value="Crown Director">Crown Director</option>
-                    <option value="UCD">UCD</option>
-                    <option value="DCD">DCD</option>
-                    <option value="DUCD">DUCD</option>
+                    <option value="Universal Crown Director">Universal Crown Director</option>
                 </select>
             </div>
             <div class="input-group"><label>Self PV</label><input type="number" id="selfPV"></div>
-            <div class="input-group"><label>Date</label><input type="date" id="followUpDate"></div>
-            <div class="input-group"><label>100PV Consistency</label><select id="consistency"><option value="Yes">Yes</option><option value="No">No</option></select></div>
-            <div class="input-group"><label>8% Achiever?</label><select id="achiever"><option value="No">No</option><option value="Yes">Yes</option></select></div>
-            <div class="input-group"><label>Meeting Attended?</label><select id="meeting"><option value="Yes">Yes</option><option value="No">No</option></select></div>
+            <div class="input-group"><label>Group PV</label><input type="number" id="groupPV"></div>
+            <div class="input-group"><label>100PV CNC</label><select id="consistency"><option value="Yes">Yes</option><option value="No">No</option></select></div>
             <button class="add-btn" onclick="addData()">Add Member</button>
         </div>
     </div>
 
     <div id="trashSection">
-        <h3 style="font-size: 14px; margin: 0 0 10px 0; color: #be185d;">♻️ Deleted Members</h3>
-        <table style="background: transparent;">
-            <thead><tr><th>Name</th><th>Action</th></tr></thead>
-            <tbody id="trashBody"></tbody>
-        </table>
-        <button onclick="toggleTrash()" style="margin-top: 10px; font-size: 11px; cursor: pointer; padding: 5px 10px;">Close Trash</button>
+        <h3 style="font-size: 14px; margin: 0 0 10px 0; color: #be185d;">♻️ Deleted Members (Trash)</h3>
+        <table><tbody id="trashBody"></tbody></table>
+        <button onclick="toggleTrash()" style="font-size: 11px; cursor: pointer; margin-top: 10px;">Close Trash</button>
     </div>
 
     <div class="action-bar">
-        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="பெயர் அல்லது ID தேடுக...">
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search Name or ID...">
         <div class="btn-group">
             <button class="btn-success" onclick="downloadCSV()">Excel</button>
-            <button class="btn-danger" onclick="downloadPDF()">PDF</button>
-            <button class="btn-restore" onclick="toggleTrash()">Restore/Trash</button>
+            <button class="btn-warning" onclick="send7PMReminders()">7PM Reminder</button>
+            <button onclick="toggleTrash()" style="background:#64748b; color:white; border:none; padding:10px 15px; border-radius:6px; font-weight:600; cursor:pointer;">Trash</button>
         </div>
     </div>
 
     <div style="overflow-x: auto;">
         <table>
-            <thead>
-                <tr><th>Distributor & ID</th><th>Level</th><th>PV</th><th>Date</th><th>100PV</th><th>8%</th><th>Meeting</th><th>Action</th><th>WhatsApp</th></tr>
-            </thead>
+            <thead><tr><th>Member & ID</th><th>Mobile</th><th>Level</th><th>Self PV</th><th>Group PV</th><th>Total PV</th><th>Last Update</th><th>100PV</th><th>Update</th><th>Act</th><th>WA</th></tr></thead>
             <tbody id="tableBody"></tbody>
         </table>
+    </div>
+
+    <div class="branding-bar">
+        <div class="leader-card-inline">
+            <div class="profile-circle-small"><img src="https://i.postimg.cc/XvTq85tC/Girish-S.jpg"></div>
+            <div>
+                <p style="font-weight:700;margin:0;">Girish S</p>
+                <span style="font-size:8px;color:#be185d;font-weight:800;">Universal Crown Director</span>
+                <span class="team-tag" style="font-size:8px; display:block;">DUCD Saravanan Team</span>
+            </div>
+        </div>
+        <img src="https://i.postimg.cc/PNWQDG2x/New-Logo.jpg" style="width: 65px; border-radius: 50%;">
     </div>
 </div>
 
 <script>
+    const KEY = 'nfvt_v8';
+    const TRASH_KEY = 'nfvt_trash_v8';
+
     function checkLogin() {
         const id = document.getElementById('loginId').value;
-        const pass = document.getElementById('loginPass').value;
-        if(id.length === 8 && pass === "nfvt") {
+        const name = document.getElementById('loginName').value;
+        if(id.length >= 8 && name !== "") {
             document.getElementById('loginOverlay').style.display = 'none';
             document.getElementById('mainApp').style.display = 'block';
+            document.getElementById('displayUserName').innerText = name;
+            document.getElementById('displayUserId').innerText = "ID: " + id;
+            document.getElementById('userInitial').innerText = name.charAt(0).toUpperCase();
             displayData();
-        } else {
-            document.getElementById('errorMsg').style.display = 'block';
         }
     }
 
-    window.onload = function() { 
-        document.getElementById('followUpDate').value = new Date().toISOString().split('T')[0];
-    };
+    function getNow() {
+        const d = new Date();
+        return d.toLocaleDateString() + " " + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
 
     function addData() {
         const name = document.getElementById('downlineName').value;
+        const mobile = document.getElementById('mobileNo').value;
         const distId = document.getElementById('distId').value;
-        const level = document.getElementById('memberLevel').value;
-        const pv = parseFloat(document.getElementById('selfPV').value) || 0;
-        const rawDate = document.getElementById('followUpDate').value;
-        const consistency = document.getElementById('consistency').value;
-        const achiever = document.getElementById('achiever').value;
-        const meeting = document.getElementById('meeting').value;
-
-        if (!name || distId.length !== 8) { alert("ID 8 எண்கள் இருக்க வேண்டும்!"); return; }
-
-        const entry = { name, distId, level, pv, rawDate, consistency, achiever, meeting, id: Date.now() };
-        let entries = JSON.parse(localStorage.getItem('nfvt_ucd_final')) || [];
-        entries.unshift(entry); 
-        localStorage.setItem('nfvt_ucd_final', JSON.stringify(entries));
-        displayData();
+        if (!name || distId.length < 8) return alert("Invalid Entry");
         
-        // Clear inputs
-        document.getElementById('downlineName').value = '';
-        document.getElementById('distId').value = '';
-        document.getElementById('selfPV').value = '';
+        const entry = { 
+            name, mobile, distId, 
+            level: document.getElementById('memberLevel').value,
+            selfPV: parseFloat(document.getElementById('selfPV').value) || 0,
+            groupPV: parseFloat(document.getElementById('groupPV').value) || 0,
+            totalPV: (parseFloat(document.getElementById('selfPV').value) || 0) + (parseFloat(document.getElementById('groupPV').value) || 0),
+            date: getNow(), 
+            consistency: document.getElementById('consistency').value,
+            lastMeetingDate: "",
+            id: Date.now() 
+        };
+        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
+        entries.unshift(entry);
+        localStorage.setItem(KEY, JSON.stringify(entries));
+        displayData();
+        ['downlineName', 'mobileNo', 'distId', 'selfPV', 'groupPV'].forEach(id => document.getElementById(id).value = '');
+    }
+
+    function toggleMeeting(id) {
+        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
+        const idx = entries.findIndex(e => e.id === id);
+        const today = new Date().toLocaleDateString();
+        entries[idx].lastMeetingDate = (entries[idx].lastMeetingDate === today) ? "" : today;
+        localStorage.setItem(KEY, JSON.stringify(entries));
+        displayData();
+    }
+
+    function editPV(id) {
+        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
+        const idx = entries.findIndex(e => e.id === id);
+        const s = prompt("Update Self PV:", entries[idx].selfPV);
+        const g = prompt("Update Group PV:", entries[idx].groupPV);
+        if(s !== null && g !== null) {
+            entries[idx].selfPV = parseFloat(s) || 0;
+            entries[idx].groupPV = parseFloat(g) || 0;
+            entries[idx].totalPV = entries[idx].selfPV + entries[idx].groupPV;
+            entries[idx].date = getNow();
+            localStorage.setItem(KEY, JSON.stringify(entries));
+            displayData();
+        }
     }
 
     function displayData() {
         const tableBody = document.getElementById('tableBody');
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_final')) || [];
+        const entries = JSON.parse(localStorage.getItem(KEY)) || [];
+        const today = new Date().toLocaleDateString();
         tableBody.innerHTML = '';
+        let tpv = 0;
         entries.forEach(item => {
-            let rowClass = item.consistency === "No" ? 'class="no-consistency"' : (item.pv >= 100 ? 'class="high-pv"' : (item.achiever === 'Yes' ? 'class="achiever-row"' : ''));
-            const pvStyle = item.pv < 30 ? 'class="status-red"' : '';
-            const waLink = `https://wa.me/?text=வணக்கம் ${item.name}, PV: ${item.pv} - Team NFVT`;
-            
-            tableBody.innerHTML += `
-                <tr ${rowClass}>
-                    <td><strong>${item.name}</strong><br><small>${item.distId}</small></td>
-                    <td>${item.level}</td>
-                    <td ${pvStyle}>${item.pv} PV</td>
-                    <td>${item.rawDate}</td>
-                    <td>${item.consistency}</td>
-                    <td>${item.achiever}</td>
-                    <td>${item.meeting}</td>
-                    <td><button class="delete-btn" onclick="deleteEntry(${item.id})">❌</button></td>
-                    <td><a href="${waLink}" target="_blank" class="wa-link">WhatsApp</a></td>
-                </tr>`;
+            tpv += item.totalPV;
+            const met = item.lastMeetingDate === today;
+            const waMsg = `வணக்கம் ${item.name}, Business Update: Self PV: ${item.selfPV}, Group PV: ${item.groupPV}. Total: ${item.totalPV}. Updated: ${item.date}.`;
+            tableBody.innerHTML += `<tr>
+                <td><strong>${item.name}</strong><br><small>${item.distId}</small>
+                    <button onclick="toggleMeeting(${item.id})" class="meeting-btn ${met?'met-yes':'met-no'}">${met?'Meeting Done ✅':'Meeting Pending ❌'}</button>
+                </td>
+                <td>${item.mobile}</td><td>${item.level}</td><td>${item.selfPV}</td><td>${item.groupPV}</td>
+                <td><strong>${item.totalPV}</strong></td><td><small>${item.date}</small></td><td>${item.consistency}</td>
+                <td><button class="edit-pv-btn" onclick="editPV(${item.id})">Update</button></td>
+                <td><button class="delete-btn" onclick="deleteEntry(${item.id})">❌</button></td>
+                <td><a href="https://wa.me/91${item.mobile}?text=${encodeURIComponent(waMsg)}" target="_blank" class="wa-link">WA</a></td>
+            </tr>`;
         });
+        document.getElementById('totalStats').innerText = `Total Team PV: ${tpv.toFixed(2)} | Members: ${entries.length}`;
+    }
+
+    function send7PMReminders() {
+        const entries = JSON.parse(localStorage.getItem(KEY)) || [];
+        const today = new Date().toLocaleDateString();
+        const pending = entries.filter(e => e.lastMeetingDate !== today);
+        if(pending.length === 0) return alert("All members attended!");
+        if(confirm(`Send WhatsApp to ${pending.length} members?`)) {
+            pending.forEach((e, i) => {
+                setTimeout(() => {
+                    const msg = `வணக்கம் ${e.name}, Today's meeting is pending. Please update.`;
+                    window.open(`https://wa.me/91${e.mobile}?text=${encodeURIComponent(msg)}`, '_blank');
+                }, i * 1500);
+            });
+        }
     }
 
     function deleteEntry(id) {
-        if(confirm("நிச்சயமாக நீக்க வேண்டுமா?")) {
-            let entries = JSON.parse(localStorage.getItem('nfvt_ucd_final')) || [];
-            let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
-            
-            const itemIndex = entries.findIndex(e => e.id === id);
-            if (itemIndex > -1) {
-                trash.push(entries[itemIndex]);
-                entries.splice(itemIndex, 1);
-                
-                localStorage.setItem('nfvt_ucd_final', JSON.stringify(entries));
-                localStorage.setItem('nfvt_trash', JSON.stringify(trash));
-                
-                displayData();
-                if(document.getElementById('trashSection').style.display === 'block') {
-                    updateTrashUI();
-                }
-            }
-        }
+        if(!confirm("Move to Trash?")) return;
+        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
+        let trash = JSON.parse(localStorage.getItem(TRASH_KEY)) || [];
+        const idx = entries.findIndex(e => e.id === id);
+        trash.push(entries[idx]); entries.splice(idx, 1);
+        localStorage.setItem(KEY, JSON.stringify(entries));
+        localStorage.setItem(TRASH_KEY, JSON.stringify(trash));
+        displayData();
     }
 
     function toggleTrash() {
         const ts = document.getElementById('trashSection');
-        if (ts.style.display === 'none' || ts.style.display === '') {
-            ts.style.display = 'block';
-            updateTrashUI();
-        } else {
-            ts.style.display = 'none';
+        ts.style.display = (ts.style.display === 'none') ? 'block' : 'none';
+        if(ts.style.display === 'block') {
+            const trash = JSON.parse(localStorage.getItem(TRASH_KEY)) || [];
+            document.getElementById('trashBody').innerHTML = trash.map(i => 
+                `<tr>
+                    <td><strong>${i.name}</strong> (${i.distId})</td>
+                    <td style="text-align:right;">
+                        <button onclick="restoreEntry(${i.id})" style="background:#059669; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-size:10px; margin-right:5px;">Restore</button>
+                        <button onclick="permanentDelete(${i.id})" style="background:#dc2626; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-size:10px;">Delete Forever</button>
+                    </td>
+                </tr>`
+            ).join('');
         }
     }
 
-    function updateTrashUI() {
-        const trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
-        const trashBody = document.getElementById('trashBody');
-        trashBody.innerHTML = trash.map(i => `
-            <tr>
-                <td>${i.name} (${i.distId})</td>
-                <td><button onclick="restoreEntry(${i.id})" style="background:#2563eb; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Restore</button></td>
-            </tr>`).join('');
+    function restoreEntry(id) {
+        let entries = JSON.parse(localStorage.getItem(KEY)) || [];
+        let trash = JSON.parse(localStorage.getItem(TRASH_KEY)) || [];
+        const idx = trash.findIndex(e => e.id === id);
+        entries.unshift(trash[idx]); trash.splice(idx, 1);
+        localStorage.setItem(KEY, JSON.stringify(entries));
+        localStorage.setItem(TRASH_KEY, JSON.stringify(trash));
+        displayData(); toggleTrash(); toggleTrash(); // Refresh view
     }
 
-    function restoreEntry(id) {
-        let entries = JSON.parse(localStorage.getItem('nfvt_ucd_final')) || [];
-        let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
-        
-        const itemIndex = trash.findIndex(e => e.id === id);
-        if (itemIndex > -1) {
-            entries.unshift(trash[itemIndex]);
-            trash.splice(itemIndex, 1);
-            
-            localStorage.setItem('nfvt_ucd_final', JSON.stringify(entries));
-            localStorage.setItem('nfvt_trash', JSON.stringify(trash));
-            
-            displayData();
-            updateTrashUI();
+    function permanentDelete(id) {
+        if(!confirm("Warning: This member will be permanently deleted! Continue?")) return;
+        let trash = JSON.parse(localStorage.getItem(TRASH_KEY)) || [];
+        const idx = trash.findIndex(e => e.id === id);
+        if (idx > -1) {
+            trash.splice(idx, 1);
+            localStorage.setItem(TRASH_KEY, JSON.stringify(trash));
+            toggleTrash(); toggleTrash(); // Refresh view
         }
     }
 
@@ -300,26 +279,11 @@
     }
 
     function downloadCSV() {
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_final')) || [];
-        if(entries.length === 0) return;
-        let csv = "Name,ID,Level,PV,Date,100PV,8%Achiever,Meeting\n";
-        entries.forEach(e => csv += `"${e.name}","${e.distId}","${e.level}","${e.pv}","${e.rawDate}","${e.consistency}","${e.achiever}","${e.meeting}"\n`);
+        const entries = JSON.parse(localStorage.getItem(KEY)) || [];
+        let csv = "Name,ID,Level,TotalPV,DateUpdated\n";
+        entries.forEach(e => csv += `"${e.name}","${e.distId}","${e.level}","${e.totalPV}","${e.date}"\n`);
         const b = new Blob([csv], {type:'text/csv'});
-        const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download="NFVT_Report.csv"; a.click();
-    }
-
-    function downloadPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text("NFVT Team Followup Report", 14, 15);
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_final')) || [];
-        const rows = entries.map(e => [e.name, e.distId, e.level, e.pv, e.rawDate]);
-        doc.autoTable({
-            head: [['Name', 'ID', 'Level', 'PV', 'Date']],
-            body: rows,
-            startY: 20
-        });
-        doc.save("NFVT_Report.pdf");
+        const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download="Report.csv"; a.click();
     }
 </script>
 </body>
