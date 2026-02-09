@@ -1010,7 +1010,63 @@
                 alertCount++;
             }
             
-            const waLink = `https://wa.me/91${item.mobile}`;
+            // Build WhatsApp message based on status
+            let waMessage = currentLanguage === 'en'
+                ? `Hello ${item.name}! 👋\n\n`
+                : `வணக்கம் ${item.name}! 👋\n\n`;
+            
+            // Check for inactive ID (Self PV < 30)
+            if (item.selfPV < 30) {
+                const needed = 30 - item.selfPV;
+                waMessage += currentLanguage === 'en'
+                    ? `🚨 *URGENT - ID ACTIVATION ALERT*\n\n⚠️ Your ID will become INACTIVE!\n\n📊 Current Self PV: ${item.selfPV}\n🎯 Minimum Required: 30 PV\n⚠️ Need: *${needed} PV*\n\n❌ *What you will LOSE:*\n- Team support benefits\n- Monthly bonuses\n- Team commission\n- Growth opportunities\n\n⏰ Complete before month end!\n📞 Contact your upline NOW!\n\n`
+                    : `🚨 *அவசரம் - ID செயல்படுத்தல் எச்சரிக்கை*\n\n⚠️ உங்கள் ID செயலற்றதாகிவிடும்!\n\n📊 தற்போதைய சொந்த PV: ${item.selfPV}\n🎯 குறைந்தபட்சம்: 30 PV\n⚠️ தேவை: *${needed} PV*\n\n❌ *நீங்கள் இழப்பவை:*\n- குழு ஆதரவு பலன்கள்\n- மாதாந்திர போனஸ்\n- குழு கமிஷன்\n- வளர்ச்சி வாய்ப்புகள்\n\nமாதம் முடிவதற்குள் முடிக்கவும்!\n📞 உடனே உங்கள் upline ஐ தொடர்பு கொள்ளுங்கள்!\n\n`;
+            }
+            // Check for low PV (30-99)
+            else if (item.selfPV < 100) {
+                const needed = 100 - item.selfPV;
+                const today = new Date();
+                const dayOfMonth = today.getDate();
+                
+                if (dayOfMonth >= 2 && dayOfMonth <= 14) {
+                    const daysLeft = 14 - dayOfMonth;
+                    waMessage += currentLanguage === 'en'
+                        ? `⏰ *100PV CONSISTENCY REMINDER*\n\n📅 Deadline: Before 14th (${daysLeft} days left)\n📊 Current Self PV: ${item.selfPV}\n🎯 Target: 100 PV\n⚠️ Remaining: *${needed} PV*\n\n🎁 *SPECIAL BENEFIT:*\nComplete 100 PV and get Product Voucher worth *₹2500*!\n\n💡 Don't miss this!\n💪 Complete before 14th!\n\n`
+                        : `⏰ *100PV தொடர்ச்சி நினைவூட்டல்*\n\n📅 கடைசி நாள்: 14க்குள் (${daysLeft} நாட்கள்)\n📊 தற்போதைய PV: ${item.selfPV}\n🎯 இலக்கு: 100 PV\n⚠️ மீதம்: *${needed} PV*\n\n🎁 *சிறப்பு:*\n100 PV முடித்து *₹2500* வவுச்சரைப் பெறுங்கள்!\n\n💡 தவறவிடாதீர்கள்!\n💪 14க்குள் முடிக்கவும்!\n\n`;
+                } else {
+                    waMessage += currentLanguage === 'en'
+                        ? `📊 Your Self PV: ${item.selfPV}\n🎯 Keep pushing to reach 100 PV!\n\n`
+                        : `📊 உங்கள் சொந்த PV: ${item.selfPV}\n🎯 100 PV அடைய முயற்சி செய்யுங்கள்!\n\n`;
+                }
+            }
+            
+            // Check for low Group PV
+            if (item.groupPV < 2600) {
+                const needed = 2600 - item.groupPV;
+                waMessage += currentLanguage === 'en'
+                    ? `⚠️ *GROUP PV IMPROVEMENT NEEDED*\n\n📊 Current Group PV: ${item.groupPV}\n🎯 Target: 2600 PV\n📈 Improve: *${needed} PV*\n\n💡 Focus on:\n- Team building\n- Help downlines\n- Conduct meetings\n- Support team\n\n`
+                    : `⚠️ *குழு PV மேம்பாடு தேவை*\n\n📊 தற்போதைய குழு PV: ${item.groupPV}\n🎯 இலக்கு: 2600 PV\n📈 மேம்படுத்த: *${needed} PV*\n\n💡 கவனம் செலுத்த:\n- குழு கட்டமைப்பு\n- கீழ்நிலைக்கு உதவி\n- கூட்டங்கள்\n- குழு ஆதரவு\n\n`;
+            }
+            
+            // Check for no consistency
+            if (item.consistency === "No") {
+                waMessage += currentLanguage === 'en'
+                    ? `⚠️ Maintain 100PV consistency!\n\n`
+                    : `⚠️ 100PV தொடர்ச்சியை பராமரியுங்கள்!\n\n`;
+            }
+            
+            // Check for no meeting
+            if (item.meeting === "No") {
+                waMessage += currentLanguage === 'en'
+                    ? `🔔 *MEETING REMINDER*\nPlease attend daily meetings!\nMeetings are crucial for growth.\n\n`
+                    : `🔔 *கூட்டம் நினைவூட்டல்*\nதினசரி கூட்டங்களில் கலந்துகொள்ளுங்கள்!\nகூட்டங்கள் வளர்ச்சிக்கு அவசியம்.\n\n`;
+            }
+            
+            waMessage += currentLanguage === 'en'
+                ? `📈 *Current Stats:*\n• Self PV: ${item.selfPV}\n• Group PV: ${item.groupPV}\n• Total PV: ${item.totalPV}\n\n💪 Keep growing with Team NFVT!\n🌟 Success is yours!`
+                : `📈 *தற்போதைய புள்ளிவிவரம்:*\n• சொந்த PV: ${item.selfPV}\n• குழு PV: ${item.groupPV}\n• மொத்த PV: ${item.totalPV}\n\n💪 Team NFVT உடன் வளருங்கள்!\n🌟 வெற்றி உங்களுடையது!`;
+            
+            const waLink = `https://wa.me/91${item.mobile}?text=${encodeURIComponent(waMessage)}`;
             
             tableBody.innerHTML += `<tr class="${rowClass}">
                     <td><strong style="color: #1e293b;">${item.name}</strong><br><small style="color: #64748b;">${item.distId}</small></td>
