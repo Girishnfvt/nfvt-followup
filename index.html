@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFVT Team Followup - Enhanced</title>
+    <title>NFVT Team Followup - Enhanced Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
@@ -59,12 +59,6 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
             padding: 15px 25px; border-radius: 15px; margin-bottom: 25px; 
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-            animation: pulse 3s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); }
-            50% { box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5); }
         }
         
         .user-details { display: flex; align-items: center; gap: 15px; }
@@ -78,39 +72,34 @@
         
         .user-details div { color: white; }
         
+        .language-toggle {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+        
+        .language-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
         .stats-summary { 
             background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
             padding: 20px; border-radius: 15px; font-weight: 800; color: white; 
             margin-bottom: 25px; text-align: center; font-size: 18px;
             box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
-            animation: shimmer 2s ease-in-out infinite;
-        }
-        
-        @keyframes shimmer {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
         }
 
         .header-section { text-align: center; margin-bottom: 30px; }
         .team-logo { 
             max-width: 120px; height: auto; border-radius: 15px; margin-bottom: 20px; 
             border: 3px solid #fbbf24; box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
-        }
-        
-        .perm-delete-btn {
-            background: #7f1d1d;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 11px;
-            margin-left: 5px;
-        }
-        
-        .perm-delete-btn:hover {
-            background: #991b1b;
         }
         
         .luxury-gold-title {
@@ -127,29 +116,6 @@
             0% { background-position: 0% center; } 
             100% { background-position: 200% center; } 
         }
-
-        .branding-bar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); 
-            padding: 15px; border-radius: 15px; margin-top: 40px; 
-            border: 2px solid #ec4899; box-shadow: 0 6px 20px rgba(236, 72, 153, 0.2);
-        }
-        
-        .leader-card-inline { display: flex; align-items: center; gap: 12px; }
-        .profile-circle-small { 
-            width: 70px; height: 70px; border-radius: 50%; 
-            border: 3px solid #ec4899; overflow: hidden; background: #fff; 
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
-        }
-        .profile-circle-small img { width: 100%; height: 100%; object-fit: cover; }
-        .leader-name-small { font-weight: 800; font-size: 16px; margin: 0; color: #1e293b; }
-        .leader-rank-small { font-size: 9px; color: #be185d; font-weight: 800; text-transform: uppercase; }
-        .team-tag { 
-            font-size: 10px; color: #1e293b; font-weight: 700; 
-            background: #fce7f3; padding: 3px 8px; border-radius: 6px; 
-            display: inline-block; margin-top: 3px;
-        }
-        .inline-logo { width: 75px; height: auto; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
 
         .form-section { 
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); 
@@ -171,7 +137,6 @@
         input:focus, select:focus { 
             outline: none; border-color: #3b82f6; 
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-            transform: scale(1.02);
         }
         
         .add-btn { 
@@ -184,58 +149,53 @@
         
         .add-btn:hover { 
             transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); 
         }
         
-        /* Enhanced Row Colors with Animation */
+        .edit-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 11px;
+            margin-right: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn:hover {
+            transform: scale(1.05);
+        }
+        
         .high-pv { 
             background: linear-gradient(90deg, #d1fae5 0%, #a7f3d0 100%) !important; 
             border-left: 6px solid #10b981; 
-            animation: highlightPulse 2s ease-in-out infinite;
         } 
         
         .low-pv-warning {
             background: linear-gradient(90deg, #fed7aa 0%, #fdba74 100%) !important;
             border-left: 6px solid #f97316;
-            animation: warningBlink 2s ease-in-out infinite;
         }
         
         .inactive-warning {
             background: linear-gradient(90deg, #fecaca 0%, #fca5a5 100%) !important;
             border-left: 6px solid #ef4444;
-            animation: dangerPulse 2s ease-in-out infinite;
         }
         
         .no-consistency { 
             background: linear-gradient(90deg, #fee2e2 0%, #fecaca 100%) !important; 
             border-left: 6px solid #dc2626; 
-            animation: dangerPulse 2s ease-in-out infinite;
         } 
         
         .no-meeting {
             background: linear-gradient(90deg, #ddd6fe 0%, #c4b5fd 100%) !important;
             border-left: 6px solid #8b5cf6;
-            animation: reminderBlink 2s ease-in-out infinite;
         }
         
-        @keyframes highlightPulse {
-            0%, 100% { box-shadow: 0 0 0 rgba(16, 185, 129, 0); }
-            50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
-        }
-        
-        @keyframes warningBlink {
-            0%, 100% { box-shadow: 0 0 0 rgba(249, 115, 22, 0); }
-            50% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.4); }
-        }
-        
-        @keyframes dangerPulse {
-            0%, 100% { box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
-            50% { box-shadow: 0 0 25px rgba(239, 68, 68, 0.5); }
-        }
-        
-        @keyframes reminderBlink {
-            0%, 100% { box-shadow: 0 0 0 rgba(139, 92, 246, 0); }
-            50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
+        .low-group-pv {
+            background: linear-gradient(90deg, #fef3c7 0%, #fde68a 100%) !important;
+            border-left: 6px solid #f59e0b;
         }
 
         .action-bar { 
@@ -246,45 +206,37 @@
         #searchInput { 
             flex-grow: 1; border: 2px solid #cbd5e0; border-radius: 10px; 
             padding: 12px 15px; font-size: 14px;
-            transition: all 0.3s ease;
         }
         
-        #searchInput:focus {
-            outline: none; border-color: #8b5cf6;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
-        }
-        
-        .btn-group { display: flex; gap: 10px; }
+        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
         
         .btn-success { 
             background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
             color: white; border: none; padding: 12px 20px; border-radius: 8px; 
             font-weight: 700; cursor: pointer; 
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-            transition: all 0.3s ease;
         }
-        
-        .btn-success:hover { transform: translateY(-2px); }
         
         .btn-danger { 
             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); 
             color: white; border: none; padding: 12px 20px; border-radius: 8px; 
             font-weight: 700; cursor: pointer; 
             box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-            transition: all 0.3s ease;
         }
-        
-        .btn-danger:hover { transform: translateY(-2px); }
         
         .btn-trash {
             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
             color: white; border: none; padding: 12px 20px; border-radius: 8px;
             font-weight: 700; cursor: pointer;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-            transition: all 0.3s ease;
         }
         
-        .btn-trash:hover { transform: translateY(-2px); }
+        .btn-settings {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white; border: none; padding: 12px 20px; border-radius: 8px;
+            font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
         
         table { 
             width: 100%; border-collapse: collapse; background: white; 
@@ -300,7 +252,7 @@
         
         td { 
             padding: 15px 12px; border-bottom: 1px solid #f1f5f9; 
-            font-size: 13px; transition: all 0.2s ease;
+            font-size: 13px;
         }
         
         tr:hover td { background-color: #f8fafc; }
@@ -310,66 +262,14 @@
             background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             padding: 6px 12px; border-radius: 6px; font-size: 11px;
             box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
-            transition: all 0.3s ease;
             display: inline-block;
         }
-        
-        .wa-link:hover { transform: scale(1.05); }
         
         .delete-btn { 
             color: #ef4444; cursor: pointer; border: none; background: none; 
-            font-size: 20px; transition: all 0.3s ease;
+            font-size: 20px;
         }
         
-        .delete-btn:hover { transform: scale(1.2); }
-        
-        #trashSection { 
-            display: none; 
-            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); 
-            padding: 20px; border-radius: 15px; margin-bottom: 25px; 
-            border: 3px dashed #f87171; box-shadow: 0 6px 20px rgba(248, 113, 113, 0.2);
-        }
-        
-        .reminder-badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 700;
-            margin-left: 5px;
-            animation: badgePulse 1.5s ease-in-out infinite;
-        }
-        
-        .badge-inactive {
-            background: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #dc2626;
-        }
-        
-        .badge-low-pv {
-            background: #fed7aa;
-            color: #ea580c;
-            border: 1px solid #ea580c;
-        }
-        
-        .badge-no-meeting {
-            background: #e0e7ff;
-            color: #4f46e5;
-            border: 1px solid #4f46e5;
-        }
-        
-        .badge-pv-reminder {
-            background: #fef3c7;
-            color: #92400e;
-            border: 1px solid #f59e0b;
-        }
-        
-        @keyframes badgePulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
-        }
-        
-        /* Popup Modal Styles */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -381,23 +281,18 @@
             z-index: 3000;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         
         .modal-content {
             background: white;
             padding: 30px;
             border-radius: 20px;
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             animation: slideUp 0.4s ease;
-            text-align: center;
         }
         
         @keyframes slideUp {
@@ -408,8 +303,9 @@
         .modal-header {
             font-size: 24px;
             font-weight: 800;
-            color: #dc2626;
+            color: #1e293b;
             margin-bottom: 15px;
+            text-align: center;
         }
         
         .modal-body {
@@ -420,7 +316,7 @@
         }
         
         .modal-btn {
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -429,28 +325,44 @@
             cursor: pointer;
             font-size: 15px;
             margin: 5px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
         
         .modal-btn-close {
             background: #64748b;
-            box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
         }
         
-        .modal-btn:hover {
-            transform: translateY(-2px);
+        .branding-bar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); 
+            padding: 15px; border-radius: 15px; margin-top: 40px; 
+            border: 2px solid #ec4899;
         }
+        
+        .leader-card-inline { display: flex; align-items: center; gap: 12px; }
+        .profile-circle-small { 
+            width: 70px; height: 70px; border-radius: 50%; 
+            border: 3px solid #ec4899; overflow: hidden; background: #fff; 
+        }
+        .profile-circle-small img { width: 100%; height: 100%; object-fit: cover; }
+        .leader-name-small { font-weight: 800; font-size: 16px; margin: 0; color: #1e293b; }
+        .leader-rank-small { font-size: 9px; color: #be185d; font-weight: 800; text-transform: uppercase; }
+        .team-tag { 
+            font-size: 10px; color: #1e293b; font-weight: 700; 
+            background: #fce7f3; padding: 3px 8px; border-radius: 6px; 
+            display: inline-block; margin-top: 3px;
+        }
+        .inline-logo { width: 75px; height: auto; border-radius: 50%; }
     </style>
 </head>
 <body>
 
 <div id="loginOverlay">
     <div class="login-box">
-        <img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" style="width: 90px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+        <img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" style="width: 90px; margin-bottom: 20px; border-radius: 12px;">
         <h2 style="margin: 0 0 20px 0; font-size: 20px; color: #1e293b;">Team Followup Login</h2>
         <input type="number" id="loginId" placeholder="Distributor ID" style="margin-bottom: 12px;">
         <input type="text" id="loginName" placeholder="Your Name" style="margin-top: 0;">
-        <button onclick="checkLogin()" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; margin-top: 20px; width: 100%; font-weight: 700; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">Login</button>
+        <button onclick="checkLogin()" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; margin-top: 20px; width: 100%; font-weight: 700;">Login</button>
     </div>
 </div>
 
@@ -463,10 +375,19 @@
                 <div style="font-size: 12px; opacity: 0.9;" id="displayUserId">ID: 00000000</div>
             </div>
         </div>
-        <button onclick="location.reload()" style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 8px 16px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 700; transition: all 0.3s ease;">Logout</button>
+        <div>
+            <button class="language-toggle" onclick="toggleLanguage()">
+                <span id="langBtn">தமிழ்</span>
+            </button>
+            <button onclick="location.reload()" style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 8px 16px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 700;">
+                <span class="lang-text" data-en="Logout" data-ta="வெளியேறு">Logout</span>
+            </button>
+        </div>
     </div>
 
-    <div class="stats-summary" id="totalStats">Total Team PV: 0 | Members: 0 | Alerts: 0</div>
+    <div class="stats-summary" id="totalStats">
+        <span class="lang-text" data-en="Total Team PV: 0 | Members: 0 | Alerts: 0" data-ta="மொத்த குழு PV: 0 | உறுப்பினர்கள்: 0 | எச்சரிக்கைகள்: 0">Total Team PV: 0 | Members: 0 | Alerts: 0</span>
+    </div>
 
     <div class="header-section">
         <img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" alt="NFVT Logo" class="team-logo">
@@ -475,14 +396,24 @@
 
     <div class="form-section">
         <div class="grid-form">
-            <div class="input-group"><label>Member Name</label><input type="text" id="downlineName"></div>
-            <div class="input-group"><label>Mobile Number</label><input type="number" id="mobileNo" placeholder="Phone Number"></div>
-            <div class="input-group"><label>Distributor ID</label><input type="number" id="distId" placeholder="8 Digit ID"></div>
             <div class="input-group">
-                <label>Level</label>
+                <label class="lang-text" data-en="Member Name" data-ta="உறுப்பினர் பெயர்">Member Name</label>
+                <input type="text" id="downlineName">
+            </div>
+            <div class="input-group">
+                <label class="lang-text" data-en="Mobile Number" data-ta="மொபைல் எண்">Mobile Number</label>
+                <input type="number" id="mobileNo">
+            </div>
+            <div class="input-group">
+                <label class="lang-text" data-en="Distributor ID" data-ta="விநியோகஸ்தர் ID">Distributor ID</label>
+                <input type="number" id="distId">
+            </div>
+            <div class="input-group">
+                <label class="lang-text" data-en="Level" data-ta="நிலை">Level</label>
                 <select id="memberLevel">
                     <option value="Distributor">Distributor</option>
                     <option value="Senior Distributor">Senior Distributor</option>
+                    <option value="Assistant Bronze Director">Assistant Bronze Director</option>
                     <option value="Bronze Director">Bronze Director</option>
                     <option value="Silver Director">Silver Director</option>
                     <option value="Gold Director">Gold Director</option>
@@ -492,28 +423,53 @@
                     <option value="UCD">UCD</option>
                 </select>
             </div>
-            <div class="input-group"><label>Self PV</label><input type="number" id="selfPV" placeholder="Self"></div>
-            <div class="input-group"><label>Group PV</label><input type="number" id="groupPV" placeholder="Group"></div>
-            <div class="input-group"><label>Date</label><input type="date" id="followUpDate"></div>
-            <div class="input-group"><label>100PV CNC</label><select id="consistency"><option value="Yes">Yes</option><option value="No">No</option></select></div>
-            <div class="input-group"><label>Meeting</label><select id="meeting"><option value="Yes">Yes</option><option value="No">No</option></select></div>
-            <button class="add-btn" onclick="addData()">➕ Add Member</button>
+            <div class="input-group">
+                <label class="lang-text" data-en="Self PV" data-ta="சொந்த PV">Self PV</label>
+                <input type="number" id="selfPV">
+            </div>
+            <div class="input-group">
+                <label class="lang-text" data-en="Group PV" data-ta="குழு PV">Group PV</label>
+                <input type="number" id="groupPV">
+            </div>
+            <div class="input-group">
+                <label class="lang-text" data-en="Date" data-ta="தேதி">Date</label>
+                <input type="date" id="followUpDate">
+            </div>
+            <div class="input-group">
+                <label class="lang-text" data-en="100PV CNC" data-ta="100PV தொடர்ச்சி">100PV CNC</label>
+                <select id="consistency">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="lang-text" data-en="Meeting" data-ta="கூட்டம்">Meeting</label>
+                <select id="meeting">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <button class="add-btn" onclick="addData()">
+                <span class="lang-text" data-en="➕ Add Member" data-ta="➕ உறுப்பினரை சேர்">➕ Add Member</span>
+            </button>
         </div>
     </div>
 
-    <div id="trashSection">
-        <h3 style="font-size: 16px; margin: 0 0 15px 0; color: #dc2626; font-weight: 800;">♻️ Deleted Members</h3>
-        <table style="background: transparent;"><tbody id="trashBody"></tbody></table>
-        <button onclick="toggleTrash()" style="font-size: 12px; cursor: pointer; padding: 8px 16px; background: #ef4444; color: white; border: none; border-radius: 6px; margin-top: 10px; font-weight: 700;">Close Trash</button>
-        <button onclick="emptyTrash()" style="font-size: 12px; cursor: pointer; padding: 8px 16px; background: #7f1d1d; color: white; border: none; border-radius: 6px; margin-top: 10px; margin-left: 10px; font-weight: 700;">🗑️ Empty Trash (Permanent)</button>
-    </div>
-
     <div class="action-bar">
-        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Search Name or ID...">
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Search...">
         <div class="btn-group">
-            <button class="btn-success" onclick="downloadCSV()">📊 Excel</button>
-            <button class="btn-danger" onclick="downloadPDF()">📄 PDF</button>
-            <button class="btn-trash" onclick="toggleTrash()">🗑️ Trash</button>
+            <button class="btn-success" onclick="downloadCSV()">
+                <span class="lang-text" data-en="📊 Excel" data-ta="📊 எக்செல்">📊 Excel</span>
+            </button>
+            <button class="btn-danger" onclick="downloadPDF()">
+                <span class="lang-text" data-en="📄 PDF" data-ta="📄 PDF">📄 PDF</span>
+            </button>
+            <button class="btn-settings" onclick="showReports()">
+                <span class="lang-text" data-en="📈 Reports" data-ta="📈 அறிக்கைகள்">📈 Reports</span>
+            </button>
+            <button class="btn-trash" onclick="toggleTrash()">
+                <span class="lang-text" data-en="🗑️ Trash" data-ta="🗑️ குப்பை">🗑️ Trash</span>
+            </button>
         </div>
     </div>
 
@@ -521,17 +477,17 @@
         <table>
             <thead>
                 <tr>
-                    <th>Member & ID</th>
-                    <th>Mobile</th>
-                    <th>Level</th>
-                    <th>Self PV</th>
-                    <th>Group PV</th>
-                    <th>Total PV</th>
-                    <th>Date</th>
-                    <th>100PV</th>
-                    <th>Meeting</th>
-                    <th>Status</th>
-                    <th>Act</th>
+                    <th class="lang-text" data-en="Member & ID" data-ta="உறுப்பினர் & ID">Member & ID</th>
+                    <th class="lang-text" data-en="Mobile" data-ta="மொபைல்">Mobile</th>
+                    <th class="lang-text" data-en="Level" data-ta="நிலை">Level</th>
+                    <th class="lang-text" data-en="Self PV" data-ta="சொந்த PV">Self PV</th>
+                    <th class="lang-text" data-en="Group PV" data-ta="குழு PV">Group PV</th>
+                    <th class="lang-text" data-en="Total PV" data-ta="மொத்த PV">Total PV</th>
+                    <th class="lang-text" data-en="Date" data-ta="தேதி">Date</th>
+                    <th class="lang-text" data-en="100PV" data-ta="100PV">100PV</th>
+                    <th class="lang-text" data-en="Meeting" data-ta="கூட்டம்">Meeting</th>
+                    <th class="lang-text" data-en="Status" data-ta="நிலை">Status</th>
+                    <th class="lang-text" data-en="Actions" data-ta="செயல்கள்">Actions</th>
                     <th>WA</th>
                 </tr>
             </thead>
@@ -539,23 +495,97 @@
         </table>
     </div>
 
-    <div id="reminderModal" class="modal-overlay">
+    <div id="editModal" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-header">⏰ PV Consistency Reminder!</div>
-            <div class="modal-body" id="modalMessage">
-                <!-- Dynamic content will be inserted here -->
+            <div class="modal-header">
+                <span class="lang-text" data-en="✏️ Edit Member Details" data-ta="✏️ உறுப்பினர் விவரங்களை திருத்து">✏️ Edit Member Details</span>
             </div>
-            <div>
-                <button class="modal-btn" onclick="sendReminders()">📱 Send WhatsApp Reminders</button>
-                <button class="modal-btn modal-btn-close" onclick="closeModal()">Close</button>
+            <div class="modal-body">
+                <input type="hidden" id="editId">
+                <div class="grid-form">
+                    <div class="input-group">
+                        <label class="lang-text" data-en="Member Name" data-ta="உறுப்பினர் பெயர்">Member Name</label>
+                        <input type="text" id="editName">
+                    </div>
+                    <div class="input-group">
+                        <label class="lang-text" data-en="Mobile Number" data-ta="மொபைல் எண்">Mobile Number</label>
+                        <input type="number" id="editMobile">
+                    </div>
+                    <div class="input-group">
+                        <label class="lang-text" data-en="Self PV" data-ta="சொந்த PV">Self PV</label>
+                        <input type="number" id="editSelfPV">
+                    </div>
+                    <div class="input-group">
+                        <label class="lang-text" data-en="Group PV" data-ta="குழு PV">Group PV</label>
+                        <input type="number" id="editGroupPV">
+                    </div>
+                    <div class="input-group">
+                        <label class="lang-text" data-en="Date" data-ta="தேதி">Date</label>
+                        <input type="date" id="editDate">
+                    </div>
+                    <div class="input-group">
+                        <label class="lang-text" data-en="100PV CNC" data-ta="100PV தொடர்ச்சி">100PV CNC</label>
+                        <select id="editConsistency">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="lang-text" data-en="Meeting" data-ta="கூட்டம்">Meeting</label>
+                        <select id="editMeeting">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button class="modal-btn" onclick="saveEdit()">
+                    <span class="lang-text" data-en="💾 Save Changes" data-ta="💾 மாற்றங்களை சேமி">💾 Save Changes</span>
+                </button>
+                <button class="modal-btn modal-btn-close" onclick="closeEditModal()">
+                    <span class="lang-text" data-en="Close" data-ta="மூடு">Close</span>
+                </button>
             </div>
         </div>
+    </div>
+
+    <div id="reportsModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="lang-text" data-en="📊 Reports & Analytics" data-ta="📊 அறிக்கைகள் & பகுப்பாய்வு">📊 Reports & Analytics</span>
+            </div>
+            <div class="modal-body" id="reportsContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+            <div style="text-align: center;">
+                <button class="modal-btn" onclick="downloadMonthlyReport()">
+                    <span class="lang-text" data-en="📄 Download Monthly Report" data-ta="📄 மாதாந்திர அறிக்கையை பதிவிறக்கு">📄 Download Monthly Report</span>
+                </button>
+                <button class="modal-btn modal-btn-close" onclick="closeReportsModal()">
+                    <span class="lang-text" data-en="Close" data-ta="மூடு">Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="trashSection" style="display: none; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 20px; border-radius: 15px; margin: 25px 0; border: 3px dashed #f87171;">
+        <h3 style="font-size: 16px; margin: 0 0 15px 0; color: #dc2626; font-weight: 800;">
+            <span class="lang-text" data-en="♻️ Deleted Members" data-ta="♻️ நீக்கப்பட்ட உறுப்பினர்கள்">♻️ Deleted Members</span>
+        </h3>
+        <table style="background: transparent;"><tbody id="trashBody"></tbody></table>
+        <button onclick="toggleTrash()" style="font-size: 12px; cursor: pointer; padding: 8px 16px; background: #ef4444; color: white; border: none; border-radius: 6px; margin-top: 10px; font-weight: 700;">
+            <span class="lang-text" data-en="Close Trash" data-ta="குப்பையை மூடு">Close Trash</span>
+        </button>
+        <button onclick="emptyTrash()" style="font-size: 12px; cursor: pointer; padding: 8px 16px; background: #7f1d1d; color: white; border: none; border-radius: 6px; margin-top: 10px; margin-left: 10px; font-weight: 700;">
+            <span class="lang-text" data-en="🗑️ Empty Trash" data-ta="🗑️ குப்பையை காலி செய்">🗑️ Empty Trash</span>
+        </button>
     </div>
 
     <div class="branding-bar">
         <div class="leader-card-inline">
             <div class="profile-circle-small"><img src="https://i.postimg.cc/XvTq85tC/Girish-S.jpg"></div>
-            <div class="leader-info-small">
+            <div>
                 <p class="leader-name-small">Girish S</p>
                 <span class="leader-rank-small">Universal Crown Director of Vestige</span>
                 <span class="team-tag">DUCD Saravanan Team</span>
@@ -566,16 +596,250 @@
 </div>
 
 <script>
+    let currentLanguage = 'en';
+    let loggedInUser = {};
+    let dailyTargetPercentage = 8;
+
+    // Check for 100PV consistency reminder (2nd to 14th of month)
+    function check100PVReminder() {
+        const today = new Date();
+        const dayOfMonth = today.getDate();
+        
+        // Check if between 2nd and 14th
+        if (dayOfMonth >= 2 && dayOfMonth <= 14) {
+            const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+            const below100PV = entries.filter(e => e.selfPV < 100);
+            
+            if (below100PV.length > 0) {
+                const lastReminder = localStorage.getItem('last100PVReminder');
+                const todayStr = today.toDateString();
+                
+                // Show reminder once per day
+                if (lastReminder !== todayStr) {
+                    show100PVReminderPopup(below100PV, dayOfMonth);
+                    localStorage.setItem('last100PVReminder', todayStr);
+                }
+            }
+        }
+    }
+
+    function show100PVReminderPopup(members, currentDay) {
+        const daysLeft = 14 - currentDay;
+        const message = currentLanguage === 'en'
+            ? `⏰ 100PV CONSISTENCY REMINDER!\n\n${members.length} members have not completed 100 PV yet.\n\n⚠️ ${daysLeft} days left! Complete before 14th of this month.\n\n🎁 DON'T MISS: Consistency Product Voucher worth ₹2500!\n\nWould you like to send WhatsApp reminders?`
+            : `⏰ 100PV தொடர்ச்சி நினைவூட்டல்!\n\n${members.length} உறுப்பினர்கள் இன்னும் 100 PV முடிக்கவில்லை.\n\n⚠️ ${daysLeft} நாட்கள் மட்டுமே! இந்த மாதம் 14க்குள் முடிக்கவும்.\n\n🎁 தவறவிடாதீர்கள்: தொடர்ச்சி தயாரிப்பு வவுச்சர் ₹2500 மதிப்பு!\n\nWhatsApp நினைவூட்டல்களை அனுப்ப விரும்புகிறீர்களா?`;
+        
+        if (confirm(message)) {
+            send100PVReminders(members, daysLeft);
+        }
+    }
+
+    function send100PVReminders(members, daysLeft) {
+        members.forEach((member, index) => {
+            const needed = 100 - member.selfPV;
+            const waMessage = currentLanguage === 'en'
+                ? `Hello ${member.name}! 👋\n\n⏰ *100PV CONSISTENCY REMINDER*\n\n📅 Deadline: Before 14th of this month (${daysLeft} days left)\n📊 Your Current Self PV: ${member.selfPV}\n🎯 Target: 100 PV\n⚠️ Remaining: *${needed} PV*\n\n🎁 *SPECIAL BENEFIT:*\nComplete 100 PV consistency and get Product Voucher worth *₹2500*!\n\n💡 Don't miss this opportunity!\n\n💪 Complete your ${needed} PV before 14th!\n\n🌟 Team NFVT - Success is yours!`
+                : `வணக்கம் ${member.name}! 👋\n\n⏰ *100PV தொடர்ச்சி நினைவூட்டல்*\n\n📅 கடைசி நாள்: இந்த மாதம் 14க்குள் (${daysLeft} நாட்கள் உள்ளன)\n📊 உங்கள் தற்போதைய சொந்த PV: ${member.selfPV}\n🎯 இலக்கு: 100 PV\n⚠️ மீதம்: *${needed} PV*\n\n🎁 *சிறப்பு பலன்:*\n100 PV தொடர்ச்சியை முடித்து *₹2500* மதிப்புள்ள தயாரிப்பு வவுச்சரைப் பெறுங்கள்!\n\n💡 இந்த வாய்ப்பை தவறவிடாதீர்கள்!\n\n💪 உங்கள் ${needed} PV ஐ 14க்குள் முடிக்கவும்!\n\n🌟 Team NFVT - வெற்றி உங்களுடையது!`;
+            
+            setTimeout(() => {
+                window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank');
+            }, index * 2000);
+        });
+    }
+
+    // Check for low Group PV (below 2600)
+    function checkLowGroupPV() {
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const lowGroupPV = entries.filter(e => e.groupPV < 2600);
+        
+        if (lowGroupPV.length > 0) {
+            const lastReminder = localStorage.getItem('lastLowGroupPVReminder');
+            const today = new Date().toDateString();
+            
+            if (lastReminder !== today) {
+                showLowGroupPVPopup(lowGroupPV);
+                localStorage.setItem('lastLowGroupPVReminder', today);
+            }
+        }
+    }
+
+    function showLowGroupPVPopup(members) {
+        const message = currentLanguage === 'en'
+            ? `⚠️ LOW GROUP PV ALERT!\n\n${members.length} members have Group PV below 2600.\n\nThey need to improve their team building!\n\nWould you like to send WhatsApp reminders?`
+            : `⚠️ குறைந்த குழு PV எச்சரிக்கை!\n\n${members.length} உறுப்பினர்களுக்கு 2600க்கு கீழ் குழு PV உள்ளது.\n\nஅவர்கள் தங்கள் குழு கட்டமைப்பை மேம்படுத்த வேண்டும்!\n\nWhatsApp நினைவூட்டல்களை அனுப்ப விரும்புகிறீர்களா?`;
+        
+        if (confirm(message)) {
+            sendLowGroupPVReminders(members);
+        }
+    }
+
+    function sendLowGroupPVReminders(members) {
+        members.forEach((member, index) => {
+            const needed = 2600 - member.groupPV;
+            const waMessage = currentLanguage === 'en'
+                ? `Hello ${member.name}! 👋\n\n⚠️ *GROUP PV IMPROVEMENT NEEDED*\n\n📊 Your Current Group PV: ${member.groupPV}\n🎯 Target: 2600 PV\n📈 Need to Improve: *${needed} PV*\n\n💡 *Action Required:*\n- Focus on team building\n- Help your downlines achieve their targets\n- Conduct more team meetings\n- Support your team members\n\n💪 Build your team stronger!\n\n🌟 Team NFVT - Together we grow!`
+                : `வணக்கம் ${member.name}! 👋\n\n⚠️ *குழு PV மேம்பாடு தேவை*\n\n📊 உங்கள் தற்போதைய குழு PV: ${member.groupPV}\n🎯 இலக்கு: 2600 PV\n📈 மேம்படுத்த வேண்டியது: *${needed} PV*\n\n💡 *செய்ய வேண்டியவை:*\n- குழு கட்டமைப்பில் கவனம் செலுத்துங்கள்\n- உங்கள் கீழ்நிலையினரை இலக்கை அடைய உதவுங்கள்\n- அதிக குழு கூட்டங்களை நடத்துங்கள்\n- உங்கள் குழு உறுப்பினர்களுக்கு ஆதரவளியுங்கள்\n\n💪 உங்கள் குழுவை வலுவாக உருவாக்குங்கள்!\n\n🌟 Team NFVT - ஒன்றாக வளருவோம்!`;
+            
+            setTimeout(() => {
+                window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank');
+            }, index * 2000);
+        });
+    }
+
+    // Check for inactive IDs (Self PV below 30) - send reminder before month end
+    function checkInactiveIDs() {
+        const today = new Date();
+        const dayOfMonth = today.getDate();
+        const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+        
+        // Check from 25th onwards (last week of month)
+        if (dayOfMonth >= 25) {
+            const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+            const inactiveIDs = entries.filter(e => e.selfPV < 30);
+            
+            if (inactiveIDs.length > 0) {
+                const lastReminder = localStorage.getItem('lastInactiveIDReminder');
+                const todayStr = today.toDateString();
+                
+                if (lastReminder !== todayStr) {
+                    showInactiveIDPopup(inactiveIDs, lastDayOfMonth - dayOfMonth);
+                    localStorage.setItem('lastInactiveIDReminder', todayStr);
+                }
+            }
+        }
+    }
+
+    function showInactiveIDPopup(members, daysLeft) {
+        const message = currentLanguage === 'en'
+            ? `🚨 URGENT: INACTIVE ID ALERT!\n\n${members.length} members have Self PV below 30.\n\n⚠️ Their IDs will become INACTIVE!\n⚠️ They will lose team support benefits!\n\n${daysLeft} days left before month end!\n\nWould you like to send WhatsApp reminders?`
+            : `🚨 அவசரம்: செயலற்ற ID எச்சரிக்கை!\n\n${members.length} உறுப்பினர்களுக்கு 30க்கு கீழ் சொந்த PV உள்ளது.\n\n⚠️ அவர்களின் ID செயலற்றதாகிவிடும்!\n⚠️ அவர்கள் குழு ஆதரவு பலன்களை இழப்பார்கள்!\n\nமாதம் முடிய ${daysLeft} நாட்கள் மட்டுமே!\n\nWhatsApp நினைவூட்டல்களை அனுப்ப விரும்புகிறீர்களா?`;
+        
+        if (confirm(message)) {
+            sendInactiveIDReminders(members, daysLeft);
+        }
+    }
+
+    function sendInactiveIDReminders(members, daysLeft) {
+        members.forEach((member, index) => {
+            const needed = 30 - member.selfPV;
+            const waMessage = currentLanguage === 'en'
+                ? `Hello ${member.name}! 👋\n\n🚨 *URGENT - ID ACTIVATION ALERT*\n\n⚠️ Your ID will become INACTIVE!\n\n📊 Your Current Self PV: ${member.selfPV}\n🎯 Minimum Required: 30 PV\n⚠️ Need Immediately: *${needed} PV*\n\n❌ *What you will LOSE if ID becomes inactive:*\n- Team support benefits\n- Monthly bonuses\n- Team commission\n- Growth opportunities\n- All team privileges\n\n⏰ *URGENT ACTION REQUIRED:*\nComplete *${needed} PV* before this month end!\n\nOnly *${daysLeft} days* left!\n\n📞 Contact your upline NOW for support!\n\n💪 Don't lose your hard work!\n\n🌟 Team NFVT - We support you!`
+                : `வணக்கம் ${member.name}! 👋\n\n🚨 *அவசரம் - ID செயல்படுத்தல் எச்சரிக்கை*\n\n⚠️ உங்கள் ID செயலற்றதாகிவிடும்!\n\n📊 உங்கள் தற்போதைய சொந்த PV: ${member.selfPV}\n🎯 குறைந்தபட்சம் தேவை: 30 PV\n⚠️ உடனடியாக தேவை: *${needed} PV*\n\n❌ *ID செயலற்றதானால் நீங்கள் இழப்பவை:*\n- குழு ஆதரவு பலன்கள்\n- மாதாந்திர போனஸ்\n- குழு கமிஷன்\n- வளர்ச்சி வாய்ப்புகள்\n- அனைத்து குழு சலுகைகளும்\n\n⏰ *அவசர நடவடிக்கை:*\nஇந்த மாதம் முடிவதற்குள் *${needed} PV* முடிக்கவும்!\n\nவெறும் *${daysLeft} நாட்கள்* மட்டுமே உள்ளன!\n\n📞 உடனடியாக உங்கள் upline ஐ தொடர்பு கொள்ளுங்கள்!\n\n💪 உங்கள் கடின உழைப்பை இழக்காதீர்கள்!\n\n🌟 Team NFVT - நாங்கள் உங்களை ஆதரிக்கிறோம்!`;
+            
+            setTimeout(() => {
+                window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank');
+            }, index * 2000);
+        });
+    }
+
+    // Check for meeting reminders
+    function checkMeetingTime() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        
+        // Check for 6 PM (17:50) and 8 PM (19:50) - 10 minutes before
+        if ((hours === 17 && minutes === 50) || (hours === 19 && minutes === 50)) {
+            const meetingTime = hours === 17 ? "6:00 PM" : "8:00 PM";
+            const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+            const today = new Date().toISOString().split('T')[0];
+            
+            const lastReminder = localStorage.getItem('lastMeetingReminder');
+            if (lastReminder !== today + '-' + meetingTime) {
+                const nonAttendees = entries.filter(e => e.meeting === 'No');
+                
+                if (nonAttendees.length > 0) {
+                    showMeetingReminder(meetingTime, nonAttendees);
+                    localStorage.setItem('lastMeetingReminder', today + '-' + meetingTime);
+                }
+            }
+        }
+    }
+
+    function showMeetingReminder(time, members) {
+        const message = currentLanguage === 'en' 
+            ? `⏰ Meeting Alert!\n\nThe ${time} meeting is starting in 10 minutes.\n\n${members.length} members haven't attended recent meetings.\n\nConsistency is key to success!`
+            : `⏰ கூட்டம் எச்சரிக்கை!\n\n${time} கூட்டம் 10 நிமிடங்களில் தொடங்குகிறது.\n\n${members.length} உறுப்பினர்கள் சமீபத்திய கூட்டங்களில் கலந்து கொள்ளவில்லை.\n\nதொடர்ச்சி வெற்றிக்கு முக்கியம்!`;
+        
+        if (confirm(message + '\n\nWould you like to send WhatsApp reminders?')) {
+            members.forEach((member, index) => {
+                const waMessage = currentLanguage === 'en'
+                    ? `Hello ${member.name}! 👋\n\n⏰ Meeting Reminder!\n\nOur team meeting starts at ${time} (in 10 minutes).\n\n📍 Please join the meeting to improve your business growth.\n\n💡 Consistency in attending meetings is crucial for success!\n\n💪 See you there!`
+                    : `வணக்கம் ${member.name}! 👋\n\n⏰ கூட்டம் நினைவூட்டல்!\n\nஎங்கள் குழு கூட்டம் ${time} (10 நிமிடங்களில்) தொடங்குகிறது.\n\n📍 உங்கள் வியாபார வளர்ச்சியை மேம்படுத்த கூட்டத்தில் சேரவும்.\n\n💡 வெற்றிக்கு கூட்டங்களில் தொடர்ச்சியாக கலந்துகொள்வது அவசியம்!\n\n💪 அங்கே சந்திப்போம்!`;
+                
+                setTimeout(() => {
+                    window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank');
+                }, index * 2000);
+            });
+        }
+    }
+
+    // Check for inactivity
+    function checkInactivity() {
+        const lastActive = localStorage.getItem('lastActiveDate');
+        const today = new Date().toISOString().split('T')[0];
+        
+        if (lastActive && lastActive !== today) {
+            const daysDiff = Math.floor((new Date(today) - new Date(lastActive)) / (1000 * 60 * 60 * 24));
+            
+            if (daysDiff >= 1) {
+                const message = currentLanguage === 'en'
+                    ? `⚠️ Consistency Alert!\n\nYou haven't updated your followup in ${daysDiff} day(s).\n\n💡 Daily consistency is very important for success!\n\nUpdate your team's progress daily to achieve your goals.`
+                    : `⚠️ தொடர்ச்சி எச்சரிக்கை!\n\nநீங்கள் ${daysDiff} நாள்களாக உங்கள் பின்தொடர்தலை புதுப்பிக்கவில்லை.\n\n💡 வெற்றிக்கு தினசரி தொடர்ச்சி மிகவும் முக்கியம்!\n\nஉங்கள் இலக்குகளை அடைய தினசரி உங்கள் குழுவின் முன்னேற்றத்தை புதுப்பிக்கவும்.`;
+                
+                alert(message);
+            }
+        }
+        
+        localStorage.setItem('lastActiveDate', today);
+    }
+
+    function toggleLanguage() {
+        currentLanguage = currentLanguage === 'en' ? 'ta' : 'en';
+        document.getElementById('langBtn').textContent = currentLanguage === 'en' ? 'தமிழ்' : 'English';
+        
+        document.querySelectorAll('.lang-text').forEach(el => {
+            el.textContent = el.getAttribute('data-' + currentLanguage);
+        });
+        
+        displayData();
+        localStorage.setItem('preferredLanguage', currentLanguage);
+    }
+
     function checkLogin() {
         const id = document.getElementById('loginId').value;
         const name = document.getElementById('loginName').value;
+        
         if(id.length >= 8 && name.trim() !== "") {
+            loggedInUser = { id, name };
             document.getElementById('loginOverlay').style.display = 'none';
             document.getElementById('mainApp').style.display = 'block';
             document.getElementById('displayUserName').innerText = name;
             document.getElementById('displayUserId').innerText = "ID: " + id;
             document.getElementById('userInitial').innerText = name.charAt(0).toUpperCase();
+            
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && savedLang !== currentLanguage) {
+                toggleLanguage();
+            }
+            
+            checkInactivity();
             displayData();
+            
+            // Check all reminders
+            check100PVReminder();
+            checkLowGroupPV();
+            checkInactiveIDs();
+            
+            // Check meeting time every minute
+            setInterval(checkMeetingTime, 60000);
+            
+            // Check reminders every hour
+            setInterval(() => {
+                check100PVReminder();
+                checkLowGroupPV();
+                checkInactiveIDs();
+            }, 3600000);
         } else {
             alert("Please enter valid 8-digit ID and Name!");
         }
@@ -598,20 +862,95 @@
         const meeting = document.getElementById('meeting').value;
 
         if (!name || distId.length < 8 || !mobile) { 
-            alert("⚠️ Please fill Name, ID (8 digits), and Mobile!"); 
+            alert(currentLanguage === 'en' 
+                ? "⚠️ Please fill Name, ID (8 digits), and Mobile!" 
+                : "⚠️ பெயர், ID (8 இலக்கங்கள்) மற்றும் மொபைல் நிரப்பவும்!"); 
             return; 
         }
 
-        const entry = { name, mobile, distId, level, selfPV, groupPV, totalPV, date, consistency, meeting, id: Date.now() };
+        const entry = { 
+            name, mobile, distId, level, selfPV, groupPV, totalPV, date, consistency, meeting, 
+            id: Date.now(),
+            timestamp: new Date().toISOString(),
+            addedBy: loggedInUser.id
+        };
+        
         let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
         entries.unshift(entry); 
         localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
+        
+        updateActivityLog('add', entry);
         displayData();
         
-        // Clear form
         ['downlineName', 'mobileNo', 'distId', 'selfPV', 'groupPV'].forEach(id => document.getElementById(id).value = '');
         document.getElementById('consistency').value = 'Yes';
         document.getElementById('meeting').value = 'Yes';
+    }
+
+    function updateActivityLog(action, data) {
+        let log = JSON.parse(localStorage.getItem('nfvt_activity_log')) || [];
+        log.unshift({
+            action,
+            data,
+            timestamp: new Date().toISOString(),
+            user: loggedInUser.name
+        });
+        
+        if (log.length > 1000) log = log.slice(0, 1000);
+        localStorage.setItem('nfvt_activity_log', JSON.stringify(log));
+    }
+
+    function editEntry(id) {
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const entry = entries.find(e => e.id === id);
+        
+        if (entry) {
+            document.getElementById('editId').value = entry.id;
+            document.getElementById('editName').value = entry.name;
+            document.getElementById('editMobile').value = entry.mobile;
+            document.getElementById('editSelfPV').value = entry.selfPV;
+            document.getElementById('editGroupPV').value = entry.groupPV;
+            document.getElementById('editDate').value = entry.date;
+            document.getElementById('editConsistency').value = entry.consistency;
+            document.getElementById('editMeeting').value = entry.meeting;
+            
+            document.getElementById('editModal').style.display = 'flex';
+        }
+    }
+
+    function saveEdit() {
+        const id = parseInt(document.getElementById('editId').value);
+        let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const idx = entries.findIndex(e => e.id === id);
+        
+        if (idx > -1) {
+            const oldEntry = {...entries[idx]};
+            
+            entries[idx].name = document.getElementById('editName').value;
+            entries[idx].mobile = document.getElementById('editMobile').value;
+            entries[idx].selfPV = parseFloat(document.getElementById('editSelfPV').value) || 0;
+            entries[idx].groupPV = parseFloat(document.getElementById('editGroupPV').value) || 0;
+            entries[idx].totalPV = entries[idx].selfPV + entries[idx].groupPV;
+            entries[idx].date = document.getElementById('editDate').value;
+            entries[idx].consistency = document.getElementById('editConsistency').value;
+            entries[idx].meeting = document.getElementById('editMeeting').value;
+            entries[idx].lastModified = new Date().toISOString();
+            entries[idx].modifiedBy = loggedInUser.id;
+            
+            localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
+            updateActivityLog('edit', { old: oldEntry, new: entries[idx] });
+            
+            displayData();
+            closeEditModal();
+            
+            alert(currentLanguage === 'en' 
+                ? '✅ Member details updated successfully!' 
+                : '✅ உறுப்பினர் விவரங்கள் வெற்றிகரமாக புதுப்பிக்கப்பட்டது!');
+        }
+    }
+
+    function closeEditModal() {
+        document.getElementById('editModal').style.display = 'none';
     }
 
     function displayData() {
@@ -620,114 +959,98 @@
         tableBody.innerHTML = '';
         let totalTeamPV = 0;
         let alertCount = 0;
-        let pvReminderList = [];
-        
-        // Check if we're in reminder period (2nd to 14th of month)
-        const today = new Date();
-        const dayOfMonth = today.getDate();
-        const isReminderPeriod = dayOfMonth >= 2 && dayOfMonth <= 14;
         
         entries.forEach(item => {
             totalTeamPV += item.totalPV;
             
-            // Determine row class and status
             let rowClass = '';
             let statusBadges = '';
-            let waMessage = `Hello ${item.name}! 👋\n\n`;
             
-            // Check for PV reminder during 2nd-14th
-            if (isReminderPeriod && item.selfPV < 100) {
-                statusBadges += '<span class="reminder-badge badge-pv-reminder">⏰ PV DUE</span>';
-                pvReminderList.push({name: item.name, mobile: item.mobile, selfPV: item.selfPV, needed: 100 - item.selfPV});
-            }
-            
-            // Check for inactive ID (Self PV < 30)
+            // Check for inactive ID (highest priority)
             if (item.selfPV < 30) {
                 rowClass = 'inactive-warning';
-                statusBadges += '<span class="reminder-badge badge-inactive">⚠️ INACTIVE</span>';
-                waMessage += `⚠️ *URGENT:* Your ID is INACTIVE!\nYou need to do *${30 - item.selfPV} more PV* to activate your ID.\n\n`;
+                statusBadges += currentLanguage === 'en'
+                    ? '<span style="background: #fee2e2; color: #dc2626; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">🚨 INACTIVE</span>'
+                    : '<span style="background: #fee2e2; color: #dc2626; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">🚨 செயலற்றது</span>';
                 alertCount++;
-            }
-            // Check for low PV (30-99)
+            } 
+            // Check for low PV
             else if (item.selfPV < 100) {
                 rowClass = 'low-pv-warning';
-                statusBadges += '<span class="reminder-badge badge-low-pv">📊 LOW PV</span>';
-                waMessage += `📊 Your Self PV is ${item.selfPV}. Keep pushing to reach 100 PV!\n\n`;
-                
-                // Add reminder about deadline if in reminder period
-                if (isReminderPeriod) {
-                    waMessage += `⏰ *REMINDER:* Complete 100 PV before 14th of this month!\nYou need *${100 - item.selfPV} more PV*.\n\n`;
-                }
+                statusBadges += currentLanguage === 'en'
+                    ? '<span style="background: #fed7aa; color: #ea580c; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">📊 LOW PV</span>'
+                    : '<span style="background: #fed7aa; color: #ea580c; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">📊 குறைந்த PV</span>';
                 alertCount++;
-            }
-            // High PV (>=100)
-            else {
+            } else {
                 rowClass = 'high-pv';
             }
             
-            // Check for no consistency
+            // Check for low Group PV
+            if (item.groupPV < 2600) {
+                if (rowClass === 'high-pv') rowClass = 'low-group-pv';
+                statusBadges += currentLanguage === 'en'
+                    ? '<span style="background: #fef3c7; color: #92400e; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">⚠️ LOW GRP</span>'
+                    : '<span style="background: #fef3c7; color: #92400e; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">⚠️ குறைந்த குழு</span>';
+                alertCount++;
+            }
+            
             if (item.consistency === "No") {
                 if (rowClass === '') rowClass = 'no-consistency';
-                statusBadges += '<span class="reminder-badge badge-inactive">❌ NO 100PV</span>';
-                waMessage += `⚠️ You need to maintain 100PV consistency!\n\n`;
+                statusBadges += currentLanguage === 'en'
+                    ? '<span style="background: #fee2e2; color: #991b1b; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">❌ NO 100PV</span>'
+                    : '<span style="background: #fee2e2; color: #991b1b; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">❌ 100PV இல்லை</span>';
                 alertCount++;
             }
             
-            // Check for no meeting attendance
             if (item.meeting === "No") {
                 if (rowClass === '' && item.selfPV >= 100) rowClass = 'no-meeting';
-                statusBadges += '<span class="reminder-badge badge-no-meeting">🔔 ATTEND MTG</span>';
-                waMessage += `🔔 *REMINDER:* Please attend daily meetings! Meetings are crucial for your growth.\n\n`;
+                statusBadges += currentLanguage === 'en'
+                    ? '<span style="background: #e0e7ff; color: #4f46e5; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">🔔 MEETING</span>'
+                    : '<span style="background: #e0e7ff; color: #4f46e5; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-right: 3px;">🔔 கூட்டம்</span>';
                 alertCount++;
             }
             
-            waMessage += `📈 *Current Stats:*\n`;
-            waMessage += `• Self PV: ${item.selfPV}\n`;
-            waMessage += `• Group PV: ${item.groupPV}\n`;
-            waMessage += `• Total PV: ${item.totalPV}\n\n`;
-            waMessage += `💪 Keep growing with Team NFVT!\n`;
-            waMessage += `🌟 Success is yours!`;
-            
-            const waLink = `https://wa.me/91${item.mobile}?text=${encodeURIComponent(waMessage)}`;
+            const waLink = `https://wa.me/91${item.mobile}`;
             
             tableBody.innerHTML += `<tr class="${rowClass}">
                     <td><strong style="color: #1e293b;">${item.name}</strong><br><small style="color: #64748b;">${item.distId}</small></td>
                     <td><strong>${item.mobile}</strong></td>
                     <td><span style="background: #ddd6fe; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; color: #5b21b6;">${item.level}</span></td>
                     <td><strong style="color: ${item.selfPV >= 100 ? '#059669' : (item.selfPV >= 30 ? '#f59e0b' : '#dc2626')};">${item.selfPV}</strong></td>
-                    <td><strong style="color: #6366f1;">${item.groupPV}</strong></td>
+                    <td><strong style="color: ${item.groupPV >= 2600 ? '#059669' : '#f59e0b'};">${item.groupPV}</strong></td>
                     <td><strong style="font-size: 15px; color: #1e293b;">${item.totalPV}</strong></td>
                     <td>${item.date}</td>
                     <td><span style="background: ${item.consistency === 'Yes' ? '#dcfce7' : '#fee2e2'}; color: ${item.consistency === 'Yes' ? '#166534' : '#991b1b'}; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">${item.consistency}</span></td>
                     <td><span style="background: ${item.meeting === 'Yes' ? '#dbeafe' : '#fef3c7'}; color: ${item.meeting === 'Yes' ? '#1e40af' : '#92400e'}; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">${item.meeting}</span></td>
-                    <td style="min-width: 120px;">${statusBadges || '<span style="color: #10b981; font-weight: 700;">✅ Good</span>'}</td>
-                    <td><button class="delete-btn" onclick="deleteEntry(${item.id})" title="Delete">❌</button></td>
+                    <td style="min-width: 150px;">${statusBadges || '<span style="color: #10b981; font-weight: 700;">✅</span>'}</td>
+                    <td>
+                        <button class="edit-btn" onclick="editEntry(${item.id})" title="${currentLanguage === 'en' ? 'Edit' : 'திருத்து'}">✏️</button>
+                        <button class="delete-btn" onclick="deleteEntry(${item.id})" title="${currentLanguage === 'en' ? 'Delete' : 'நீக்கு'}">❌</button>
+                    </td>
                     <td><a href="${waLink}" target="_blank" class="wa-link">📱 WA</a></td>
                 </tr>`;
         });
         
-        document.getElementById('totalStats').innerText = `Total Team PV: ${totalTeamPV.toFixed(2)} | Members: ${entries.length} | 🔔 Alerts: ${alertCount}`;
+        const statsText = currentLanguage === 'en'
+            ? `Total Team PV: ${totalTeamPV.toFixed(2)} | Members: ${entries.length} | 🔔 Alerts: ${alertCount}`
+            : `மொத்த குழு PV: ${totalTeamPV.toFixed(2)} | உறுப்பினர்கள்: ${entries.length} | 🔔 எச்சரிக்கைகள்: ${alertCount}`;
         
-        // Show popup if in reminder period and there are members below 100 PV
-        if (isReminderPeriod && pvReminderList.length > 0) {
-            const lastShown = localStorage.getItem('lastReminderShown');
-            const todayStr = today.toDateString();
-            
-            // Show popup only once per day
-            if (lastShown !== todayStr) {
-                showReminderPopup(pvReminderList);
-                localStorage.setItem('lastReminderShown', todayStr);
-            }
-        }
+        document.getElementById('totalStats').querySelector('.lang-text').textContent = statsText;
     }
 
     function deleteEntry(id) {
-        if(confirm("⚠️ Delete this member?")) {
+        const confirmMsg = currentLanguage === 'en' 
+            ? "⚠️ Delete this member?" 
+            : "⚠️ இந்த உறுப்பினரை நீக்கவா?";
+        
+        if(confirm(confirmMsg)) {
             let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
             let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
             const idx = entries.findIndex(e => e.id === id);
+            
             if (idx > -1) {
                 trash.push(entries[idx]); 
+                updateActivityLog('delete', entries[idx]);
                 entries.splice(idx, 1);
                 localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
                 localStorage.setItem('nfvt_trash', JSON.stringify(trash));
@@ -736,9 +1059,198 @@
         }
     }
 
+    function showReports() {
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const now = new Date();
+        const currentMonth = now.getMonth();
+        const currentYear = now.getFullYear();
+        
+        const monthStart = new Date(currentYear, currentMonth, 2);
+        const monthEnd = new Date(currentYear, currentMonth + 1, 2);
+        
+        const monthlyEntries = entries.filter(e => {
+            const entryDate = new Date(e.date);
+            return entryDate >= monthStart && entryDate < monthEnd;
+        });
+        
+        const dailyData = {};
+        entries.forEach(e => {
+            if (!dailyData[e.date]) {
+                dailyData[e.date] = [];
+            }
+            dailyData[e.date].push(e);
+        });
+        
+        let daily8PercentCount = 0;
+        Object.keys(dailyData).forEach(date => {
+            const dayTotal = dailyData[date].reduce((sum, e) => sum + e.totalPV, 0);
+            const target = entries.length * dailyTargetPercentage;
+            if (dayTotal >= target) {
+                daily8PercentCount++;
+            }
+        });
+        
+        const consistencyData = entries.filter(e => e.consistency === 'Yes');
+        
+        const reportHTML = `
+            <div style="text-align: left;">
+                <h3 style="color: #1e293b; margin-bottom: 15px;">
+                    ${currentLanguage === 'en' ? '📊 Monthly Report' : '📊 மாதாந்திர அறிக்கை'}
+                </h3>
+                
+                <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                    <strong style="color: #0369a1;">${currentLanguage === 'en' ? 'Total Members:' : 'மொத்த உறுப்பினர்கள்:'}</strong> ${entries.length}<br>
+                    <strong style="color: #0369a1;">${currentLanguage === 'en' ? 'Monthly Entries:' : 'மாதாந்திர உள்ளீடுகள்:'}</strong> ${monthlyEntries.length}<br>
+                    <strong style="color: #0369a1;">${currentLanguage === 'en' ? 'Total Team PV:' : 'மொத்த குழு PV:'}</strong> ${entries.reduce((sum, e) => sum + e.totalPV, 0).toFixed(2)}
+                </div>
+                
+                <div style="background: #ecfdf5; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                    <strong style="color: #047857;">${currentLanguage === 'en' ? '🎯 Daily ' + dailyTargetPercentage + '% Target Achievement:' : '🎯 தினசரி ' + dailyTargetPercentage + '% இலக்கு சாதனை:'}</strong> ${daily8PercentCount} ${currentLanguage === 'en' ? 'days' : 'நாட்கள்'}
+                    <br><small style="color: #064e3b;">${currentLanguage === 'en' ? 'Days when team achieved ' + dailyTargetPercentage + '% daily target' : 'குழு ' + dailyTargetPercentage + '% தினசரி இலக்கை அடைந்த நாட்கள்'}</small>
+                    <br><br>
+                    <button onclick="updateDailyTarget()" style="background: #10b981; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 700;">
+                        ${currentLanguage === 'en' ? '⚙️ Update ' + dailyTargetPercentage + '% Target' : '⚙️ ' + dailyTargetPercentage + '% இலக்கை புதுப்பி'}
+                    </button>
+                </div>
+                
+                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                    <strong style="color: #92400e;">${currentLanguage === 'en' ? '✅ 100PV Consistency Achieved:' : '✅ 100PV தொடர்ச்சி அடைந்தவர்கள்:'}</strong> ${consistencyData.length} ${currentLanguage === 'en' ? 'members' : 'உறுப்பினர்கள்'}
+                    <br><br>
+                    ${consistencyData.map(e => `<div style="margin: 5px 0;"><strong>${e.name}</strong> - ${currentLanguage === 'en' ? 'Achieved on' : 'அடைந்த தேதி'}: ${e.date}</div>`).join('')}
+                </div>
+            </div>
+        `;
+        
+        document.getElementById('reportsContent').innerHTML = reportHTML;
+        document.getElementById('reportsModal').style.display = 'flex';
+    }
+
+    function updateDailyTarget() {
+        const newTarget = prompt(currentLanguage === 'en' 
+            ? `Enter new daily target percentage (current: ${dailyTargetPercentage}%):`
+            : `புதிய தினசரி இலக்கு சதவீதத்தை உள்ளிடவும் (தற்போதைய: ${dailyTargetPercentage}%):`);
+        
+        if (newTarget && !isNaN(newTarget) && newTarget > 0 && newTarget <= 100) {
+            dailyTargetPercentage = parseFloat(newTarget);
+            localStorage.setItem('dailyTargetPercentage', dailyTargetPercentage);
+            alert(currentLanguage === 'en' 
+                ? `✅ Daily target updated to ${dailyTargetPercentage}%`
+                : `✅ தினசரி இலக்கு ${dailyTargetPercentage}% ஆக புதுப்பிக்கப்பட்டது`);
+            showReports();
+        }
+    }
+
+    function closeReportsModal() {
+        document.getElementById('reportsModal').style.display = 'none';
+    }
+
+    function downloadMonthlyReport() {
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const now = new Date();
+        
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        doc.setFontSize(18);
+        doc.setTextColor(191, 149, 63);
+        doc.text("NFVT Team Monthly Report", 14, 15);
+        
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Generated: ${now.toLocaleDateString()}`, 14, 22);
+        doc.text(`Report By: ${loggedInUser.name} (ID: ${loggedInUser.id})`, 14, 28);
+        
+        const totalPV = entries.reduce((sum, e) => sum + e.totalPV, 0);
+        doc.text(`Total Members: ${entries.length} | Team PV: ${totalPV.toFixed(2)}`, 14, 34);
+        
+        const rows = entries.map(e => [
+            e.name, 
+            e.distId, 
+            e.mobile, 
+            e.selfPV, 
+            e.groupPV,
+            e.totalPV, 
+            e.date,
+            e.consistency,
+            e.meeting
+        ]);
+        
+        doc.autoTable({ 
+            head: [['Name', 'ID', 'Mobile', 'Self PV', 'Group PV', 'Total', 'Date', '100PV', 'Meeting']], 
+            body: rows, 
+            startY: 40,
+            styles: { fontSize: 7 },
+            headStyles: { fillColor: [30, 41, 59] }
+        });
+        
+        doc.save(`NFVT_Monthly_Report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`);
+    }
+
+    function downloadPDF() {
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const now = new Date();
+        
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        doc.setFontSize(18);
+        doc.setTextColor(191, 149, 63);
+        doc.text("NFVT Team Followup Report", 14, 15);
+        
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Generated: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`, 14, 22);
+        doc.text(`Report By: ${loggedInUser.name} (ID: ${loggedInUser.id})`, 14, 28);
+        
+        const totalPV = entries.reduce((sum, e) => sum + e.totalPV, 0);
+        const alerts = entries.filter(e => e.selfPV < 30 || e.meeting === 'No' || e.groupPV < 2600).length;
+        doc.text(`Members: ${entries.length} | Team PV: ${totalPV.toFixed(2)} | Alerts: ${alerts}`, 14, 34);
+        
+        const rows = entries.map(e => [
+            e.name, 
+            e.distId, 
+            e.mobile, 
+            e.selfPV, 
+            e.groupPV,
+            e.totalPV, 
+            e.date,
+            e.consistency,
+            e.meeting
+        ]);
+        
+        doc.autoTable({ 
+            head: [['Name', 'ID', 'Mobile', 'Self', 'Group', 'Total', 'Date', '100PV', 'Mtg']], 
+            body: rows, 
+            startY: 40,
+            styles: { fontSize: 8 },
+            headStyles: { fillColor: [30, 41, 59] }
+        });
+        
+        doc.save(`NFVT_Report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`);
+    }
+
+    function downloadCSV() {
+        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const now = new Date();
+        
+        let csv = `"NFVT Team Followup Report"\n`;
+        csv += `"Generated: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}"\n`;
+        csv += `"Report By: ${loggedInUser.name} (ID: ${loggedInUser.id})"\n\n`;
+        csv += "Name,ID,Mobile,Level,SelfPV,GroupPV,TotalPV,Date,100PV_CNC,Meeting,Timestamp\n";
+        
+        entries.forEach(e => csv += `"${e.name}","${e.distId}","${e.mobile}","${e.level}","${e.selfPV}","${e.groupPV}","${e.totalPV}","${e.date}","${e.consistency}","${e.meeting}","${e.timestamp || ''}"\n`);
+        
+        const b = new Blob([csv], {type:'text/csv'});
+        const a = document.createElement('a'); 
+        a.href=URL.createObjectURL(b); 
+        a.download=`NFVT_Report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.csv`; 
+        a.click();
+    }
+
     function toggleTrash() {
         const ts = document.getElementById('trashSection');
         ts.style.display = (ts.style.display === 'none' || ts.style.display === '') ? 'block' : 'none';
+        
         if(ts.style.display === 'block') {
             const trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
             document.getElementById('trashBody').innerHTML = trash.map(i => 
@@ -746,8 +1258,12 @@
                     <td><strong>${i.name}</strong></td>
                     <td>${i.distId}</td>
                     <td>
-                        <button onclick="restoreEntry(${i.id})" style="background: #10b981; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 700; margin-right: 5px;">↩️ Restore</button>
-                        <button onclick="permanentDelete(${i.id})" class="perm-delete-btn">🗑️ Delete Forever</button>
+                        <button onclick="restoreEntry(${i.id})" style="background: #10b981; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 700; margin-right: 5px;">
+                            ${currentLanguage === 'en' ? '↩️ Restore' : '↩️ மீட்டமை'}
+                        </button>
+                        <button onclick="permanentDelete(${i.id})" style="background: #7f1d1d; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 700;">
+                            ${currentLanguage === 'en' ? '🗑️ Delete Forever' : '🗑️ நிரந்தரமாக நீக்கு'}
+                        </button>
                     </td>
                 </tr>`
             ).join('');
@@ -755,15 +1271,19 @@
     }
 
     function permanentDelete(id) {
-        if(confirm("⚠️ PERMANENT DELETE!\n\nThis member will be deleted forever and cannot be recovered.\n\nAre you absolutely sure?")) {
+        const confirmMsg = currentLanguage === 'en'
+            ? "⚠️ PERMANENT DELETE!\n\nThis cannot be undone. Are you sure?"
+            : "⚠️ நிரந்தர நீக்குதல்!\n\nஇது செயல்தவிர்க்க முடியாது. நீங்கள் உறுதியாக உள்ளீர்களா?";
+        
+        if(confirm(confirmMsg)) {
             let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
             const idx = trash.findIndex(e => e.id === id);
+            
             if (idx > -1) {
                 trash.splice(idx, 1);
                 localStorage.setItem('nfvt_trash', JSON.stringify(trash));
                 toggleTrash();
                 setTimeout(() => toggleTrash(), 100);
-                alert("✅ Member permanently deleted!");
             }
         }
     }
@@ -771,75 +1291,18 @@
     function emptyTrash() {
         const trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
         if (trash.length === 0) {
-            alert("Trash is already empty!");
+            alert(currentLanguage === 'en' ? "Trash is empty!" : "குப்பை காலியாக உள்ளது!");
             return;
         }
         
-        if(confirm(`⚠️ EMPTY TRASH - PERMANENT DELETE!\n\nThis will permanently delete all ${trash.length} members in trash.\nThis action CANNOT be undone!\n\nAre you absolutely sure?`)) {
+        const confirmMsg = currentLanguage === 'en'
+            ? `⚠️ EMPTY TRASH!\n\nPermanently delete all ${trash.length} members?`
+            : `⚠️ குப்பையை காலி செய்!\n\nஅனைத்து ${trash.length} உறுப்பினர்களையும் நிரந்தரமாக நீக்கவா?`;
+        
+        if(confirm(confirmMsg)) {
             localStorage.setItem('nfvt_trash', JSON.stringify([]));
             toggleTrash();
-            alert("✅ Trash emptied! All members permanently deleted.");
-        }
-    }
-
-    function showReminderPopup(pvList) {
-        const modal = document.getElementById('reminderModal');
-        const message = document.getElementById('modalMessage');
-        
-        let content = `<strong style="color: #dc2626; font-size: 18px;">⏰ Monthly PV Reminder (2nd - 14th)</strong><br><br>`;
-        content += `<div style="text-align: left; background: #fef3c7; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #f59e0b;">`;
-        content += `<strong style="color: #92400e;">📋 ${pvList.length} Members need to complete 100 PV before 14th:</strong><br><br>`;
-        
-        pvList.forEach(member => {
-            content += `• <strong>${member.name}</strong> - Current: ${member.selfPV} PV | Needed: <strong style="color: #dc2626;">${member.needed} PV</strong><br>`;
-        });
-        
-        content += `</div>`;
-        content += `<p style="color: #475569; font-size: 14px;">Click below to send WhatsApp reminders to all members.</p>`;
-        
-        message.innerHTML = content;
-        modal.style.display = 'flex';
-        
-        // Store the list for sending reminders
-        window.currentReminderList = pvList;
-    }
-
-    function closeModal() {
-        document.getElementById('reminderModal').style.display = 'none';
-    }
-
-    function sendReminders() {
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
-        const today = new Date();
-        const dayOfMonth = today.getDate();
-        
-        if (window.currentReminderList && window.currentReminderList.length > 0) {
-            let sentCount = 0;
-            
-            window.currentReminderList.forEach((member, index) => {
-                const message = `Hello ${member.name}! 👋\n\n` +
-                    `⏰ *MONTHLY PV REMINDER*\n\n` +
-                    `📅 Deadline: Before 14th of this month\n` +
-                    `📊 Your Current Self PV: ${member.selfPV}\n` +
-                    `🎯 Target: 100 PV\n` +
-                    `⚠️ Remaining: *${member.needed} PV*\n\n` +
-                    `💡 *Action Required:* Please complete your remaining ${member.needed} PV before the 14th to maintain your 100 PV consistency!\n\n` +
-                    `📞 Need help? Contact your upline today!\n\n` +
-                    `💪 Keep growing with Team NFVT!\n` +
-                    `🌟 Success is yours!`;
-                
-                const waLink = `https://wa.me/91${member.mobile}?text=${encodeURIComponent(message)}`;
-                
-                // Open WhatsApp links with delay
-                setTimeout(() => {
-                    window.open(waLink, '_blank');
-                }, index * 2000); // 2 second delay between each
-                
-                sentCount++;
-            });
-            
-            alert(`📱 Opening WhatsApp for ${sentCount} members!\n\nEach message will open in a new tab with a 2-second delay.`);
-            closeModal();
+            alert(currentLanguage === 'en' ? "✅ Trash emptied!" : "✅ குப்பை காலியாக்கப்பட்டது!");
         }
     }
 
@@ -847,8 +1310,10 @@
         let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
         let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
         const idx = trash.findIndex(e => e.id === id);
+        
         if (idx > -1) {
             entries.unshift(trash[idx]); 
+            updateActivityLog('restore', trash[idx]);
             trash.splice(idx, 1);
             localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
             localStorage.setItem('nfvt_trash', JSON.stringify(trash));
@@ -866,59 +1331,12 @@
         }
     }
 
-    function downloadCSV() {
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
-        let csv = "Name,ID,Mobile,Level,SelfPV,GroupPV,TotalPV,Date,100PV_CNC,Meeting\n";
-        entries.forEach(e => csv += `"${e.name}","${e.distId}","${e.mobile}","${e.level}","${e.selfPV}","${e.groupPV}","${e.totalPV}","${e.date}","${e.consistency}","${e.meeting}"\n`);
-        const b = new Blob([csv], {type:'text/csv'});
-        const a = document.createElement('a'); 
-        a.href=URL.createObjectURL(b); 
-        a.download=`NFVT_Report_${new Date().toISOString().split('T')[0]}.csv`; 
-        a.click();
-    }
-
-    function downloadPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        
-        // Title
-        doc.setFontSize(18);
-        doc.setTextColor(191, 149, 63);
-        doc.text("NFVT Team Followup Report", 14, 15);
-        
-        doc.setFontSize(10);
-        doc.setTextColor(0, 0, 0);
-        doc.text(`Generated: ${new Date().toLocaleDateString()}`, 14, 22);
-        
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
-        
-        // Stats
-        const totalPV = entries.reduce((sum, e) => sum + e.totalPV, 0);
-        const alerts = entries.filter(e => e.selfPV < 30 || e.meeting === 'No').length;
-        doc.text(`Total Members: ${entries.length} | Team PV: ${totalPV.toFixed(2)} | Alerts: ${alerts}`, 14, 29);
-        
-        const rows = entries.map(e => [
-            e.name, 
-            e.distId, 
-            e.mobile, 
-            e.selfPV, 
-            e.groupPV,
-            e.totalPV, 
-            e.consistency,
-            e.meeting,
-            e.selfPV < 30 ? 'INACTIVE' : (e.selfPV < 100 ? 'LOW PV' : 'OK')
-        ]);
-        
-        doc.autoTable({ 
-            head: [['Name', 'ID', 'Mobile', 'Self', 'Group', 'Total', '100PV', 'Mtg', 'Status']], 
-            body: rows, 
-            startY: 35,
-            styles: { fontSize: 8 },
-            headStyles: { fillColor: [30, 41, 59] }
-        });
-        
-        doc.save(`NFVT_Report_${new Date().toISOString().split('T')[0]}.pdf`);
-    }
+    window.addEventListener('load', () => {
+        const saved = localStorage.getItem('dailyTargetPercentage');
+        if (saved) {
+            dailyTargetPercentage = parseFloat(saved);
+        }
+    });
 </script>
 </body>
 </html>
