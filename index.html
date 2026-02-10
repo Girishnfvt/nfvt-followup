@@ -428,7 +428,7 @@
                 <input type="number" id="selfPV">
             </div>
             <div class="input-group">
-                <label class="lang-text" data-en="Group PV" data-ta="குழு PV">Group PV</label>
+                <label class="lang-text" data-en="Group PV (PGPV)" data-ta="குழு PV">Group PV (PGPV)</label>
                 <input type="number" id="groupPV">
             </div>
             <div class="input-group">
@@ -481,7 +481,7 @@
                     <th class="lang-text" data-en="Mobile" data-ta="மொபைல்">Mobile</th>
                     <th class="lang-text" data-en="Level" data-ta="நிலை">Level</th>
                     <th class="lang-text" data-en="Self PV" data-ta="சொந்த PV">Self PV</th>
-                    <th class="lang-text" data-en="Group PV" data-ta="குழு PV">Group PV</th>
+                    <th class="lang-text" data-en="Group PV (PGPV)" data-ta="குழு PV">Group PV (PGPV)</th>
                     <th class="lang-text" data-en="Total PV" data-ta="மொத்த PV">Total PV</th>
                     <th class="lang-text" data-en="Date" data-ta="தேதி">Date</th>
                     <th class="lang-text" data-en="100PV" data-ta="100PV">100PV</th>
@@ -516,7 +516,7 @@
                         <input type="number" id="editSelfPV">
                     </div>
                     <div class="input-group">
-                        <label class="lang-text" data-en="Group PV" data-ta="குழு PV">Group PV</label>
+                        <label class="lang-text" data-en="Group PV (PGPV)" data-ta="குழு PV">Group PV (PGPV)</label>
                         <input type="number" id="editGroupPV">
                     </div>
                     <div class="input-group">
@@ -647,7 +647,7 @@
         });
     }
 
-    // Check for low Group PV (below 2600)
+    // Check for low Group PV (PGPV) (below 2600)
     function checkLowGroupPV() {
         const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
         const lowGroupPV = entries.filter(e => e.groupPV < 2600);
@@ -665,7 +665,7 @@
 
     function showLowGroupPVPopup(members) {
         const message = currentLanguage === 'en'
-            ? `⚠️ LOW GROUP PV ALERT!\n\n${members.length} members have Group PV below 2600.\n\nThey need to improve their team building!\n\nWould you like to send WhatsApp reminders?`
+            ? `⚠️ LOW Group PV (PGPV) ALERT!\n\n${members.length} members have Group PV (PGPV) below 2600.\n\nThey need to improve their team building!\n\nWould you like to send WhatsApp reminders?`
             : `⚠️ குறைந்த குழு PV எச்சரிக்கை!\n\n${members.length} உறுப்பினர்களுக்கு 2600க்கு கீழ் குழு PV உள்ளது.\n\nஅவர்கள் தங்கள் குழு கட்டமைப்பை மேம்படுத்த வேண்டும்!\n\nWhatsApp நினைவூட்டல்களை அனுப்ப விரும்புகிறீர்களா?`;
         
         if (confirm(message)) {
@@ -677,7 +677,7 @@
         members.forEach((member, index) => {
             const needed = 2600 - member.groupPV;
             const waMessage = currentLanguage === 'en'
-                ? `Hello ${member.name}! 👋\n\n⚠️ *GROUP PV IMPROVEMENT NEEDED*\n\n📊 Your Current Group PV: ${member.groupPV}\n🎯 Target: 2600 PV\n📈 Need to Improve: *${needed} PV*\n\n💡 *Action Required:*\n- Focus on team building\n- Help your downlines achieve their targets\n- Conduct more team meetings\n- Support your team members\n\n💪 Build your team stronger!\n\n🌟 Team NFVT - Together we grow!`
+                ? `Hello ${member.name}! 👋\n\n⚠️ *Group PV (PGPV) IMPROVEMENT NEEDED*\n\n📊 Your Current Group PV (PGPV): ${member.groupPV}\n🎯 Target: 2600 PV\n📈 Need to Improve: *${needed} PV*\n\n💡 *Action Required:*\n- Focus on team building\n- Help your downlines achieve their targets\n- Conduct more team meetings\n- Support your team members\n\n💪 Build your team stronger!\n\n🌟 Team NFVT - Together we grow!`
                 : `வணக்கம் ${member.name}! 👋\n\n⚠️ *குழு PV மேம்பாடு தேவை*\n\n📊 உங்கள் தற்போதைய குழு PV: ${member.groupPV}\n🎯 இலக்கு: 2600 PV\n📈 மேம்படுத்த வேண்டியது: *${needed} PV*\n\n💡 *செய்ய வேண்டியவை:*\n- குழு கட்டமைப்பில் கவனம் செலுத்துங்கள்\n- உங்கள் கீழ்நிலையினரை இலக்கை அடைய உதவுங்கள்\n- அதிக குழு கூட்டங்களை நடத்துங்கள்\n- உங்கள் குழு உறுப்பினர்களுக்கு ஆதரவளியுங்கள்\n\n💪 உங்கள் குழுவை வலுவாக உருவாக்குங்கள்!\n\n🌟 Team NFVT - ஒன்றாக வளருவோம்!`;
             
             setTimeout(() => {
@@ -985,7 +985,7 @@
                 rowClass = 'high-pv';
             }
             
-            // Check for low Group PV
+            // Check for low Group PV (PGPV)
             if (item.groupPV < 2600) {
                 if (rowClass === 'high-pv') rowClass = 'low-group-pv';
                 statusBadges += currentLanguage === 'en'
@@ -1040,11 +1040,11 @@
                 }
             }
             
-            // Check for low Group PV
+            // Check for low Group PV (PGPV)
             if (item.groupPV < 2600) {
                 const needed = 2600 - item.groupPV;
                 waMessage += currentLanguage === 'en'
-                    ? `⚠️ *GROUP PV IMPROVEMENT NEEDED*\n\n📊 Current Group PV: ${item.groupPV}\n🎯 Target: 2600 PV\n📈 Improve: *${needed} PV*\n\n💡 Focus on:\n- Team building\n- Help downlines\n- Conduct meetings\n- Support team\n\n`
+                    ? `⚠️ *Group PV (PGPV) IMPROVEMENT NEEDED*\n\n📊 Current Group PV (PGPV): ${item.groupPV}\n🎯 Target: 2600 PV\n📈 Improve: *${needed} PV*\n\n💡 Focus on:\n- Team building\n- Help downlines\n- Conduct meetings\n- Support team\n\n`
                     : `⚠️ *குழு PV மேம்பாடு தேவை*\n\n📊 தற்போதைய குழு PV: ${item.groupPV}\n🎯 இலக்கு: 2600 PV\n📈 மேம்படுத்த: *${needed} PV*\n\n💡 கவனம் செலுத்த:\n- குழு கட்டமைப்பு\n- கீழ்நிலைக்கு உதவி\n- கூட்டங்கள்\n- குழு ஆதரவு\n\n`;
             }
             
@@ -1063,7 +1063,7 @@
             }
             
             waMessage += currentLanguage === 'en'
-                ? `📈 *Current Stats:*\n• Self PV: ${item.selfPV}\n• Group PV: ${item.groupPV}\n• Total PV: ${item.totalPV}\n\n💪 Keep growing with Team NFVT!\n🌟 Success is yours!`
+                ? `📈 *Current Stats:*\n• Self PV: ${item.selfPV}\n• Group PV (PGPV): ${item.groupPV}\n• Total PV: ${item.totalPV}\n\n💪 Keep growing with Team NFVT!\n🌟 Success is yours!`
                 : `📈 *தற்போதைய புள்ளிவிவரம்:*\n• சொந்த PV: ${item.selfPV}\n• குழு PV: ${item.groupPV}\n• மொத்த PV: ${item.totalPV}\n\n💪 Team NFVT உடன் வளருங்கள்!\n🌟 வெற்றி உங்களுடையது!`;
             
             const waLink = `https://wa.me/91${item.mobile}?text=${encodeURIComponent(waMessage)}`;
@@ -1232,7 +1232,7 @@
         ]);
         
         doc.autoTable({ 
-            head: [['Name', 'ID', 'Mobile', 'Self PV', 'Group PV', 'Total', 'Date', '100PV', 'Meeting']], 
+            head: [['Name', 'ID', 'Mobile', 'Self PV', 'Group PV (PGPV)', 'Total', 'Date', '100PV', 'Meeting']], 
             body: rows, 
             startY: 40,
             styles: { fontSize: 7 },
