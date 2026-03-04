@@ -1,6 +1,5 @@
 
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@400;600;700&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
         body { 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Inter', 'Noto Sans Tamil', sans-serif; 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); 
             min-height: 100vh; margin: 0; padding: 20px; 
             animation: gradientShift 15s ease infinite;
@@ -30,7 +31,6 @@
             display: flex; align-items: center; justify-content: center; z-index: 2000;
             overflow: hidden;
         }
-        /* Architectural grid lines */
         .login-grid {
             position: absolute; inset: 0; pointer-events: none;
             background-image:
@@ -43,7 +43,6 @@
             0% { transform: translateY(0); }
             100% { transform: translateY(60px); }
         }
-        /* Radial accent glow */
         .login-glow-1 {
             position: absolute;
             width: 600px; height: 600px;
@@ -69,7 +68,6 @@
             0%, 100% { opacity: 0.5; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.1); }
         }
-        /* Corner decorations */
         .login-corner {
             position: absolute; width: 80px; height: 80px; pointer-events: none;
         }
@@ -77,7 +75,6 @@
         .login-corner.tr { top: 30px; right: 30px; border-top: 1px solid rgba(191,149,63,0.4); border-right: 1px solid rgba(191,149,63,0.4); }
         .login-corner.bl { bottom: 30px; left: 30px; border-bottom: 1px solid rgba(191,149,63,0.4); border-left: 1px solid rgba(191,149,63,0.4); }
         .login-corner.br { bottom: 30px; right: 30px; border-bottom: 1px solid rgba(191,149,63,0.4); border-right: 1px solid rgba(191,149,63,0.4); }
-        /* Vertical accent lines */
         .login-vline {
             position: absolute; width: 1px; top: 0; bottom: 0;
             background: linear-gradient(to bottom, transparent, rgba(191,149,63,0.15), rgba(191,149,63,0.08), transparent);
@@ -85,7 +82,6 @@
         }
         .login-vline.l { left: 20%; }
         .login-vline.r { right: 20%; }
-        /* Horizontal scan line */
         .login-scanline {
             position: absolute; height: 1px; left: 0; right: 0;
             background: linear-gradient(90deg, transparent, rgba(191,149,63,0.3), transparent);
@@ -98,7 +94,6 @@
             95% { opacity: 1; }
             100% { top: 100%; opacity: 0; }
         }
-        /* Floating geometric shapes */
         .login-hex {
             position: absolute; pointer-events: none;
             width: 60px; height: 60px;
@@ -111,25 +106,23 @@
             50% { opacity: 0.35; }
             100% { transform: rotate(405deg) translateY(-120px) scale(0.8); opacity: 0; }
         }
-        /* Login card */
         .login-box { 
             position: relative; z-index: 10;
             background: rgba(255,255,255,0.03);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(191,149,63,0.2);
-            padding: 44px 38px; border-radius: 4px; text-align: center; 
+            padding: 40px 38px 36px; border-radius: 8px; text-align: center; 
             box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05);
-            width: 360px;
+            width: 420px;
             animation: fadeInLogin 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        /* Top gold bar on login card */
+        /* login logo styles removed — vestige only */
         .login-box::before {
             content: '';
             position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
             background: linear-gradient(90deg, transparent, rgba(191,149,63,0.8), transparent);
         }
-        /* Bottom subtle line */
         .login-box::after {
             content: '';
             position: absolute; bottom: 0; left: 30%; right: 30%; height: 1px;
@@ -235,7 +228,6 @@
         @keyframes flashText { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
         @keyframes scanLine { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
 
-        /* RED ALERT PULSE for long-overdue members */
         @keyframes redRowPulse {
             0%, 100% { background: linear-gradient(90deg, #fecaca, #fca5a5) !important; }
             50% { background: linear-gradient(90deg, #f87171, #ef4444) !important; color: white; }
@@ -401,6 +393,7 @@
         .award-close-btn { display: block; width: 100%; background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #b38728 100%); color: #0f0c29; border: none; padding: 15px 30px; border-radius: 12px; font-weight: 900; font-size: 15px; cursor: pointer; letter-spacing: 1px; box-shadow: 0 8px 25px rgba(180,130,0,0.4); transition: all 0.3s ease; }
         .award-close-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(180,130,0,0.55); }
 
+
         /* ===== TRASH ===== */
         #trashSection { display: none; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 20px; border-radius: 15px; margin: 25px 0; border: 3px dashed #f87171; }
     </style>
@@ -408,7 +401,6 @@
 <body>
 
 <div id="loginOverlay">
-    <!-- Professional dark corporate background -->
     <div class="login-grid"></div>
     <div class="login-glow-1"></div>
     <div class="login-glow-2"></div>
@@ -416,12 +408,10 @@
     <div class="login-vline l"></div>
     <div class="login-vline r"></div>
     <div class="login-scanline"></div>
-    <!-- Corner brackets -->
     <div class="login-corner tl"></div>
     <div class="login-corner tr"></div>
     <div class="login-corner bl"></div>
     <div class="login-corner br"></div>
-    <!-- Floating geometric shapes -->
     <div class="login-hex" style="top:15%;left:8%;animation-duration:12s;animation-delay:0s;width:40px;height:40px;"></div>
     <div class="login-hex" style="top:65%;right:12%;animation-duration:16s;animation-delay:3s;width:25px;height:25px;"></div>
     <div class="login-hex" style="bottom:20%;left:18%;animation-duration:14s;animation-delay:6s;width:55px;height:55px;"></div>
@@ -467,9 +457,8 @@
         </button>
         <p id="loginError" style="margin:12px 0 0 0; font-size:12px; color:#f87171; display:none; font-weight:700;"></p>
 
-        <!-- Bottom decorative text -->
         <div style="margin-top:20px; font-size:9px; color:rgba(255,255,255,0.15); letter-spacing:3px; text-transform:uppercase; font-weight:600;">
-            DUCD SARAVANAN TEAM · VESTIGE
+            NFVT · SECURE ACCESS
         </div>
     </div>
 </div>
@@ -500,56 +489,6 @@
     <div class="header-section">
         <img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" alt="NFVT Logo" class="team-logo">
         <h1 class="luxury-gold-title">NFVT Team Followup</h1>
-    </div>
-
-    <div class="best-workers-banner" onclick="openAwardModal()">
-        <div class="nebula-bg"></div>
-        <div class="star-field"></div>
-        <div class="star-field-2"></div>
-        <div class="gold-dust" id="goldDust"></div>
-        <div class="banner-inner">
-            <div class="banner-worker">
-                <div class="banner-worker-photo">
-                    <div class="banner-photo-ring-wrap">
-                        <div class="ring-glow-pulse"></div>
-                        <div class="minimal-gold-ring-2"></div>
-                        <div class="minimal-gold-ring"></div>
-                        <img class="worker-photo-img" src="https://i.postimg.cc/hjsf0q6t/Sukila.jpg" alt="Sukila">
-                        <div class="banner-badge">🥇</div>
-                    </div>
-                </div>
-                <div class="banner-worker-info">
-                    <div class="banner-worker-rank">Best Worker #1</div>
-                    <div class="banner-worker-name">Sukila</div>
-                    <div class="banner-worker-title">Bronze Director</div>
-                </div>
-            </div>
-            <div class="banner-divider"></div>
-            <div class="banner-title-section">
-                <div class="banner-crown">👑</div>
-                <div class="banner-month-label" id="bannerMonthLabel">This Month</div>
-                <div class="banner-main-title">Best Workers</div>
-                <div class="banner-sub-title">Excellence · Commitment · Results</div>
-            </div>
-            <div class="banner-divider"></div>
-            <div class="banner-worker right">
-                <div class="banner-worker-photo">
-                    <div class="banner-photo-ring-wrap">
-                        <div class="ring-glow-pulse" style="animation-delay:1.4s;"></div>
-                        <div class="minimal-gold-ring-2"></div>
-                        <div class="minimal-gold-ring"></div>
-                        <img class="worker-photo-img" src="https://i.postimg.cc/J0ht62C2/Harini.jpg" alt="Harini Gopalakrishnan">
-                        <div class="banner-badge">🥈</div>
-                    </div>
-                </div>
-                <div class="banner-worker-info" style="text-align:right;">
-                    <div class="banner-worker-rank">Best Worker #2</div>
-                    <div class="banner-worker-name">Harini G.</div>
-                    <div class="banner-worker-title">Bronze Director</div>
-                </div>
-            </div>
-        </div>
-        <div class="banner-click-hint">✨ Click to view their achievements ✨</div>
     </div>
 
     <div class="form-section">
@@ -710,12 +649,14 @@
             <div>
                 <p class="leader-name-small">Girish S</p>
                 <span class="leader-rank-small">Universal Crown Director of Vestige</span>
-                <span class="team-tag">DUCD Saravanan Team</span>
+                <span class="team-tag"> - DUCD Saravanan Team</span>
             </div>
         </div>
+        <!-- FIX 1: Correct Vestige logo URL -->
         <img src="https://i.postimg.cc/PNWQDG2x/New-Logo.jpg" alt="Team Branding" class="inline-logo">
     </div>
 </div>
+
 
 <!-- AWARD MODAL -->
 <div id="awardModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9000; justify-content:center; align-items:center; backdrop-filter:blur(8px);">
@@ -782,7 +723,6 @@
         </div>
     </div>
 </div>
-
 <!-- New Joiners Reminder Modal -->
 <div id="newJoinerReminderModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9500;justify-content:center;align-items:center;backdrop-filter:blur(6px);">
     <div style="background:linear-gradient(145deg,#0f172a,#1e293b);border:2px solid rgba(99,102,241,0.5);border-radius:24px;width:90%;max-width:520px;padding:36px 32px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,0.7),0 0 50px rgba(99,102,241,0.2);animation:awardAppear 0.5s cubic-bezier(0.34,1.56,0.64,1);">
@@ -809,18 +749,18 @@
     let dailyTargetPercentage = 8;
     let noJoinerMembersCache = [];
 
-    // ===== BUSINESS MONTH: 2nd of current month to 1st of next month =====
+    // ===== STORAGE KEY CONSTANTS — Saravanan DUCD Team =====
+    const STORAGE_KEY_DATA     = 'nfvt_ucd_v2';
+    const STORAGE_KEY_TRASH    = 'nfvt_trash';
+    const STORAGE_KEY_LOG      = 'nfvt_activity_log';
+
     function getBusinessMonthRange(date) {
         const d = date || new Date();
         let startYear = d.getFullYear(), startMonth = d.getMonth();
-        let endYear = d.getFullYear(), endMonth = d.getMonth();
-        // Business month starts on 2nd
         const monthStart = new Date(startYear, startMonth, 2);
-        // If today is 1st, business month is previous month's 2nd to today
         if (d.getDate() === 1) {
             monthStart.setMonth(monthStart.getMonth() - 1);
         }
-        // Business month ends on 1st of next month
         const monthEnd = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 1);
         return { start: monthStart, end: monthEnd };
     }
@@ -831,14 +771,12 @@
         return months[start.getMonth()] + ' ' + start.getFullYear() + ' Cycle (2nd–1st)';
     }
 
-    // ===== GROUP PV TARGET BY LEVEL =====
     function getGroupPVTarget(level) {
         if (!level) return 2600;
         const l = level.toLowerCase();
         if (l.includes('bronze director')) return 2600;
         if (l.includes('silver director')) return 2100;
         if (l.includes('gold director')) return 1800;
-        // Below Bronze Director
         return 2600;
     }
 
@@ -847,13 +785,10 @@
         return { met: groupPV >= target, target, shortfall: Math.max(0, target - groupPV) };
     }
 
-    // ===== LONG-OVERDUE RED ALERT DETECTION =====
-    // Members who have been RED (inactive/low PV or no consistency) for many days
     function isLongRedAlert(entry) {
         const today = new Date();
         const entryDate = new Date(entry.timestamp || entry.date);
         const daysDiff = Math.floor((today - entryDate) / (1000 * 60 * 60 * 24));
-        // If entry is old (>= 3 days) and still has multiple red flags
         let redFlags = 0;
         if (entry.selfPV < 30) redFlags += 3;
         else if (entry.selfPV < 100) redFlags += 2;
@@ -863,22 +798,6 @@
         const gvStatus = getGroupPVStatus(entry.groupPV, entry.level);
         if (!gvStatus.met) redFlags++;
         return daysDiff >= 3 && redFlags >= 3;
-    }
-
-    // Spawn gold dust
-    function spawnGoldDust() {
-        const container = document.getElementById('goldDust');
-        if (!container) return;
-        for (let i = 0; i < 18; i++) {
-            const p = document.createElement('div');
-            p.className = 'dust-particle';
-            const x = Math.random() * 100;
-            const delay = Math.random() * 8;
-            const dur = 5 + Math.random() * 8;
-            const size = 1 + Math.random() * 3;
-            p.style.cssText = `left:${x}%;bottom:-10px;width:${size}px;height:${size}px;animation:dustFloat ${dur}s ${delay}s linear infinite;opacity:0;`;
-            container.appendChild(p);
-        }
     }
 
     const dustStyle = document.createElement('style');
@@ -901,29 +820,9 @@
     document.head.appendChild(dustStyle);
 
     window.addEventListener('load', function() {
-        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-        const now = new Date();
-        const monthName = months[now.getMonth()] + ' ' + now.getFullYear();
-        const el = document.getElementById('bannerMonthLabel');
-        if (el) el.textContent = monthName;
-        const el2 = document.getElementById('awardMonthFull');
-        if (el2) el2.textContent = monthName.toUpperCase();
         const saved = localStorage.getItem('dailyTargetPercentage');
         if (saved) dailyTargetPercentage = parseFloat(saved);
         document.getElementById('followUpDate').value = new Date().toISOString().split('T')[0];
-        spawnGoldDust();
-    });
-
-    function openAwardModal() {
-        document.getElementById('awardModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-    function closeAwardModal() {
-        document.getElementById('awardModal').style.display = 'none';
-        document.body.style.overflow = '';
-    }
-    document.getElementById('awardModal').addEventListener('click', function(e) {
-        if (e.target === this) closeAwardModal();
     });
 
     function scrollToAlerts() {
@@ -932,7 +831,7 @@
     }
 
     function checkNewJoiners() {
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const noJoiners = entries.filter(e => e.newJoiners === 'No' || !e.newJoiners);
         if (noJoiners.length > 0) {
             const lastReminder = localStorage.getItem('lastNewJoinerReminder');
@@ -958,8 +857,8 @@
     function sendNewJoinerWAReminders() {
         noJoinerMembersCache.forEach((member, index) => {
             const waMessage = currentLanguage === 'en'
-                ? `Hello ${member.name}! 👋\n\n📡 *DAILY TEAM CONFERENCE CALL REMINDER*\n\n🎯 You currently have *NO new joiners* this cycle.\n\n💡 *Key Action: Focus on Daily Conference Calls with your Upline!*\n\n🔥 *Your Daily Routine:*\n✅ Attend team conference call every day\n✅ Follow up on 5+ prospects\n✅ Share the business opportunity\n\n💪 *Remember:* Every big team started with ONE joiner!\n\n🌟 Team NFVT - Together we grow!`
-                : `வணக்கம் ${member.name}! 👋\n\n📡 *தினசரி குழு கான்பரன்ஸ் கால் நினைவூட்டல்*\n\n🎯 இந்த சைக்கிளில் உங்களுக்கு *புதிய சேர்க்கை இல்லை*.\n\n💪 *நினைவில் வையுங்கள்:* ஒவ்வொரு பெரிய குழுவும் ஒரு சேர்க்கையிலிருந்து தொடங்கியது!\n\n🌟 Team NFVT - ஒன்றாக வளருவோம்!`;
+                ? `Hello ${member.name}! 👋\n\n📡 *DAILY TEAM CONFERENCE CALL REMINDER*\n\n🎯 You currently have *NO new joiners* this cycle.\n\n💡 *Key Action: Focus on Daily Conference Calls with your Upline!*\n\n🔥 *Your Daily Routine:*\n✅ Attend team conference call every day\n✅ Follow up on 5+ prospects\n✅ Share the business opportunity\n\n💪 *Remember:* Every big team started with ONE joiner!\n\n🌟 Saravanan DUCD Team - Together we grow!`
+                : `வணக்கம் ${member.name}! 👋\n\n📡 *தினசரி குழு கான்பரன்ஸ் கால் நினைவூட்டல்*\n\n🎯 இந்த சைக்கிளில் உங்களுக்கு *புதிய சேர்க்கை இல்லை*.\n\n💪 *நினைவில் வையுங்கள்:* ஒவ்வொரு பெரிய குழுவும் ஒரு சேர்க்கையிலிருந்து தொடங்கியது!\n\n🌟 Saravanan DUCD Team - ஒன்றாக வளருவோம்!`;
             setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
         });
         closeNewJoinerModal();
@@ -969,7 +868,7 @@
         const today = new Date();
         const dayOfMonth = today.getDate();
         if (dayOfMonth >= 2 && dayOfMonth <= 14) {
-            const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+            const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
             const below100PV = entries.filter(e => e.selfPV < 100);
             if (below100PV.length > 0) {
                 const lastReminder = localStorage.getItem('last100PVReminder');
@@ -994,14 +893,14 @@
         members.forEach((member, index) => {
             const needed = 100 - member.selfPV;
             const waMessage = currentLanguage === 'en'
-                ? `Hello ${member.name}! 👋\n\n⏰ *100PV CONSISTENCY REMINDER*\n\n📅 Deadline: Before 14th (${daysLeft} days left)\n📊 Your Current Self PV: ${member.selfPV}\n🎯 Target: 100 PV\n⚠️ Remaining: *${needed} PV*\n\n🎁 Complete 100 PV consistency and get *₹2500* voucher!\n\n💪 Complete your ${needed} PV before 14th!\n\n🌟 Team NFVT - Success is yours!`
-                : `வணக்கம் ${member.name}! 👋\n\n⏰ *100PV தொடர்ச்சி நினைவூட்டல்*\n\n${needed} PV மீதம்! 14க்குள் முடிக்கவும்!\n\n🌟 Team NFVT!`;
+                ? `Hello ${member.name}! 👋\n\n⏰ *100PV CONSISTENCY REMINDER*\n\n📅 Deadline: Before 14th (${daysLeft} days left)\n📊 Your Current Self PV: ${member.selfPV}\n🎯 Target: 100 PV\n⚠️ Remaining: *${needed} PV*\n\n🎁 Complete 100 PV consistency and get *₹2500* voucher!\n\n💪 Complete your ${needed} PV before 14th!\n\n🌟 Saravanan DUCD Team - Success is yours!`
+                : `வணக்கம் ${member.name}! 👋\n\n⏰ *100PV தொடர்ச்சி நினைவூட்டல்*\n\n${needed} PV மீதம்! 14க்குள் முடிக்கவும்!\n\n🌟 Saravanan DUCD Team!`;
             setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
         });
     }
 
     function checkLowGroupPV() {
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const lowGroupPV = entries.filter(e => !getGroupPVStatus(e.groupPV, e.level).met);
         if (lowGroupPV.length > 0) {
             const lastReminder = localStorage.getItem('lastLowGroupPVReminder');
@@ -1024,8 +923,8 @@
         members.forEach((member, index) => {
             const { target, shortfall } = getGroupPVStatus(member.groupPV, member.level);
             const waMessage = currentLanguage === 'en'
-                ? `Hello ${member.name}! 👋\n\n⚠️ *Group PV (PGPV) IMPROVEMENT NEEDED*\n\n📊 Your Current Group PV (PGPV): ${member.groupPV}\n🎯 Target for ${member.level}: ${target} PV\n📈 Need to Improve: *${shortfall} PV*\n\n💡 Focus on team building & help your downlines!\n\n💪 Team NFVT - Together we grow!`
-                : `வணக்கம் ${member.name}! 👋\n\n⚠️ குழு PV ${member.groupPV} - இலக்கு: ${target}\n${shortfall} PV தேவை!\n\n🌟 Team NFVT!`;
+                ? `Hello ${member.name}! 👋\n\n⚠️ *Group PV (PGPV) IMPROVEMENT NEEDED*\n\n📊 Your Current Group PV (PGPV): ${member.groupPV}\n🎯 Target for ${member.level}: ${target} PV\n📈 Need to Improve: *${shortfall} PV*\n\n💡 Focus on team building & help your downlines!\n\n💪 Saravanan DUCD Team - Together we grow!`
+                : `வணக்கம் ${member.name}! 👋\n\n⚠️ குழு PV ${member.groupPV} - இலக்கு: ${target}\n${shortfall} PV தேவை!\n\n🌟 Saravanan DUCD Team!`;
             setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
         });
     }
@@ -1035,7 +934,7 @@
         const dayOfMonth = today.getDate();
         const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
         if (dayOfMonth >= 25) {
-            const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+            const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
             const inactiveIDs = entries.filter(e => e.selfPV < 30);
             if (inactiveIDs.length > 0) {
                 const lastReminder = localStorage.getItem('lastInactiveIDReminder');
@@ -1059,8 +958,8 @@
         members.forEach((member, index) => {
             const needed = 30 - member.selfPV;
             const waMessage = currentLanguage === 'en'
-                ? `Hello ${member.name}! 👋\n\n🚨 *URGENT - ID ACTIVATION ALERT*\n\n⚠️ Your ID will become INACTIVE!\n📊 Self PV: ${member.selfPV} | Need: *${needed} PV*\n⏰ Only *${daysLeft} days* left!\n\n📞 Contact your upline NOW!\n\n🌟 Team NFVT - We support you!`
-                : `வணக்கம் ${member.name}! 👋\n\n🚨 ID செயல்படுத்தல்!\nPV: ${member.selfPV} - தேவை: ${needed}\n⏰ ${daysLeft} நாட்கள்!\n\n🌟 Team NFVT!`;
+                ? `Hello ${member.name}! 👋\n\n🚨 *URGENT - ID ACTIVATION ALERT*\n\n⚠️ Your ID will become INACTIVE!\n📊 Self PV: ${member.selfPV} | Need: *${needed} PV*\n⏰ Only *${daysLeft} days* left!\n\n📞 Contact your upline NOW!\n\n🌟 Saravanan DUCD Team - We support you!`
+                : `வணக்கம் ${member.name}! 👋\n\n🚨 ID செயல்படுத்தல்!\nPV: ${member.selfPV} - தேவை: ${needed}\n⏰ ${daysLeft} நாட்கள்!\n\n🌟 Saravanan DUCD Team!`;
             setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
         });
     }
@@ -1070,7 +969,7 @@
         const hours = now.getHours(); const minutes = now.getMinutes();
         if ((hours === 17 && minutes === 50) || (hours === 19 && minutes === 50)) {
             const meetingTime = hours === 17 ? "6:00 PM" : "8:00 PM";
-            const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+            const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
             const today = new Date().toISOString().split('T')[0];
             const lastReminder = localStorage.getItem('lastMeetingReminder');
             if (lastReminder !== today + '-' + meetingTime) {
@@ -1175,9 +1074,9 @@
             return; 
         }
         const entry = { name, mobile, distId, level, selfPV, groupPV, totalPV, date, consistency, meeting, newJoiners, id: Date.now(), timestamp: new Date().toISOString(), addedBy: loggedInUser.id };
-        let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        let entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         entries.unshift(entry); 
-        localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
+        localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(entries));
         updateActivityLog('add', entry);
         displayData();
         ['downlineName', 'mobileNo', 'distId', 'selfPV', 'groupPV'].forEach(id => document.getElementById(id).value = '');
@@ -1187,14 +1086,14 @@
     }
 
     function updateActivityLog(action, data) {
-        let log = JSON.parse(localStorage.getItem('nfvt_activity_log')) || [];
+        let log = JSON.parse(localStorage.getItem(STORAGE_KEY_LOG)) || [];
         log.unshift({ action, data, timestamp: new Date().toISOString(), user: loggedInUser.name });
         if (log.length > 1000) log = log.slice(0, 1000);
-        localStorage.setItem('nfvt_activity_log', JSON.stringify(log));
+        localStorage.setItem(STORAGE_KEY_LOG, JSON.stringify(log));
     }
 
     function editEntry(id) {
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const entry = entries.find(e => e.id === id);
         if (entry) {
             document.getElementById('editId').value = entry.id;
@@ -1212,7 +1111,7 @@
 
     function saveEdit() {
         const id = parseInt(document.getElementById('editId').value);
-        let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        let entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const idx = entries.findIndex(e => e.id === id);
         if (idx > -1) {
             const oldEntry = {...entries[idx]};
@@ -1227,7 +1126,7 @@
             entries[idx].newJoiners = document.getElementById('editNewJoiners').value;
             entries[idx].lastModified = new Date().toISOString();
             entries[idx].modifiedBy = loggedInUser.id;
-            localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
+            localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(entries));
             updateActivityLog('edit', { old: oldEntry, new: entries[idx] });
             displayData();
             closeEditModal();
@@ -1239,7 +1138,7 @@
 
     function displayData() {
         const tableBody = document.getElementById('tableBody');
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         tableBody.innerHTML = '';
         let totalTeamPV = 0;
         let alertCount = 0;
@@ -1289,7 +1188,6 @@
                 statusBadges += '<span style="background:#f3e8ff;color:#7c3aed;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">👥 NO JOINER</span>';
                 alertCount++;
             }
-            // FIX 5: Long-red-alert callout
             if (longRed) {
                 rowClass += ' long-red-alert';
                 statusBadges += `<div class="alert-callout" style="display:inline-block;background:#dc2626;color:white;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:900;margin-top:4px;animation:flashText 1s ease-in-out infinite;">📞 CALL & FOLLOW UP NOW!</div>`;
@@ -1330,8 +1228,8 @@
                     : `🚨 *அவசர Follow-up தேவை!*\nபல நாட்களாக இலக்கு நிலுவையில் உள்ளது. இப்போதே Upline-ஐ அழைக்கவும்!\n\n`;
             }
             waMessage += currentLanguage === 'en'
-                ? `📈 Stats: Self PV: ${item.selfPV} | Group PV: ${item.groupPV} | Total: ${item.totalPV}\n\n💪 Team NFVT - Success is yours!`
-                : `📈 PV: ${item.selfPV} | குழு: ${item.groupPV} | மொத்தம்: ${item.totalPV}\n\n💪 Team NFVT!`;
+                ? `📈 Stats: Self PV: ${item.selfPV} | Group PV: ${item.groupPV} | Total: ${item.totalPV}\n\n💪 Saravanan DUCD Team - Success is yours!`
+                : `📈 PV: ${item.selfPV} | குழு: ${item.groupPV} | மொத்தம்: ${item.totalPV}\n\n💪 Saravanan DUCD Team!`;
             const waLink = `https://wa.me/91${item.mobile}?text=${encodeURIComponent(waMessage)}`;
 
             tableBody.innerHTML += `<tr class="${rowClass}">
@@ -1367,21 +1265,20 @@
 
     function deleteEntry(id) {
         if(confirm(currentLanguage === 'en' ? "⚠️ Delete this member?" : "⚠️ இந்த உறுப்பினரை நீக்கவா?")) {
-            let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
-            let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
+            let entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
+            let trash = JSON.parse(localStorage.getItem(STORAGE_KEY_TRASH)) || [];
             const idx = entries.findIndex(e => e.id === id);
             if (idx > -1) {
                 trash.push(entries[idx]);
                 updateActivityLog('delete', entries[idx]);
                 entries.splice(idx, 1);
-                localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
-                localStorage.setItem('nfvt_trash', JSON.stringify(trash));
+                localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(entries));
+                localStorage.setItem(STORAGE_KEY_TRASH, JSON.stringify(trash));
                 displayData();
             }
         }
     }
 
-    // ===== REPORTS ANALYTICS =====
     function buildReportAnalysis(entries) {
         const total = entries.length;
         if (total === 0) return '<p style="color:#64748b;">No members added yet.</p>';
@@ -1477,13 +1374,13 @@
     }
 
     function showReports() {
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const now = new Date();
         const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
         const reportHTML = `
         <div style="text-align:left;">
             <div style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;border-radius:14px;padding:18px;margin-bottom:20px;text-align:center;">
-                <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;">📊 Team NFVT Performance Report</div>
+                <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;">📊 Saravanan DUCD Team Performance Report</div>
                 <div style="font-size:12px;opacity:0.85;margin-top:4px;">${months[now.getMonth()]} ${now.getFullYear()} · By ${loggedInUser.name}</div>
                 <div style="font-size:13px;margin-top:8px;">Total Members: <strong>${entries.length}</strong> · Team PV: <strong>${entries.reduce((s,e)=>s+e.totalPV,0).toFixed(1)}</strong></div>
                 <div style="font-size:11px;margin-top:4px;opacity:0.8;">Business Month: 2nd of each month to 1st of next</div>
@@ -1496,26 +1393,27 @@
 
     function closeReportsModal() { document.getElementById('reportsModal').style.display = 'none'; }
 
-    // ===== FIX 3 & 4: MONTHLY REPORT PDF with business month, data entry days, level-wise group PV =====
     function downloadMonthlyReport() {
+        if (currentLanguage === 'ta') {
+            downloadMonthlyReport_Tamil();
+            return;
+        }
         const isTa = currentLanguage === 'ta';
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
-        const activityLog = JSON.parse(localStorage.getItem('nfvt_activity_log')) || [];
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
+        const activityLog = JSON.parse(localStorage.getItem(STORAGE_KEY_LOG)) || [];
         const now = new Date();
         const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-        // FIX 4: Business month range (2nd to 1st)
         const { start: bizStart, end: bizEnd } = getBusinessMonthRange(now);
         const bizLabel = months[bizStart.getMonth()] + ' ' + bizStart.getFullYear() + ' Cycle (2nd–1st)';
 
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        // Header
         doc.setFillColor(30, 41, 59);
         doc.rect(0, 0, 210, 42, 'F');
         doc.setFontSize(15); doc.setTextColor(252, 246, 186); doc.setFont(undefined, 'bold');
-        doc.text('NFVT Team Monthly Performance Report', 105, 13, { align: 'center' });
+        doc.text('Saravanan DUCD Team Monthly Performance Report', 105, 13, { align: 'center' });
         doc.setFontSize(9); doc.setTextColor(180, 200, 220); doc.setFont(undefined, 'normal');
         doc.text(`Business Month: ${bizLabel}`, 105, 21, { align: 'center' });
         doc.text(`Generated by: ${loggedInUser.name} (ID: ${loggedInUser.id})  ·  ${now.toLocaleDateString()}`, 105, 28, { align: 'center' });
@@ -1524,12 +1422,10 @@
 
         let y = 48;
 
-        // ===== FIX 3: Data Entry Days Analysis =====
         doc.setFontSize(12); doc.setTextColor(30, 41, 59); doc.setFont(undefined, 'bold');
         doc.text('DATA ENTRY ACTIVITY — BUSINESS MONTH', 14, y); y += 4;
         doc.setDrawColor(191, 149, 63); doc.setLineWidth(0.5); doc.line(14, y, 196, y); y += 6;
 
-        // Calculate unique days app was used in this business month
         const uniqueDaysSet = new Set();
         const allTimestamps = [
             ...activityLog.map(l => l.timestamp),
@@ -1547,7 +1443,6 @@
         });
         const uniqueDays = Array.from(uniqueDaysSet).sort();
 
-        // Total business days in cycle
         const totalBizDays = Math.floor((bizEnd - bizStart) / (1000 * 60 * 60 * 24)) + 1;
         const entryDaysCount = uniqueDays.length;
         const entryPct = totalBizDays > 0 ? Math.round((entryDaysCount / totalBizDays) * 100) : 0;
@@ -1561,18 +1456,15 @@
         y += 16;
 
         doc.setFontSize(8); doc.setTextColor(51,65,85); doc.setFont(undefined, 'normal');
-        doc.text(`Days with activity: ${uniqueDays.join(', ') || 'None recorded'}`, 14, y);
         const daysWrapped = doc.splitTextToSize(`Days with activity: ${uniqueDays.join(', ') || 'None recorded'}`, 182);
         doc.text(daysWrapped, 14, y);
         y += daysWrapped.length * 4 + 6;
 
-        // ===== FIX 5 in PDF: Level-wise Group PV Analysis =====
         if (y > 230) { doc.addPage(); y = 20; }
         doc.setFontSize(12); doc.setTextColor(30, 41, 59); doc.setFont(undefined, 'bold');
         doc.text('LEVEL-WISE GROUP PV (PGPV) ANALYSIS', 14, y); y += 4;
         doc.setDrawColor(191, 149, 63); doc.setLineWidth(0.5); doc.line(14, y, 196, y); y += 6;
 
-        // Group PV targets info box
         doc.setFillColor(248, 250, 252);
         doc.rect(14, y, 182, 16, 'F');
         doc.setFontSize(8); doc.setTextColor(30,41,59); doc.setFont(undefined, 'bold');
@@ -1581,7 +1473,6 @@
         doc.text('Bronze Director: 2600 PV  |  Silver Director: 2100 PV  |  Gold Director: 1800 PV  |  Others (below Bronze): 2600 PV', 16, y+11);
         y += 20;
 
-        // Level-wise breakdown table
         const levelGroups = {};
         entries.forEach(e => {
             const lv = e.level || 'Distributor';
@@ -1619,7 +1510,6 @@
         });
         y = doc.lastAutoTable.finalY + 10;
 
-        // Members NOT meeting Group PV target
         const notMetMembers = entries.filter(e => !getGroupPVStatus(e.groupPV, e.level).met);
         if (notMetMembers.length > 0) {
             if (y > 220) { doc.addPage(); y = 20; }
@@ -1640,7 +1530,6 @@
             y = doc.lastAutoTable.finalY + 8;
         }
 
-        // ===== Main Analysis =====
         if (y > 220) { doc.addPage(); y = 20; }
         doc.setFontSize(12); doc.setTextColor(30, 41, 59); doc.setFont(undefined, 'bold');
         doc.text('TEAM PERFORMANCE ANALYSIS', 14, y); y += 4;
@@ -1661,7 +1550,6 @@
             y += wrapped.length * 5 + 1;
         });
 
-        // ===== Member Table (same as PDF report) =====
         if (y > 220) { doc.addPage(); y = 20; }
         doc.setFontSize(11); doc.setTextColor(30, 41, 59); doc.setFont(undefined, 'bold');
         doc.text('MEMBER DATA TABLE', 14, y); y += 4;
@@ -1695,27 +1583,318 @@
             }
         });
 
-        doc.save(`NFVT_Monthly_Report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`);
+        doc.save(`Saravanan_DUCD_Team_Monthly_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`);
     }
 
-    // ===== FIX 1 & 2: DAILY PDF REPORT — Remove Self PV >=100 column, 26 green members threshold =====
+    function downloadMonthlyReport_Tamil() {
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
+        const now = new Date();
+        const months_ta = ['ஜனவரி','பிப்ரவரி','மார்ச்','ஏப்ரல்','மே','ஜூன்','ஜூலை','ஆகஸ்ட்','செப்டம்பர்','அக்டோபர்','நவம்பர்','டிசம்பர்'];
+        const { start: bizStart } = getBusinessMonthRange(now);
+        const bizLabel = months_ta[bizStart.getMonth()] + ' ' + bizStart.getFullYear() + ' சுழற்சி (2-1)';
+        const totalPV = entries.reduce((s,e)=>s+e.totalPV,0);
+        const total = entries.length;
+        const pct = (n) => total>0?Math.round((n/total)*100):0;
+        const active = entries.filter(e=>e.selfPV>=30).length;
+        const consist = entries.filter(e=>e.consistency==='Yes').length;
+        const goodGPV = entries.filter(e=>getGroupPVStatus(e.groupPV,e.level).met).length;
+        const meetYes = entries.filter(e=>e.meeting==='Yes').length;
+        const joinYes = entries.filter(e=>e.newJoiners==='Yes').length;
+        const overall = Math.round((pct(active)*0.2+pct(entries.filter(e=>e.selfPV>=100).length)*0.2+pct(consist)*0.2+pct(meetYes)*0.15+pct(joinYes)*0.15+pct(goodGPV)*0.1));
+        const gradeColor = (p) => p>=75?'#059669':p>=50?'#b45309':'#dc2626';
+        const gradeText = (p) => p>=75?'நல்லது':p>=50?'சராசரி':'கவனிக்கவும்';
+        const barHtml = (p,c) => `<div style="background:#e2e8f0;border-radius:4px;height:8px;"><div style="width:${p}%;height:100%;background:${c};border-radius:4px;"></div></div>`;
+
+        const params = [
+            {label:'புதிய சேர்க்கை',pct:pct(joinYes),count:joinYes,bad:total-joinYes},
+            {label:'100PV தொடர்ச்சி',pct:pct(consist),count:consist,bad:total-consist},
+            {label:'கூட்டம் வருகை',pct:pct(meetYes),count:meetYes,bad:total-meetYes},
+            {label:'செயலில் உள்ள IDs (PV>=30)',pct:pct(active),count:active,bad:total-active},
+            {label:'குழு PV இலக்கு (நிலை வாரியாக)',pct:pct(goodGPV),count:goodGPV,bad:total-goodGPV},
+        ];
+        const topMembers = [...entries].sort((a,b)=>b.totalPV-a.totalPV).slice(0,5);
+        const needsHelp = entries.filter(e=>e.selfPV<100||e.consistency==='No'||e.meeting==='No'||!e.newJoiners||e.newJoiners==='No').slice(0,8);
+
+        const rowsHtml = entries.map(e=>{
+            const gvs=getGroupPVStatus(e.groupPV,e.level);
+            const pvC=e.selfPV>=100?'#059669':e.selfPV>=30?'#b45309':'#dc2626';
+            return `<tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:5px 6px;font-size:10px;font-weight:700;">${e.name}</td>
+                <td style="padding:5px 6px;font-size:9px;color:#64748b;">${e.distId}</td>
+                <td style="padding:5px 6px;font-size:9px;">${e.level.replace('Director','Dir.')}</td>
+                <td style="padding:5px 6px;font-size:10px;color:${pvC};font-weight:700;">${e.selfPV}</td>
+                <td style="padding:5px 6px;font-size:10px;color:${gvs.met?'#059669':'#b45309'};">${e.groupPV}/${gvs.target}</td>
+                <td style="padding:5px 6px;font-size:10px;background:${e.consistency==='Yes'?'#dcfce7':'#fee2e2'};text-align:center;">${e.consistency==='Yes'?'✓':'✗'}</td>
+                <td style="padding:5px 6px;font-size:10px;background:${e.meeting==='Yes'?'#dbeafe':'#fef3c7'};text-align:center;">${e.meeting==='Yes'?'✓':'✗'}</td>
+                <td style="padding:5px 6px;font-size:10px;background:${(e.newJoiners||'No')==='Yes'?'#dcfce7':'#f3e8ff'};text-align:center;">${(e.newJoiners||'No')==='Yes'?'✓':'✗'}</td>
+                <td style="padding:5px 6px;font-size:9px;">${e.date}</td>
+            </tr>`;
+        }).join('');
+
+        const html = `<!DOCTYPE html><html><head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
+        <style>*{font-family:'Noto Sans Tamil',sans-serif!important;} body{margin:0;padding:20px;background:#fff;color:#1e293b;font-size:12px;}</style>
+        </head><body>
+        <div style="background:#1e293b;color:#fcf6ba;padding:18px 20px;border-radius:10px;margin-bottom:14px;text-align:center;">
+            <div style="font-size:17px;font-weight:700;margin-bottom:4px;">NFVT குழு மாதாந்திர அறிக்கை</div>
+            <div style="font-size:11px;color:#94a3b8;">வணிக மாதம்: ${bizLabel} &nbsp;|&nbsp; உறுப்பினர்: ${loggedInUser.name} (${loggedInUser.id})</div>
+            <div style="font-size:11px;color:#cbd5e1;margin-top:4px;">மொத்த உறுப்பினர்கள்: ${total} &nbsp;|&nbsp; குழு PV: ${totalPV.toFixed(1)}</div>
+        </div>
+        <div style="background:${gradeColor(overall)};color:white;padding:12px;border-radius:8px;text-align:center;margin-bottom:14px;font-size:14px;font-weight:700;">
+            மொத்த குழு மதிப்பு: ${overall}% — ${overall>=75?'சிறப்பான நிலை':overall>=50?'சராசரி':'மேம்படுத்தல் தேவை'}
+        </div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:4px;border-bottom:2px solid #e2e8f0;">📊 செயல்திறன் பகுப்பாய்வு</div>
+        ${params.map(p=>`<div style="background:#f8fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:12px;">
+            <div style="flex:1;"><div style="font-weight:700;font-size:12px;margin-bottom:4px;">${p.label}</div>${barHtml(p.pct,gradeColor(p.pct))}</div>
+            <div style="text-align:right;min-width:90px;">
+                <span style="font-size:16px;font-weight:700;color:${gradeColor(p.pct)};">${p.pct}%</span><br>
+                <span style="font-size:10px;color:#64748b;">${p.count}/${total}</span><br>
+                <span style="font-size:10px;font-weight:700;color:${gradeColor(p.pct)};">${gradeText(p.pct)}</span>
+            </div>
+        </div>`).join('')}
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;">
+            <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:12px;">
+                <div style="font-weight:700;color:#166534;margin-bottom:8px;font-size:12px;">🏆 சிறந்த உறுப்பினர்கள்</div>
+                ${topMembers.map((m,i)=>`<div style="padding:4px 0;border-bottom:1px solid #dcfce7;font-size:11px;">${['🥇','🥈','🥉','4.','5.'][i]} <strong>${m.name}</strong> — ${m.totalPV} PV</div>`).join('')}
+            </div>
+            <div style="background:#fef2f2;border:1.5px solid #fecaca;border-radius:10px;padding:12px;">
+                <div style="font-weight:700;color:#991b1b;margin-bottom:8px;font-size:12px;">🚨 கவனம் தேவை</div>
+                ${needsHelp.map(m=>{
+                    const iss=[];
+                    if(m.selfPV<30)iss.push('செயலற்றது');else if(m.selfPV<100)iss.push('குறைந்த PV');
+                    if(m.consistency==='No')iss.push('100PV இல்லை');
+                    if(m.meeting==='No')iss.push('கூட்டம் இல்லை');
+                    if(!m.newJoiners||m.newJoiners==='No')iss.push('சேர்க்கை இல்லை');
+                    return `<div style="padding:4px 0;border-bottom:1px solid #fee2e2;font-size:10px;"><strong>${m.name}</strong><br><span style="color:#dc2626;">${iss.join(' · ')}</span></div>`;
+                }).join('')}
+            </div>
+        </div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px;padding-bottom:4px;border-bottom:2px solid #e2e8f0;">👥 உறுப்பினர் விவரங்கள் (முழு அட்டவணை)</div>
+        <table style="width:100%;border-collapse:collapse;font-size:10px;">
+            <thead><tr style="background:#1e293b;color:#fcf6ba;">
+                <th style="padding:6px;text-align:left;">பெயர்</th><th style="padding:6px;">ID</th>
+                <th style="padding:6px;">நிலை</th><th style="padding:6px;">சொந்த PV</th>
+                <th style="padding:6px;">குழு PV/இலக்கு</th><th style="padding:6px;">100PV</th>
+                <th style="padding:6px;">கூட்டம்</th><th style="padding:6px;">சேர்க்கை</th><th style="padding:6px;">தேதி</th>
+            </tr></thead>
+            <tbody>${rowsHtml}</tbody>
+        </table>
+        <div style="margin-top:12px;font-size:9px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:8px;">
+            குழு PV இலக்கு: Bronze Dir=2600 | Silver Dir=2100 | Gold Dir=1800 | மற்றவர்கள்=2600 &nbsp;|&nbsp; வணிக மாதம்: 2-ம் தேதி முதல் 1-ம் தேதி வரை
+        </div>
+        </body></html>`;
+
+        // Render off-screen (opacity:0) — avoids cursor/coordinate mismatch
+        const wrapper = document.createElement('div');
+        wrapper.style.cssText = 'position:absolute;top:0;left:0;width:794px;opacity:0;pointer-events:none;z-index:-1;overflow:hidden;';
+        const container = document.createElement('div');
+        container.innerHTML = html;
+        wrapper.appendChild(container);
+        document.body.appendChild(wrapper);
+        // Force font load
+        document.fonts.ready.then(() => {
+            setTimeout(() => {
+                html2canvas(container, {
+                    scale: 1.5, useCORS: true, allowTaint: true,
+                    width: 794, backgroundColor: '#ffffff',
+                    scrollX: 0, scrollY: 0,
+                    x: 0, y: 0,
+                    windowWidth: 794
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF({ orientation:'portrait', unit:'pt', format:'a4' });
+                    const pdfW = pdf.internal.pageSize.getWidth();
+                    const pdfH = pdf.internal.pageSize.getHeight();
+                    const ratio = pdfW / canvas.width;
+                    const scaledH = canvas.height * ratio;
+                    let yOff = 0, page = 0;
+                    while (yOff < scaledH) {
+                        if (page > 0) pdf.addPage();
+                        pdf.addImage(imgData, 'JPEG', 0, -yOff, pdfW, scaledH);
+                        yOff += pdfH; page++;
+                    }
+                    pdf.save(`NFVT_Tamil_Monthly_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`);
+                    document.body.removeChild(wrapper);
+                }).catch(err => { console.error('html2canvas error:', err); document.body.removeChild(wrapper); alert('PDF உருவாக்கத்தில் பிழை.'); });
+            }, 1800);
+        });
+    }
+
     function downloadPDF() {
         const isTa = currentLanguage === 'ta';
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        if (isTa) {
+            downloadPDF_Tamil();
+        } else {
+            downloadPDF_English();
+        }
+    }
+
+    /* ── TAMIL PDF: html2canvas renders actual Tamil glyphs ── */
+    function downloadPDF_Tamil() {
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
+        const now = new Date();
+        const todayStr = now.toISOString().split('T')[0];
+        const total = entries.length;
+
+        const pct = (n) => total > 0 ? Math.round((n/total)*100) : 0;
+        const active      = entries.filter(e => e.selfPV >= 30).length;
+        const consist     = entries.filter(e => e.consistency === 'Yes').length;
+        const goodGroupPV = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
+        const todayEdited = entries.filter(e => (e.lastModified||e.timestamp||e.date||'').substring(0,10) === todayStr);
+        const meetingToday = todayEdited.filter(e => e.meeting === 'Yes').length;
+        const recruitToday = todayEdited.filter(e => e.newJoiners === 'Yes').length;
+        const countFactor  = total >= 10 ? 1 : total / 10;
+        const ac = Math.round(pct(active)*countFactor);
+        const cn = Math.round(pct(consist)*countFactor);
+        const gv = Math.round(pct(goodGroupPV)*countFactor);
+        const mt = Math.round((total>0?Math.round(meetingToday/total*100):0)*countFactor);
+        const rc = Math.round((total>0?Math.round(recruitToday/total*100):0)*countFactor);
+        const overall = Math.round(ac*0.25+cn*0.25+gv*0.15+mt*0.2+rc*0.15);
+        const greenMembers = entries.filter(e => e.selfPV >= 100).length;
+        const excellenceThreshold = 26;
+        const overallLabel = (overall>=75&&greenMembers>=excellenceThreshold)?'சிறப்பான நிலை':overall>=75?'நல்லது (26+ பச்சை உறுப்பினர்கள் தேவை)':overall>=50?'சராசரி':'மேம்படுத்தல் தேவை';
+        const gradeText = (p) => p>=75?'நல்லது':p>=50?'சராசரி':'கவனிக்கவும்';
+        const gradeColor = (p) => p>=75?'#059669':p>=50?'#b45309':'#dc2626';
+        const totalPV = entries.reduce((s,e)=>s+e.totalPV,0);
+
+        const params = [
+            { label:'செயலில் உள்ள IDs (PV>=30)',  adj:ac, count:active },
+            { label:'100PV தொடர்ச்சி (CNC)',        adj:cn, count:consist },
+            { label:'குழு PV இலக்கு (நிலை வாரியாக)', adj:gv, count:goodGroupPV },
+            { label:'கூட்டம் (தினசரி திருத்தப்பட்டது)', adj:mt, count:meetingToday },
+            { label:'புதிய சேர்க்கை (தினசரி)',       adj:rc, count:recruitToday },
+        ];
+
+        const barHtml = (pct, color) => `<div style="background:#e2e8f0;border-radius:4px;height:8px;width:100%;"><div style="width:${pct}%;height:100%;background:${color};border-radius:4px;"></div></div>`;
+
+        const rowsHtml = entries.map(e => {
+            const gvs = getGroupPVStatus(e.groupPV, e.level);
+            const pvColor = e.selfPV>=100?'#059669':e.selfPV>=30?'#b45309':'#dc2626';
+            return `<tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:5px 6px;font-size:11px;font-weight:700;">${e.name}</td>
+                <td style="padding:5px 6px;font-size:10px;color:#64748b;">${e.distId}</td>
+                <td style="padding:5px 6px;font-size:11px;color:${pvColor};font-weight:700;">${e.selfPV}</td>
+                <td style="padding:5px 6px;font-size:10px;background:${e.consistency==='Yes'?'#dcfce7':'#fee2e2'};text-align:center;">${e.consistency==='Yes'?'✓ ஆம்':'✗ இல்லை'}</td>
+                <td style="padding:5px 6px;font-size:10px;background:${e.meeting==='Yes'?'#dbeafe':'#fef3c7'};text-align:center;">${e.meeting==='Yes'?'✓ ஆம்':'✗ இல்லை'}</td>
+                <td style="padding:5px 6px;font-size:10px;background:${(e.newJoiners||'No')==='Yes'?'#dcfce7':'#f3e8ff'};text-align:center;">${(e.newJoiners||'No')==='Yes'?'✓ ஆம்':'✗ இல்லை'}</td>
+                <td style="padding:5px 6px;font-size:10px;color:${gvs.met?'#059669':'#b45309'};">${e.groupPV} / ${gvs.target}</td>
+                <td style="padding:5px 6px;font-size:10px;">${e.date}</td>
+            </tr>`;
+        }).join('');
+
+        const html = `<!DOCTYPE html><html><head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            body { font-family:'Noto Sans Tamil',sans-serif; margin:0; padding:20px; background:#fff; color:#1e293b; font-size:12px; }
+            h1,h2,h3,p,td,th,span,div { font-family:'Noto Sans Tamil',sans-serif !important; }
+        </style></head><body>
+        <div style="background:#1e293b;color:#fcf6ba;padding:18px 20px;border-radius:10px;margin-bottom:16px;text-align:center;">
+            <div style="font-size:17px;font-weight:700;margin-bottom:4px;">NFVT குழு அனுதின அறிக்கை</div>
+            <div style="font-size:11px;color:#cbd5e1;">உறுப்பினர்: ${loggedInUser.name} (ID: ${loggedInUser.id}) &nbsp;|&nbsp; தேதி: ${now.toLocaleDateString('ta-IN')} &nbsp;|&nbsp; உறுப்பினர்கள்: ${total} &nbsp;|&nbsp; குழு PV: ${totalPV.toFixed(1)}</div>
+        </div>
+
+        <div style="background:${overall>=75?'#059669':overall>=50?'#b45309':'#dc2626'};color:white;padding:12px 16px;border-radius:8px;text-align:center;margin-bottom:14px;font-size:15px;font-weight:700;">
+            மொத்த குழு மதிப்பு: ${overall}% — ${overallLabel}
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <div style="font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:4px;border-bottom:2px solid #e2e8f0;">📊 செயல்திறன் சுருக்கம்</div>
+            ${params.map(p=>`<div style="background:#f8fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:12px;">
+                <div style="flex:1;">
+                    <div style="font-weight:700;font-size:12px;margin-bottom:4px;">${p.label}</div>
+                    ${barHtml(p.adj,gradeColor(p.adj))}
+                </div>
+                <div style="text-align:right;min-width:80px;">
+                    <span style="font-size:16px;font-weight:700;color:${gradeColor(p.adj)};">${p.adj}%</span><br>
+                    <span style="font-size:10px;color:#64748b;">${p.count}/${total} உறுப்பினர்கள்</span><br>
+                    <span style="font-size:10px;font-weight:700;color:${gradeColor(p.adj)};">${gradeText(p.adj)}</span>
+                </div>
+            </div>`).join('')}
+        </div>
+
+        <div style="background:${greenMembers>=excellenceThreshold?'#f0fdf4':'#fef9c3'};border:1.5px solid ${greenMembers>=excellenceThreshold?'#86efac':'#fde047'};border-radius:8px;padding:10px 14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-weight:700;">பச்சை உறுப்பினர்கள் (Self PV >= 100)</span>
+            <span style="font-size:15px;font-weight:700;color:${greenMembers>=excellenceThreshold?'#059669':'#b45309'};">${greenMembers} / ${total}${greenMembers<excellenceThreshold?' ('+( excellenceThreshold-greenMembers)+' மேலும் தேவை)':' ✓'}</span>
+        </div>
+
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px;padding-bottom:4px;border-bottom:2px solid #e2e8f0;">👥 உறுப்பினர் விவரங்கள்</div>
+        <table style="width:100%;border-collapse:collapse;font-size:11px;">
+            <thead>
+                <tr style="background:#1e293b;color:#fcf6ba;">
+                    <th style="padding:7px 6px;text-align:left;">பெயர்</th>
+                    <th style="padding:7px 6px;">ID</th>
+                    <th style="padding:7px 6px;">சொந்த PV</th>
+                    <th style="padding:7px 6px;">100PV</th>
+                    <th style="padding:7px 6px;">கூட்டம்</th>
+                    <th style="padding:7px 6px;">சேர்க்கை</th>
+                    <th style="padding:7px 6px;">குழு PV/இலக்கு</th>
+                    <th style="padding:7px 6px;">தேதி</th>
+                </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+        </table>
+
+        <div style="margin-top:14px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:10px;">
+            * கூட்டம் % & சேர்க்கை % = இன்று திருத்தப்படவில்லை எனில் 0% &nbsp;|&nbsp; * EXCELLENT: மதிப்பு >= 75% மற்றும் >= ${excellenceThreshold} பச்சை உறுப்பினர்கள் தேவை<br>
+            * குழு PV இலக்கு: Bronze Dir=2600 | Silver Dir=2100 | Gold Dir=1800 | மற்றவர்கள்=2600 &nbsp;|&nbsp; வணிக மாதம்: 2-ம் தேதி முதல் 1-ம் தேதி வரை
+        </div>
+        </body></html>`;
+
+        // Render off-screen (opacity:0) — avoids cursor/coordinate mismatch
+        const wrapper = document.createElement('div');
+        wrapper.style.cssText = 'position:absolute;top:0;left:0;width:794px;opacity:0;pointer-events:none;z-index:-1;overflow:hidden;';
+        const container = document.createElement('div');
+        container.innerHTML = html;
+        wrapper.appendChild(container);
+        document.body.appendChild(wrapper);
+        // Force font load
+        document.fonts.ready.then(() => {
+            setTimeout(() => {
+                html2canvas(container, {
+                    scale: 1.5, useCORS: true, allowTaint: true,
+                    width: 794, backgroundColor: '#ffffff',
+                    scrollX: 0, scrollY: 0,
+                    x: 0, y: 0,
+                    windowWidth: 794
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF({ orientation:'portrait', unit:'pt', format:'a4' });
+                    const pdfW = pdf.internal.pageSize.getWidth();
+                    const pdfH = pdf.internal.pageSize.getHeight();
+                    const ratio = pdfW / canvas.width;
+                    const scaledH = canvas.height * ratio;
+                    let yOff = 0, page = 0;
+                    while (yOff < scaledH) {
+                        if (page > 0) pdf.addPage();
+                        pdf.addImage(imgData, 'JPEG', 0, -yOff, pdfW, scaledH);
+                        yOff += pdfH; page++;
+                    }
+                    pdf.save(`NFVT_Tamil_${loggedInUser.id}_${todayStr}.pdf`);
+                    document.body.removeChild(wrapper);
+                }).catch(err => { console.error('html2canvas error:', err); document.body.removeChild(wrapper); alert('PDF உருவாக்கத்தில் பிழை.'); });
+            }, 1500);
+        });
+    }
+
+    /* ── ENGLISH PDF: original jsPDF text approach ── */
+    function downloadPDF_English() {
+        const isTa = false;
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const now = new Date();
         const todayStr = now.toISOString().split('T')[0];
         const total = entries.length;
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        // FIX 1: No "Self PV >= 100" parameter — removed from summary
-        // Metrics used:
         const pct = (n) => total > 0 ? Math.round((n/total)*100) : 0;
         const active       = entries.filter(e => e.selfPV >= 30).length;
         const consist      = entries.filter(e => e.consistency === 'Yes').length;
         const goodGroupPV  = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
 
-        // Meeting & Recruitment: today's edited Yes
         const todayEdited = entries.filter(e => {
             const d = (e.lastModified || e.timestamp || e.date || '').substring(0,10);
             return d === todayStr;
@@ -1737,53 +1916,44 @@
         const rc = Math.round(rawRecruit * countFactor);
         const overall = Math.round((ac * 0.25 + cn * 0.25 + gv * 0.15 + mt * 0.2 + rc * 0.15));
 
-        // FIX 2: Excellence/Good label only if >= 26 green members (selfPV >= 100)
         const greenMembers = entries.filter(e => e.selfPV >= 100).length;
         const excellenceThreshold = 26;
-        const overallLabel = (overall >= 75 && greenMembers >= excellenceThreshold) ? (isTa ? 'SIRAPPANA NILAI' : 'EXCELLENT')
-                           : overall >= 75 ? (isTa ? 'NALLADU' : 'GOOD (Need 26+ Green Members for Excellent)')
-                           : overall >= 50 ? (isTa ? 'SARAASARI' : 'AVERAGE')
-                           : (isTa ? 'MEEMPADUPPU THEVAIPPADUGINDRADHU' : 'NEEDS IMPROVEMENT');
+        const overallLabel = (overall >= 75 && greenMembers >= excellenceThreshold) ? 'EXCELLENT'
+                           : overall >= 75 ? 'GOOD (Need 26+ Green Members for Excellent)'
+                           : overall >= 50 ? 'AVERAGE' : 'NEEDS IMPROVEMENT';
 
         const gradeColor = (p) => p >= 75 ? [5,150,105] : p >= 50 ? [180,100,0] : [185,28,28];
-        const gradeText  = (p) => p >= 75 ? (isTa?'NALLADU':'GOOD') : p >= 50 ? (isTa?'SARAASARI':'AVERAGE') : (isTa?'KAVANIKKAVUM':'NEEDS FOCUS');
+        const gradeText  = (p) => p >= 75 ? 'GOOD' : p >= 50 ? 'AVERAGE' : 'NEEDS FOCUS';
 
-        // Header
         doc.setFillColor(30, 41, 59);
         doc.rect(0, 0, 210, 42, 'F');
         doc.setFontSize(15); doc.setTextColor(252, 246, 186); doc.setFont(undefined, 'bold');
-        doc.text(isTa ? 'NFVT Kuzhu Followup Arikkai' : 'NFVT Team Followup Report', 105, 13, { align: 'center' });
+        doc.text('NFVT Team Followup Report', 105, 13, { align: 'center' });
         doc.setFontSize(9); doc.setTextColor(200, 215, 235); doc.setFont(undefined, 'normal');
-        doc.text(`${isTa?'Aayvalar':'By'}: ${loggedInUser.name} (ID: ${loggedInUser.id})`, 105, 21, { align: 'center' });
+        doc.text(`By: ${loggedInUser.name} (ID: ${loggedInUser.id})`, 105, 21, { align: 'center' });
         const totalPV = entries.reduce((s,e)=>s+e.totalPV,0);
-        doc.text(`${isTa?'Uruppinargal':'Members'}: ${total}  |  ${isTa?'Kuzhu PV':'Team PV'}: ${totalPV.toFixed(1)}  |  ${isTa?'Naal':'Date'}: ${now.toLocaleDateString()}`, 105, 29, { align: 'center' });
+        doc.text(`Members: ${total}  |  Team PV: ${totalPV.toFixed(1)}  |  Date: ${now.toLocaleDateString()}`, 105, 29, { align: 'center' });
         doc.setFontSize(7); doc.setTextColor(255,220,80);
         doc.text(`Green Members (Self PV >= 100): ${greenMembers}/${total}${greenMembers < excellenceThreshold ? ` — Need ${excellenceThreshold-greenMembers} more for EXCELLENT rating` : ' ✓ EXCELLENT threshold met'}`, 105, 37, { align: 'center' });
-        if (total < 10) {
-            doc.text(`(Members ${total}/10 — % reduced due to low member count)`, 105, 37, { align: 'center' });
-        }
 
-        // Summary header
         let y = 47;
         doc.setFontSize(11); doc.setTextColor(30, 41, 59); doc.setFont(undefined, 'bold');
-        doc.text(isTa ? '% AAYVUKKU KATTAMAI (SUNNIYAM ARIKKAI)' : '% PERFORMANCE SUMMARY (MINIMAL REPORT)', 14, y); y += 4;
+        doc.text('% PERFORMANCE SUMMARY (MINIMAL REPORT)', 14, y); y += 4;
         doc.setDrawColor(191, 149, 63); doc.setLineWidth(0.6); doc.line(14, y, 196, y); y += 5;
 
-        // Overall score box
         const [gr,gg,gb] = gradeColor(overall);
         doc.setFillColor(gr,gg,gb);
         doc.roundedRect(14, y, 182, 14, 3, 3, 'F');
         doc.setFontSize(11); doc.setTextColor(255,255,255); doc.setFont(undefined, 'bold');
-        doc.text(`${isTa?'Olverum Kuzhu Nilai':'Overall Team Score'}: ${overall}%  —  ${overallLabel}`, 105, y+9, { align: 'center' });
+        doc.text(`Overall Team Score: ${overall}%  —  ${overallLabel}`, 105, y+9, { align: 'center' });
         y += 20;
 
-        // FIX 1: 5 parameters — Self PV>=100 REMOVED, Group PV added
         const params = [
-            { label: isTa?'Sadhaga Uruppinargal (PV>=30)':'Active IDs (Self PV >= 30)', raw: rawActive, adj: ac, count: active },
-            { label: isTa?'100PV Thodarchi (CNC)':'100PV Consistency (CNC)',            raw: rawConsist, adj: cn, count: consist },
-            { label: isTa?'Kuzhu PV Ilakku (Nilai-Vagaipaduttu)':'Group PV Target Met (Level-wise)', raw: rawGroupPV, adj: gv, count: goodGroupPV },
-            { label: isTa?'Kootam (Thinasari Thiruthappatta)':'Meeting (Daily Edited Yes)',         raw: rawMeeting, adj: mt, count: meetingToday },
-            { label: isTa?'Puthiya Searkkai (Thinasari)':'Recruitment / New Joiners (Daily Edit)', raw: rawRecruit, adj: rc, count: recruitToday },
+            { label:'Active IDs (Self PV >= 30)', raw: rawActive, adj: ac, count: active },
+            { label:'100PV Consistency (CNC)',     raw: rawConsist, adj: cn, count: consist },
+            { label:'Group PV Target Met (Level-wise)', raw: rawGroupPV, adj: gv, count: goodGroupPV },
+            { label:'Meeting (Daily Edited Yes)',  raw: rawMeeting, adj: mt, count: meetingToday },
+            { label:'Recruitment / New Joiners (Daily Edit)', raw: rawRecruit, adj: rc, count: recruitToday },
         ];
 
         params.forEach((p, i) => {
@@ -1807,20 +1977,17 @@
             y += 16;
         });
 
-        // FIX 2: Green members section
         y += 4;
         doc.setFillColor(greenMembers >= excellenceThreshold ? 209 : 254, greenMembers >= excellenceThreshold ? 250 : 215, greenMembers >= excellenceThreshold ? 229 : 170);
         doc.roundedRect(14, y, 182, 14, 3, 3, 'F');
         doc.setFontSize(9); doc.setTextColor(30,41,59); doc.setFont(undefined, 'bold');
         doc.text(`Green Members (Self PV >= 100): ${greenMembers} / ${total}`, 16, y+6);
         const greenStatus = greenMembers >= excellenceThreshold ? `✓ EXCELLENT threshold met (${excellenceThreshold}+)` : `Need ${excellenceThreshold-greenMembers} more for EXCELLENT`;
-        const [gs] = greenMembers >= excellenceThreshold ? [[5,150,105]] : [[185,28,28]];
-        doc.setTextColor(5,150,105); 
-        if (greenMembers < excellenceThreshold) doc.setTextColor(185,28,28);
+        if (greenMembers >= excellenceThreshold) doc.setTextColor(5,150,105); 
+        else doc.setTextColor(185,28,28);
         doc.text(greenStatus, 16, y+11.5);
         y += 18;
 
-        // Notes
         doc.setFontSize(8); doc.setTextColor(71,85,105); doc.setFont(undefined, 'italic');
         doc.text('Notes:', 14, y); y += 5;
         doc.setFontSize(7);
@@ -1837,43 +2004,28 @@
             y += w.length * 4 + 1;
         });
 
-        // Divider
         y += 4;
         doc.setDrawColor(191, 149, 63); doc.setLineWidth(0.4); doc.line(14, y, 196, y); y += 6;
 
-        // Member table — FIX 1: No "PV Status" column, include Group PV target
         if (y > 240) { doc.addPage(); y = 20; }
         doc.setFontSize(10); doc.setTextColor(30, 41, 59); doc.setFont(undefined, 'bold');
-        doc.text(isTa?'URUPPINAR VIVARANGAL':'MEMBER DATA', 14, y); y += 3;
+        doc.text('MEMBER DATA', 14, y); y += 3;
 
         const rows = entries.map(e => {
             const gvs = getGroupPVStatus(e.groupPV, e.level);
             return [
-                e.name, e.distId,
-                e.selfPV,
-                // FIX 1: No PV Status column
-                e.consistency === 'Yes' ? (isTa?'AAME':'YES') : (isTa?'ILLAI':'NO'),
-                e.meeting === 'Yes' ? (isTa?'AAME':'YES') : (isTa?'ILLAI':'NO'),
-                (e.newJoiners || 'No') === 'Yes' ? (isTa?'AAME':'YES') : (isTa?'ILLAI':'NO'),
+                e.name, e.distId, e.selfPV,
+                e.consistency === 'Yes' ? 'YES' : 'NO',
+                e.meeting === 'Yes' ? 'YES' : 'NO',
+                (e.newJoiners || 'No') === 'Yes' ? 'YES' : 'NO',
                 `${e.groupPV}/${gvs.target}`,
-                gvs.met ? '✓' : '✗',
+                gvs.met ? 'Y' : 'N',
                 e.date
             ];
         });
 
         doc.autoTable({
-            head: [[
-                isTa?'Peyar':'Name',
-                'ID',
-                isTa?'Sontha PV':'Self PV',
-                // FIX 1: PV Status column REMOVED
-                isTa?'100PV':'100PV',
-                isTa?'Kootam':'Meeting',
-                isTa?'Searkkai':'Joiner',
-                isTa?'Kuzhu PV/Ilakku':'Group PV/Target',
-                isTa?'Ilakku':'Target',
-                isTa?'Naal':'Date'
-            ]],
+            head: [['Name','ID','Self PV','100PV','Meeting','Joiner','Group PV/Target','Target','Date']],
             body: rows,
             startY: y + 3,
             styles: { fontSize: 7 },
@@ -1882,22 +2034,19 @@
             didParseCell: function(data) {
                 if (data.section === 'body' && data.column.index === 2) {
                     const v = parseFloat(rows[data.row.index][2]);
-                    if (v < 30)        data.cell.styles.fillColor = [254,202,202];
-                    else if (v < 100)  data.cell.styles.fillColor = [254,215,170];
-                    else               data.cell.styles.fillColor = [209,250,229];
+                    if (v < 30) data.cell.styles.fillColor = [254,202,202];
+                    else if (v < 100) data.cell.styles.fillColor = [254,215,170];
+                    else data.cell.styles.fillColor = [209,250,229];
                 }
                 if (data.section === 'body' && data.column.index === 3) {
-                    if (rows[data.row.index][3] === 'NO' || rows[data.row.index][3] === 'ILLAI')
-                        data.cell.styles.fillColor = [254,202,202];
+                    if (rows[data.row.index][3] === 'NO') data.cell.styles.fillColor = [254,202,202];
                 }
                 if (data.section === 'body' && data.column.index === 7) {
-                    const val = rows[data.row.index][7];
-                    if (val === '✗') data.cell.styles.fillColor = [254,202,202];
+                    if (rows[data.row.index][7] === 'N') data.cell.styles.fillColor = [254,202,202];
                     else data.cell.styles.fillColor = [209,250,229];
                 }
             }
         });
-
         doc.save(`NFVT_Daily_Report_${loggedInUser.id}_${todayStr}.pdf`);
     }
 
@@ -1952,7 +2101,7 @@
     }
 
     function downloadCSV() {
-        const entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const now = new Date();
         const pct = (n) => entries.length > 0 ? Math.round((n/entries.length)*100) : 0;
         const consistency = entries.filter(e => e.consistency === 'Yes').length;
@@ -1976,14 +2125,14 @@
             csv += `"${e.name}","${e.distId}","${e.mobile}","${e.level}","${e.selfPV}","${e.groupPV}","${gvs.target}","${gvs.met?'Yes':'No'}","${e.totalPV}","${e.date}","${e.consistency}","${e.meeting}","${e.newJoiners||'No'}","${e.timestamp||''}"\n`;
         });
         const b = new Blob([csv],{type:'text/csv'});
-        const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download=`NFVT_Report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.csv`; a.click();
+        const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download=`Saravanan_DUCD_Team_Report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.csv`; a.click();
     }
 
     function toggleTrash() {
         const ts = document.getElementById('trashSection');
         ts.style.display = (ts.style.display === 'none' || ts.style.display === '') ? 'block' : 'none';
         if(ts.style.display === 'block') {
-            const trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
+            const trash = JSON.parse(localStorage.getItem(STORAGE_KEY_TRASH)) || [];
             document.getElementById('trashBody').innerHTML = trash.map(i => 
                 `<tr style="background:white;">
                     <td><strong>${i.name}</strong></td><td>${i.distId}</td>
@@ -1998,32 +2147,32 @@
 
     function permanentDelete(id) {
         if(confirm(currentLanguage==='en'?"⚠️ PERMANENT DELETE! Cannot be undone. Are you sure?":"⚠️ நிரந்தர நீக்குதல்! உறுதியா?")) {
-            let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
+            let trash = JSON.parse(localStorage.getItem(STORAGE_KEY_TRASH)) || [];
             const idx = trash.findIndex(e => e.id === id);
-            if (idx > -1) { trash.splice(idx, 1); localStorage.setItem('nfvt_trash', JSON.stringify(trash)); toggleTrash(); setTimeout(()=>toggleTrash(),100); }
+            if (idx > -1) { trash.splice(idx, 1); localStorage.setItem(STORAGE_KEY_TRASH, JSON.stringify(trash)); toggleTrash(); setTimeout(()=>toggleTrash(),100); }
         }
     }
 
     function emptyTrash() {
-        const trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
+        const trash = JSON.parse(localStorage.getItem(STORAGE_KEY_TRASH)) || [];
         if (trash.length === 0) { alert(currentLanguage==='en'?"Trash is empty!":"குப்பை காலியாக!"); return; }
         if(confirm(currentLanguage==='en'?`⚠️ Permanently delete all ${trash.length} members?`:`⚠️ ${trash.length} உறுப்பினர்களை நீக்கவா?`)) {
-            localStorage.setItem('nfvt_trash', JSON.stringify([]));
+            localStorage.setItem(STORAGE_KEY_TRASH, JSON.stringify([]));
             toggleTrash();
             alert(currentLanguage==='en'?"✅ Trash emptied!":"✅ குப்பை காலி!");
         }
     }
 
     function restoreEntry(id) {
-        let entries = JSON.parse(localStorage.getItem('nfvt_ucd_v2')) || [];
-        let trash = JSON.parse(localStorage.getItem('nfvt_trash')) || [];
+        let entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
+        let trash = JSON.parse(localStorage.getItem(STORAGE_KEY_TRASH)) || [];
         const idx = trash.findIndex(e => e.id === id);
         if (idx > -1) {
             entries.unshift(trash[idx]);
             updateActivityLog('restore', trash[idx]);
             trash.splice(idx, 1);
-            localStorage.setItem('nfvt_ucd_v2', JSON.stringify(entries));
-            localStorage.setItem('nfvt_trash', JSON.stringify(trash));
+            localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(entries));
+            localStorage.setItem(STORAGE_KEY_TRASH, JSON.stringify(trash));
             displayData(); toggleTrash(); setTimeout(()=>toggleTrash(),100);
         }
     }
@@ -2034,5 +2183,10 @@
         for (let row of r) { row.style.display = row.innerText.toUpperCase().includes(q) ? "" : "none"; }
     }
 </script>
+
+<!-- FIX 2: Girish S Signature — 10% transparency, elegant gold Cormorant style -->
+<div style="position:fixed;bottom:16px;right:16px;z-index:1;pointer-events:none;user-select:none;opacity:0.10;transform:rotate(-12deg);">
+  <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:#bf953f;letter-spacing:3px;text-shadow:0 1px 4px rgba(191,149,63,0.4);">✦ Girish S ✦</span>
+</div>
 </body>
 </html>
