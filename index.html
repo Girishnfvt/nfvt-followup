@@ -1,5 +1,6 @@
 
-
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ===== LOGIN OVERLAY — ELEGANT DARK CORPORATE ===== */
+        /* ===== LOGIN OVERLAY ===== */
         #loginOverlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #09090f;
@@ -39,109 +40,38 @@
             background-size: 60px 60px;
             animation: gridDrift 20s linear infinite;
         }
-        @keyframes gridDrift {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(60px); }
-        }
-        .login-glow-1 {
-            position: absolute;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(191,149,63,0.12) 0%, transparent 70%);
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            animation: glowPulseLogin 4s ease-in-out infinite;
-        }
-        .login-glow-2 {
-            position: absolute;
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 70%);
-            bottom: 10%; right: 10%;
-            animation: glowPulseLogin 6s ease-in-out infinite reverse;
-        }
-        .login-glow-3 {
-            position: absolute;
-            width: 200px; height: 200px;
-            background: radial-gradient(circle, rgba(191,149,63,0.06) 0%, transparent 70%);
-            top: 15%; left: 15%;
-            animation: glowPulseLogin 5s ease-in-out infinite 1s;
-        }
-        @keyframes glowPulseLogin {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-        }
-        .login-corner {
-            position: absolute; width: 80px; height: 80px; pointer-events: none;
-        }
+        @keyframes gridDrift { 0% { transform: translateY(0); } 100% { transform: translateY(60px); } }
+        .login-glow-1 { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(191,149,63,0.12) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: glowPulseLogin 4s ease-in-out infinite; }
+        .login-glow-2 { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 70%); bottom: 10%; right: 10%; animation: glowPulseLogin 6s ease-in-out infinite reverse; }
+        .login-glow-3 { position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(191,149,63,0.06) 0%, transparent 70%); top: 15%; left: 15%; animation: glowPulseLogin 5s ease-in-out infinite 1s; }
+        @keyframes glowPulseLogin { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
+        .login-corner { position: absolute; width: 80px; height: 80px; pointer-events: none; }
         .login-corner.tl { top: 30px; left: 30px; border-top: 1px solid rgba(191,149,63,0.4); border-left: 1px solid rgba(191,149,63,0.4); }
         .login-corner.tr { top: 30px; right: 30px; border-top: 1px solid rgba(191,149,63,0.4); border-right: 1px solid rgba(191,149,63,0.4); }
         .login-corner.bl { bottom: 30px; left: 30px; border-bottom: 1px solid rgba(191,149,63,0.4); border-left: 1px solid rgba(191,149,63,0.4); }
         .login-corner.br { bottom: 30px; right: 30px; border-bottom: 1px solid rgba(191,149,63,0.4); border-right: 1px solid rgba(191,149,63,0.4); }
-        .login-vline {
-            position: absolute; width: 1px; top: 0; bottom: 0;
-            background: linear-gradient(to bottom, transparent, rgba(191,149,63,0.15), rgba(191,149,63,0.08), transparent);
-            pointer-events: none;
-        }
+        .login-vline { position: absolute; width: 1px; top: 0; bottom: 0; background: linear-gradient(to bottom, transparent, rgba(191,149,63,0.15), rgba(191,149,63,0.08), transparent); pointer-events: none; }
         .login-vline.l { left: 20%; }
         .login-vline.r { right: 20%; }
-        .login-scanline {
-            position: absolute; height: 1px; left: 0; right: 0;
-            background: linear-gradient(90deg, transparent, rgba(191,149,63,0.3), transparent);
-            animation: scanDown 8s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes scanDown {
-            0% { top: -2px; opacity: 0; }
-            5% { opacity: 1; }
-            95% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
-        }
-        .login-hex {
-            position: absolute; pointer-events: none;
-            width: 60px; height: 60px;
-            border: 1px solid rgba(191,149,63,0.12);
-            transform: rotate(45deg);
-            animation: hexFloat linear infinite;
-        }
-        @keyframes hexFloat {
-            0% { transform: rotate(45deg) translateY(0) scale(1); opacity: 0.15; }
-            50% { opacity: 0.35; }
-            100% { transform: rotate(405deg) translateY(-120px) scale(0.8); opacity: 0; }
-        }
+        .login-scanline { position: absolute; height: 1px; left: 0; right: 0; background: linear-gradient(90deg, transparent, rgba(191,149,63,0.3), transparent); animation: scanDown 8s linear infinite; pointer-events: none; }
+        @keyframes scanDown { 0% { top: -2px; opacity: 0; } 5% { opacity: 1; } 95% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+        .login-hex { position: absolute; pointer-events: none; width: 60px; height: 60px; border: 1px solid rgba(191,149,63,0.12); transform: rotate(45deg); animation: hexFloat linear infinite; }
+        @keyframes hexFloat { 0% { transform: rotate(45deg) translateY(0) scale(1); opacity: 0.15; } 50% { opacity: 0.35; } 100% { transform: rotate(405deg) translateY(-120px) scale(0.8); opacity: 0; } }
         .login-box { 
             position: relative; z-index: 10;
             background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(191,149,63,0.2);
             padding: 40px 38px 36px; border-radius: 8px; text-align: center; 
             box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05);
-            width: 420px;
-            animation: fadeInLogin 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 420px; animation: fadeInLogin 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        /* login logo styles removed — vestige only */
-        .login-box::before {
-            content: '';
-            position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(191,149,63,0.8), transparent);
-        }
-        .login-box::after {
-            content: '';
-            position: absolute; bottom: 0; left: 30%; right: 30%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(191,149,63,0.3), transparent);
-        }
-        @keyframes fadeInLogin {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .login-brand-line {
-            display: flex; align-items: center; gap: 12px; justify-content: center; margin-bottom: 24px;
-        }
-        .login-brand-divider {
-            flex: 1; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(191,149,63,0.4));
-        }
-        .login-brand-divider.r {
-            background: linear-gradient(90deg, rgba(191,149,63,0.4), transparent);
-        }
+        .login-box::before { content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px; background: linear-gradient(90deg, transparent, rgba(191,149,63,0.8), transparent); }
+        .login-box::after { content: ''; position: absolute; bottom: 0; left: 30%; right: 30%; height: 1px; background: linear-gradient(90deg, transparent, rgba(191,149,63,0.3), transparent); }
+        @keyframes fadeInLogin { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .login-brand-line { display: flex; align-items: center; gap: 12px; justify-content: center; margin-bottom: 24px; }
+        .login-brand-divider { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(191,149,63,0.4)); }
+        .login-brand-divider.r { background: linear-gradient(90deg, rgba(191,149,63,0.4), transparent); }
 
         .container { 
             max-width: 1400px; margin: auto; background: white; padding: 30px; 
@@ -149,52 +79,27 @@
             position: relative; display: none;
             animation: slideIn 0.6s ease-out;
         }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         .user-profile-bar { 
             display: flex; align-items: center; justify-content: space-between; 
             background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fcf6ba 75%, #bf953f 100%); 
-            background-size: 300% auto;
-            animation: goldBarSweep 4s linear infinite;
+            background-size: 300% auto; animation: goldBarSweep 4s linear infinite;
             padding: 15px 25px; border-radius: 15px; margin-bottom: 25px; 
             box-shadow: 0 8px 30px rgba(180,130,0,0.5), 0 0 0 2px rgba(255,215,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
-            border: 1px solid rgba(255,215,0,0.6);
-            position: relative; overflow: hidden;
+            border: 1px solid rgba(255,215,0,0.6); position: relative; overflow: hidden;
         }
-        .user-profile-bar::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
-            animation: shimmerBar 3s ease-in-out infinite;
-        }
+        .user-profile-bar::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%); animation: shimmerBar 3s ease-in-out infinite; }
         @keyframes goldBarSweep { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
         @keyframes shimmerBar { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
         .user-details { display: flex; align-items: center; gap: 15px; position: relative; z-index: 1; }
-        .user-avatar { 
-            width: 50px; height: 50px; 
-            background: linear-gradient(135deg, #1a1040 0%, #0f0c29 100%); 
-            color: #ffd700; border-radius: 50%; display: flex; align-items: center; 
-            justify-content: center; font-weight: 900; font-size: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4), 0 0 0 3px rgba(255,215,0,0.5);
-            border: 2px solid rgba(255,215,0,0.8);
-        }
+        .user-avatar { width: 50px; height: 50px; background: linear-gradient(135deg, #1a1040 0%, #0f0c29 100%); color: #ffd700; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.4), 0 0 0 3px rgba(255,215,0,0.5); border: 2px solid rgba(255,215,0,0.8); }
         .user-details div { color: #1a1040; }
         .user-details div:first-child { font-size: 16px; font-weight: 800; color: #1a1040; text-shadow: 0 1px 2px rgba(255,255,255,0.3); }
         .user-details div:last-child { font-size: 12px; opacity: 0.7; color: #2d1a00; }
-        .language-toggle {
-            background: rgba(0,0,0,0.15); border: 2px solid rgba(0,0,0,0.3);
-            color: #1a1040; padding: 8px 16px; border-radius: 8px; font-size: 12px;
-            cursor: pointer; font-weight: 800; transition: all 0.3s ease; margin-left: 10px; position: relative; z-index: 1;
-        }
+        .language-toggle { background: rgba(0,0,0,0.15); border: 2px solid rgba(0,0,0,0.3); color: #1a1040; padding: 8px 16px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 800; transition: all 0.3s ease; margin-left: 10px; position: relative; z-index: 1; }
         .language-toggle:hover { background: rgba(0,0,0,0.25); }
-        .logout-btn {
-            background: rgba(0,0,0,0.15); border: 2px solid rgba(0,0,0,0.3);
-            color: #1a1040; padding: 8px 16px; border-radius: 8px; font-size: 12px;
-            cursor: pointer; font-weight: 800; transition: all 0.3s ease; position: relative; z-index: 1;
-        }
+        .logout-btn { background: rgba(0,0,0,0.15); border: 2px solid rgba(0,0,0,0.3); color: #1a1040; padding: 8px 16px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 800; transition: all 0.3s ease; position: relative; z-index: 1; }
         .logout-btn:hover { background: rgba(0,0,0,0.25); }
 
         .stats-summary { 
@@ -211,72 +116,85 @@
             box-shadow: 0 8px 30px rgba(239,68,68,0.6), 0 0 40px rgba(239,68,68,0.3);
             transform: scale(1.01);
         }
-        .stats-summary.has-alerts::before {
-            content: '🔔 ACTION NEEDED ';
-            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
-            font-size: 13px; font-weight: 900; color: rgba(255,255,255,0.8);
-            animation: flashText 1s ease-in-out infinite;
-        }
-        .stats-summary.has-alerts::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-            animation: scanLine 2s linear infinite;
-        }
+        .stats-summary.has-alerts::before { content: '🔔 ACTION NEEDED '; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 900; color: rgba(255,255,255,0.8); animation: flashText 1s ease-in-out infinite; }
+        .stats-summary.has-alerts::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); animation: scanLine 2s linear infinite; }
         @keyframes alertPulse { 0%, 100% { background-position: 0% center; transform: scale(1.01); } 50% { background-position: 100% center; transform: scale(1.015); } }
         @keyframes alertGlow { 0%, 100% { box-shadow: 0 8px 30px rgba(239,68,68,0.6), 0 0 40px rgba(239,68,68,0.3); } 50% { box-shadow: 0 8px 50px rgba(239,68,68,0.8), 0 0 80px rgba(239,68,68,0.5); } }
         @keyframes flashText { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
         @keyframes scanLine { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
 
-        @keyframes redRowPulse {
-            0%, 100% { background: linear-gradient(90deg, #fecaca, #fca5a5) !important; }
-            50% { background: linear-gradient(90deg, #f87171, #ef4444) !important; color: white; }
-        }
-        tr.long-red-alert td {
-            animation: redRowPulse 1.8s ease-in-out infinite;
-        }
-        tr.long-red-alert td .alert-callout {
-            display: inline-block !important;
-        }
-        .alert-callout {
-            display: none;
-            background: #dc2626; color: white;
-            padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 900;
-            margin-top: 4px; animation: flashText 1s ease-in-out infinite;
-        }
+        @keyframes redRowPulse { 0%, 100% { background: linear-gradient(90deg, #fecaca, #fca5a5) !important; } 50% { background: linear-gradient(90deg, #f87171, #ef4444) !important; color: white; } }
+        tr.long-red-alert td { animation: redRowPulse 1.8s ease-in-out infinite; }
+        tr.long-red-alert td .alert-callout { display: inline-block !important; }
+        .alert-callout { display: none; background: #dc2626; color: white; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 900; margin-top: 4px; animation: flashText 1s ease-in-out infinite; }
 
         .header-section { text-align: center; margin-bottom: 30px; }
-        .team-logo { 
-            max-width: 120px; height: auto; border-radius: 15px; margin-bottom: 20px; 
-            border: 3px solid #fbbf24; box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
-        }
-        .luxury-gold-title {
-            font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; 
-            margin: 0; text-transform: uppercase;
-            background: linear-gradient(45deg, #bf953f 0%, #fcf6ba 20%, #b38728 45%, #fcf6ba 55%, #bf953f 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            filter: drop-shadow(0px 2px 3px #947a39); 
-            animation: lightSweep 3s infinite linear;
-            background-size: 200% auto;
-        }
+        .team-logo { max-width: 120px; height: auto; border-radius: 15px; margin-bottom: 20px; border: 3px solid #fbbf24; box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4); }
+        .luxury-gold-title { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; margin: 0; text-transform: uppercase; background: linear-gradient(45deg, #bf953f 0%, #fcf6ba 20%, #b38728 45%, #fcf6ba 55%, #bf953f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0px 2px 3px #947a39); animation: lightSweep 3s infinite linear; background-size: 200% auto; }
         @keyframes lightSweep { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
-        .form-section { 
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); 
-            padding: 25px; border-radius: 15px; border: 2px solid #3b82f6; 
-            margin-bottom: 30px; box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+
+        /* ===== FAST START 8% BANNER ===== */
+        .fast-start-banner {
+            background: linear-gradient(135deg, #1a1040 0%, #0f0c29 100%);
+            border: 2px solid rgba(255,215,0,0.5);
+            border-radius: 15px; padding: 16px 22px; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,215,0,0.15);
+            cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;
         }
+        .fast-start-banner:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 30px rgba(255,200,0,0.2); }
+        .fast-start-banner::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,215,0,0.06), transparent); animation: shimmerBar 3s ease-in-out infinite; }
+        .fast-start-icon { font-size: 32px; flex-shrink: 0; animation: crownFloat 2.5s ease-in-out infinite; }
+        .fast-start-content { flex: 1; min-width: 0; }
+        .fast-start-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 900; background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto; animation: lightSweep 3s linear infinite; margin-bottom: 4px; }
+        .fast-start-sub { font-size: 11px; color: rgba(255,220,120,0.8); font-weight: 600; letter-spacing: 0.5px; }
+        .fast-start-stats { display: flex; gap: 12px; flex-wrap: wrap; }
+        .fs-stat { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,215,0,0.2); border-radius: 10px; padding: 8px 14px; text-align: center; min-width: 80px; }
+        .fs-stat-val { font-size: 18px; font-weight: 900; color: #ffd700; line-height: 1; }
+        .fs-stat-label { font-size: 9px; color: rgba(255,220,120,0.7); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+        .fs-stat.achieved .fs-stat-val { color: #6ee7b7; }
+        .fs-stat.shortfall .fs-stat-val { color: #f87171; }
+
+        .form-section { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 25px; border-radius: 15px; border: 2px solid #3b82f6; margin-bottom: 30px; box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2); }
         .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
         .input-group label { display: block; font-size: 11px; font-weight: 800; color: #475569; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
         input, select { width: 100%; padding: 10px; border: 2px solid #cbd5e0; border-radius: 8px; font-size: 14px; transition: all 0.3s ease; }
         input:focus, select:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
         .add-btn { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; align-self: flex-end; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); transition: all 0.3s ease; }
         .add-btn:hover { transform: translateY(-2px); }
-        .edit-btn { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 11px; margin-right: 5px; transition: all 0.3s ease; }
-        .edit-btn:hover { transform: scale(1.05); }
-        .high-pv { background: linear-gradient(90deg, #d1fae5 0%, #a7f3d0 100%) !important; border-left: 6px solid #10b981; } 
+        .edit-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white; border: none; padding: 6px 12px; border-radius: 6px;
+            cursor: pointer; font-weight: 700; font-size: 13px; margin-right: 5px;
+            transition: all 0.3s ease;
+            animation: editPulse 2.2s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(245,158,11,0.5);
+            position: relative; overflow: hidden;
+        }
+        .edit-btn::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: editShimmer 2.2s ease-in-out infinite;
+        }
+        @keyframes editPulse {
+            0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(245,158,11,0.6); }
+            40%  { transform: scale(1.12); box-shadow: 0 0 0 7px rgba(245,158,11,0); }
+            55%  { transform: scale(1.07) rotate(-8deg); }
+            70%  { transform: scale(1.12) rotate(8deg); }
+            85%  { transform: scale(1.07) rotate(-4deg); }
+            100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(245,158,11,0); }
+        }
+        @keyframes editShimmer {
+            0%   { transform: translateX(-120%); }
+            50%  { transform: translateX(120%); }
+            100% { transform: translateX(120%); }
+        }
+        .edit-btn:hover { transform: scale(1.18) rotate(0deg) !important; animation: none; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); box-shadow: 0 4px 20px rgba(245,158,11,0.6); }
+        .high-pv { background: linear-gradient(90deg, #d1fae5 0%, #a7f3d0 100%) !important; border-left: 6px solid #10b981; }
         .low-pv-warning { background: linear-gradient(90deg, #fed7aa 0%, #fdba74 100%) !important; border-left: 6px solid #f97316; }
         .inactive-warning { background: linear-gradient(90deg, #fecaca 0%, #fca5a5 100%) !important; border-left: 6px solid #ef4444; }
-        .no-consistency { background: linear-gradient(90deg, #fee2e2 0%, #fecaca 100%) !important; border-left: 6px solid #dc2626; } 
+        .no-consistency { background: linear-gradient(90deg, #fee2e2 0%, #fecaca 100%) !important; border-left: 6px solid #dc2626; }
         .no-meeting { background: linear-gradient(90deg, #ddd6fe 0%, #c4b5fd 100%) !important; border-left: 6px solid #8b5cf6; }
         .low-group-pv { background: linear-gradient(90deg, #fef3c7 0%, #fde68a 100%) !important; border-left: 6px solid #f59e0b; }
         .action-bar { display: flex; justify-content: space-between; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -309,22 +227,10 @@
         .inline-logo { width: 75px; height: auto; border-radius: 50%; }
 
         /* ===== BEST WORKERS BANNER ===== */
-        .best-workers-banner {
-            position: relative; margin: 0 0 28px 0; cursor: pointer;
-            border-radius: 20px; overflow: hidden; background: #060414;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,215,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+        .best-workers-banner { position: relative; margin: 0 0 28px 0; cursor: pointer; border-radius: 20px; overflow: hidden; background: #060414; box-shadow: 0 15px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,215,0,0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .best-workers-banner:hover { transform: translateY(-4px) scale(1.005); box-shadow: 0 25px 70px rgba(0,0,0,0.7), 0 0 60px rgba(255,200,0,0.25); }
         .nebula-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .nebula-bg::before {
-            content: ''; position: absolute; inset: -50%;
-            background:
-                radial-gradient(ellipse 60% 40% at 20% 50%, rgba(120,40,200,0.45) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 60% at 80% 30%, rgba(20,80,200,0.35) 0%, transparent 60%),
-                radial-gradient(ellipse 70% 50% at 50% 80%, rgba(180,20,100,0.3) 0%, transparent 60%);
-            animation: nebulaDrift 20s ease-in-out infinite alternate;
-        }
+        .nebula-bg::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(ellipse 60% 40% at 20% 50%, rgba(120,40,200,0.45) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 80% 30%, rgba(20,80,200,0.35) 0%, transparent 60%), radial-gradient(ellipse 70% 50% at 50% 80%, rgba(180,20,100,0.3) 0%, transparent 60%); animation: nebulaDrift 20s ease-in-out infinite alternate; }
         @keyframes nebulaDrift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(1%,-1%) scale(1.02); } }
         .star-field { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px), radial-gradient(circle, rgba(255,220,100,0.7) 1px, transparent 1px); background-size: 120px 120px, 80px 80px; background-position: 10px 15px, 40px 60px; animation: starTwinkle 6s ease-in-out infinite alternate; }
         .star-field-2 { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px), radial-gradient(circle, rgba(180,180,255,0.5) 1px, transparent 1px); background-size: 90px 90px, 70px 70px; background-position: 30px 50px, 15px 25px; animation: starTwinkle 8s ease-in-out infinite alternate-reverse; }
@@ -393,9 +299,22 @@
         .award-close-btn { display: block; width: 100%; background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #b38728 100%); color: #0f0c29; border: none; padding: 15px 30px; border-radius: 12px; font-weight: 900; font-size: 15px; cursor: pointer; letter-spacing: 1px; box-shadow: 0 8px 25px rgba(180,130,0,0.4); transition: all 0.3s ease; }
         .award-close-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(180,130,0,0.55); }
 
-
         /* ===== TRASH ===== */
         #trashSection { display: none; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 20px; border-radius: 15px; margin: 25px 0; border: 3px dashed #f87171; }
+
+        /* ===== FAST START MODAL ===== */
+        .fast-start-modal-box {
+            background: linear-gradient(145deg, #0f0c29 0%, #1a1040 50%, #0a1628 100%);
+            border: 1px solid rgba(255,200,80,0.3); border-radius: 24px;
+            width: 90%; max-width: 640px; max-height: 90vh; overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(255,180,0,0.1);
+            animation: awardAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .fs-member-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,200,80,0.15); border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; }
+        .fs-member-name { font-weight: 800; color: white; font-size: 13px; }
+        .fs-member-pv { font-size: 12px; }
+        .fs-shortfall-badge { background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; }
+        .fs-achieved-badge { background: linear-gradient(135deg, #059669, #047857); color: white; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; }
     </style>
 </head>
 <body>
@@ -423,32 +342,28 @@
             <img src="https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg" style="width: 70px; border-radius: 10px; box-shadow: 0 6px 20px rgba(191,149,63,0.4); border: 1px solid rgba(191,149,63,0.3);">
             <div class="login-brand-divider r"></div>
         </div>
-
         <h2 style="margin: 12px 0 4px 0; font-family:'Cormorant Garamond',serif; font-size: 22px; font-weight: 700; background: linear-gradient(45deg,#bf953f,#fcf6ba,#b38728); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:2px; text-transform:uppercase;">Team Followup</h2>
         <p style="margin: 0 0 24px 0; font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 4px; text-transform: uppercase; font-weight: 600;">NFVT · SECURE ACCESS</p>
-
         <div style="display: flex; gap: 10px; margin-bottom: 12px;">
             <input type="number" id="loginId" placeholder="Distributor ID"
                 style="flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(191,149,63,0.2); color:rgba(255,255,255,0.9); border-radius:4px; padding:12px 13px; font-size:13px; outline:none; width:0; font-family:'Inter',sans-serif;"
-                onfocus="this.style.borderColor='rgba(191,149,63,0.7)'; this.style.background='rgba(255,255,255,0.08)'" 
+                onfocus="this.style.borderColor='rgba(191,149,63,0.7)'; this.style.background='rgba(255,255,255,0.08)'"
                 onblur="this.style.borderColor='rgba(191,149,63,0.2)'; this.style.background='rgba(255,255,255,0.05)'">
             <input type="text" id="loginName" placeholder="Your Name"
                 style="flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(191,149,63,0.2); color:rgba(255,255,255,0.9); border-radius:4px; padding:12px 13px; font-size:13px; outline:none; width:0; font-family:'Inter',sans-serif;"
-                onfocus="this.style.borderColor='rgba(191,149,63,0.7)'; this.style.background='rgba(255,255,255,0.08)'" 
+                onfocus="this.style.borderColor='rgba(191,149,63,0.7)'; this.style.background='rgba(255,255,255,0.08)'"
                 onblur="this.style.borderColor='rgba(191,149,63,0.2)'; this.style.background='rgba(255,255,255,0.05)'">
         </div>
-
         <div style="position:relative; margin-bottom:22px;">
             <input type="password" id="loginPassword" placeholder="Password"
                 style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(191,149,63,0.2); color:rgba(255,255,255,0.9); border-radius:4px; padding:12px 42px 12px 13px; font-size:13px; outline:none; box-sizing:border-box; font-family:'Inter',sans-serif;"
-                onfocus="this.style.borderColor='rgba(191,149,63,0.7)'; this.style.background='rgba(255,255,255,0.08)'" 
+                onfocus="this.style.borderColor='rgba(191,149,63,0.7)'; this.style.background='rgba(255,255,255,0.08)'"
                 onblur="this.style.borderColor='rgba(191,149,63,0.2)'; this.style.background='rgba(255,255,255,0.05)'"
                 onkeydown="if(event.key==='Enter')checkLogin()">
             <button onclick="togglePasswordVisibility()" id="eyeBtn"
                 style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; font-size:15px; color:rgba(191,149,63,0.6); padding:0; line-height:1;"
                 title="Show/Hide password">👁️</button>
         </div>
-
         <button onclick="checkLogin()"
             style="width:100%; background:linear-gradient(135deg,#bf953f 0%,#fcf6ba 50%,#b38728 100%); color:#0a0a0f; border:none; padding:14px 20px; border-radius:4px; cursor:pointer; font-weight:900; font-size:14px; letter-spacing:3px; text-transform:uppercase; box-shadow:0 6px 24px rgba(191,149,63,0.35); transition:all 0.3s ease; font-family:'Cormorant Garamond',serif;"
             onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 30px rgba(191,149,63,0.5)'"
@@ -456,10 +371,7 @@
             ENTER
         </button>
         <p id="loginError" style="margin:12px 0 0 0; font-size:12px; color:#f87171; display:none; font-weight:700;"></p>
-
-        <div style="margin-top:20px; font-size:9px; color:rgba(255,255,255,0.15); letter-spacing:3px; text-transform:uppercase; font-weight:600;">
-            NFVT · SECURE ACCESS
-        </div>
+        <div style="margin-top:20px; font-size:9px; color:rgba(255,255,255,0.15); letter-spacing:3px; text-transform:uppercase; font-weight:600;">NFVT · SECURE ACCESS</div>
     </div>
 </div>
 
@@ -484,6 +396,29 @@
 
     <div class="stats-summary" id="totalStats" onclick="scrollToAlerts()">
         <span class="lang-text" data-en="Total Team PV: 0 | Members: 0 | Alerts: 0" data-ta="மொத்த குழு PV: 0 | உறுப்பினர்கள்: 0 | எச்சரிக்கைகள்: 0">Total Team PV: 0 | Members: 0 | Alerts: 0</span>
+    </div>
+
+    <!-- FAST START 8% BANNER -->
+    <div class="fast-start-banner" id="fastStartBanner" onclick="showFastStartModal()">
+        <div class="fast-start-icon">⚡</div>
+        <div class="fast-start-content">
+            <div class="fast-start-title">Fast Start 8% Achievement Tracker</div>
+            <div class="fast-start-sub lang-text" data-en="Total PV (Self+Group) ≥ 300 OR Silver/Gold/Star/Diamond/Crown/UCD → 8% Fast Start · Click details" data-ta="மொத்த PV ≥ 300 அல்லது Silver Director+ → 8% Fast Start போனஸ் · விவரங்களை காண கிளிக் செய்யவும்">Total PV (Self+Group) ≥ 300 OR Silver/Gold/Star/Diamond/Crown/UCD → 8% Fast Start · Click details</div>
+        </div>
+        <div class="fast-start-stats" id="fastStartStats">
+            <div class="fs-stat">
+                <div class="fs-stat-val" id="fsAchievedCount">0</div>
+                <div class="fs-stat-label">Achieved</div>
+            </div>
+            <div class="fs-stat shortfall">
+                <div class="fs-stat-val" id="fsShortfallCount">0</div>
+                <div class="fs-stat-label">Need Push</div>
+            </div>
+            <div class="fs-stat">
+                <div class="fs-stat-val" id="fsTotalCount">0</div>
+                <div class="fs-stat-label">Total</div>
+            </div>
+        </div>
     </div>
 
     <div class="header-section">
@@ -522,11 +457,11 @@
             </div>
             <div class="input-group">
                 <label class="lang-text" data-en="Self PV" data-ta="சொந்த PV">Self PV</label>
-                <input type="number" id="selfPV">
+                <input type="number" id="selfPV" step="1">
             </div>
             <div class="input-group">
                 <label class="lang-text" data-en="Group PV (PGPV)" data-ta="குழு PV">Group PV (PGPV)</label>
-                <input type="number" id="groupPV">
+                <input type="number" id="groupPV" step="1">
             </div>
             <div class="input-group">
                 <label class="lang-text" data-en="Date" data-ta="தேதி">Date</label>
@@ -588,6 +523,7 @@
                     <th class="lang-text" data-en="Self PV" data-ta="சொந்த PV">Self PV</th>
                     <th class="lang-text" data-en="Group PV (PGPV)" data-ta="குழு PV">Group PV (PGPV)</th>
                     <th class="lang-text" data-en="Total PV" data-ta="மொத்த PV">Total PV</th>
+                    <th class="lang-text" data-en="Fast Start" data-ta="Fast Start">Fast Start</th>
                     <th class="lang-text" data-en="Date" data-ta="தேதி">Date</th>
                     <th class="lang-text" data-en="100PV" data-ta="100PV">100PV</th>
                     <th class="lang-text" data-en="Meeting" data-ta="கூட்டம்">Meeting</th>
@@ -609,8 +545,8 @@
                 <div class="grid-form">
                     <div class="input-group"><label class="lang-text" data-en="Member Name" data-ta="உறுப்பினர் பெயர்">Member Name</label><input type="text" id="editName"></div>
                     <div class="input-group"><label class="lang-text" data-en="Mobile Number" data-ta="மொபைல் எண்">Mobile Number</label><input type="number" id="editMobile"></div>
-                    <div class="input-group"><label class="lang-text" data-en="Self PV" data-ta="சொந்த PV">Self PV</label><input type="number" id="editSelfPV"></div>
-                    <div class="input-group"><label class="lang-text" data-en="Group PV (PGPV)" data-ta="குழு PV">Group PV (PGPV)</label><input type="number" id="editGroupPV"></div>
+                    <div class="input-group"><label class="lang-text" data-en="Self PV" data-ta="சொந்த PV">Self PV</label><input type="number" id="editSelfPV" step="1"></div>
+                    <div class="input-group"><label class="lang-text" data-en="Group PV (PGPV)" data-ta="குழு PV">Group PV (PGPV)</label><input type="number" id="editGroupPV" step="1"></div>
                     <div class="input-group"><label class="lang-text" data-en="Date" data-ta="தேதி">Date</label><input type="date" id="editDate"></div>
                     <div class="input-group"><label class="lang-text" data-en="100PV CNC" data-ta="100PV தொடர்ச்சி">100PV CNC</label><select id="editConsistency"><option value="Yes">Yes</option><option value="No">No</option></select></div>
                     <div class="input-group"><label class="lang-text" data-en="Meeting" data-ta="கூட்டம்">Meeting</label><select id="editMeeting"><option value="Yes">Yes</option><option value="No">No</option></select></div>
@@ -649,14 +585,12 @@
             <div>
                 <p class="leader-name-small">Girish S</p>
                 <span class="leader-rank-small">Universal Crown Director of Vestige</span>
-                <span class="team-tag"> - DUCD Saravanan Team</span>
+                <span class="team-tag"> - NFVT Team</span>
             </div>
         </div>
-        <!-- FIX 1: Correct Vestige logo URL -->
         <img src="https://i.postimg.cc/PNWQDG2x/New-Logo.jpg" alt="Team Branding" class="inline-logo">
     </div>
 </div>
-
 
 <!-- AWARD MODAL -->
 <div id="awardModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9000; justify-content:center; align-items:center; backdrop-filter:blur(8px);">
@@ -723,6 +657,33 @@
         </div>
     </div>
 </div>
+
+<!-- FAST START MODAL -->
+<div id="fastStartModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9200; justify-content:center; align-items:center; backdrop-filter:blur(8px);">
+    <div class="fast-start-modal-box">
+        <div style="background:linear-gradient(90deg,#bf953f,#fcf6ba,#b38728,#fcf6ba,#bf953f);background-size:200% auto;animation:goldSweep 2s linear infinite;height:5px;border-radius:24px 24px 0 0;"></div>
+        <div style="padding:30px 28px;">
+            <div style="text-align:center;margin-bottom:24px;">
+                <div style="font-size:44px;animation:crownFloat 2.5s ease-in-out infinite;">⚡</div>
+                <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;background:linear-gradient(45deg,#bf953f,#fcf6ba,#b38728);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;animation:goldSweep 3s linear infinite;margin-bottom:4px;">Fast Start 8% Tracker</div>
+                <div style="font-size:11px;font-weight:800;letter-spacing:3px;color:rgba(255,200,80,0.7);text-transform:uppercase;">NFVT TEAM · 300 PV TARGET</div>
+            </div>
+            <div style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.2);border-radius:14px;padding:16px 20px;margin-bottom:20px;">
+                <div style="font-size:13px;color:rgba(255,255,255,0.9);line-height:1.8;">
+                    📋 <strong style="color:#fcf6ba;">Fast Start 8% Rule:</strong><br>
+                    When a member's <strong style="color:#ffd700;">Total PV (Self + Group) reaches 300</strong>, they unlock the <strong style="color:#6ee7b7;">8% Fast Start Bonus</strong>.<br>
+                    Members already at <strong style="color:#c4b5fd;">Silver Director or above</strong> are auto-achieved (already at 8%+).
+                </div>
+            </div>
+            <div id="fastStartModalContent" style="max-height:340px;overflow-y:auto;"></div>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px;">
+                <button onclick="sendFastStartWAReminders()" style="background:linear-gradient(135deg,#25D366,#128C7E);color:white;border:none;padding:12px 24px;border-radius:10px;font-weight:800;cursor:pointer;font-size:13px;box-shadow:0 6px 20px rgba(37,211,102,0.4);">📱 Send WA Reminders</button>
+                <button onclick="closeFastStartModal()" style="background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);padding:12px 24px;border-radius:10px;font-weight:700;cursor:pointer;font-size:13px;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- New Joiners Reminder Modal -->
 <div id="newJoinerReminderModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9500;justify-content:center;align-items:center;backdrop-filter:blur(6px);">
     <div style="background:linear-gradient(145deg,#0f172a,#1e293b);border:2px solid rgba(99,102,241,0.5);border-radius:24px;width:90%;max-width:520px;padding:36px 32px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,0.7),0 0 50px rgba(99,102,241,0.2);animation:awardAppear 0.5s cubic-bezier(0.34,1.56,0.64,1);">
@@ -748,19 +709,28 @@
     let loggedInUser = {};
     let dailyTargetPercentage = 8;
     let noJoinerMembersCache = [];
+    let fastStartMembersCache = [];
 
-    // ===== STORAGE KEY CONSTANTS — Saravanan DUCD Team =====
-    const STORAGE_KEY_DATA     = 'nfvt_ucd_v2';
-    const STORAGE_KEY_TRASH    = 'nfvt_trash';
-    const STORAGE_KEY_LOG      = 'nfvt_activity_log';
+    // ===== STORAGE KEY CONSTANTS — NFVT Team =====
+    const STORAGE_KEY_DATA  = 'nfvt_ucd_v2';
+    const STORAGE_KEY_TRASH = 'nfvt_trash';
+    const STORAGE_KEY_LOG   = 'nfvt_activity_log';
+
+    // ── FIX 2: Exact integer PV — no decimals unless entered with decimals ──
+    function exactPV(val) {
+        const n = parseFloat(val) || 0;
+        return Math.round(n * 100) / 100; // keeps exact value, trims floating noise
+    }
+    function fmtPV(val) {
+        const n = exactPV(val);
+        return Number.isInteger(n) ? String(n) : n.toFixed(2).replace(/\.?0+$/, '');
+    }
 
     function getBusinessMonthRange(date) {
         const d = date || new Date();
         let startYear = d.getFullYear(), startMonth = d.getMonth();
         const monthStart = new Date(startYear, startMonth, 2);
-        if (d.getDate() === 1) {
-            monthStart.setMonth(monthStart.getMonth() - 1);
-        }
+        if (d.getDate() === 1) { monthStart.setMonth(monthStart.getMonth() - 1); }
         const monthEnd = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 1);
         return { start: monthStart, end: monthEnd };
     }
@@ -800,22 +770,132 @@
         return daysDiff >= 3 && redFlags >= 3;
     }
 
+    // ── FAST START 8% LOGIC ──
+    // Rule: Total PV (selfPV + groupPV) >= 300 → 8% Fast Start achieved
+    // OR if level is already Silver Director / Gold / Star / Diamond / Crown / UCD → auto-achieved (already at 8%+)
+    const FAST_START_LEVELS = ['silver director','gold director','star director','diamond director','crown director','ucd'];
+    function isAlreadyAt8Percent(level) {
+        if (!level) return false;
+        return FAST_START_LEVELS.some(l => level.toLowerCase().includes(l));
+    }
+    function getFastStartStatus(selfPV, groupPV, level) {
+        if (isAlreadyAt8Percent(level)) {
+            return { achieved: true, target: 300, shortfall: 0, reason: 'level' };
+        }
+        const totalPV = exactPV((parseFloat(selfPV)||0) + (parseFloat(groupPV)||0));
+        const target = 300;
+        const achieved = totalPV >= target;
+        const shortfall = achieved ? 0 : exactPV(target - totalPV);
+        return { achieved, target, shortfall, reason: achieved ? 'pv' : 'shortfall', totalPV };
+    }
+
+    function updateFastStartBanner() {
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
+        const achieved = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
+        const needPush = entries.filter(e => !getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
+        document.getElementById('fsAchievedCount').textContent = achieved;
+        document.getElementById('fsShortfallCount').textContent = needPush;
+        document.getElementById('fsTotalCount').textContent = entries.length;
+        // Pulse border if many need push
+        const banner = document.getElementById('fastStartBanner');
+        if (needPush > achieved) {
+            banner.style.borderColor = 'rgba(248,113,113,0.7)';
+            banner.style.boxShadow = '0 8px 30px rgba(0,0,0,0.4), 0 0 25px rgba(239,68,68,0.25)';
+        } else {
+            banner.style.borderColor = 'rgba(255,215,0,0.5)';
+            banner.style.boxShadow = '0 8px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,215,0,0.15)';
+        }
+    }
+
+    function showFastStartModal() {
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
+        fastStartMembersCache = entries.filter(e => !getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved);
+        const achieved = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved);
+        const el = document.getElementById('fastStartModalContent');
+
+        let html = '';
+        if (fastStartMembersCache.length > 0) {
+            html += `<div style="font-size:12px;font-weight:800;color:#f87171;margin-bottom:10px;letter-spacing:1px;">🚨 NEED PUSH — ${fastStartMembersCache.length} members below 300 Total PV</div>`;
+            fastStartMembersCache.forEach(m => {
+                const fs = getFastStartStatus(m.selfPV, m.groupPV, m.level);
+                const tpv = exactPV((m.selfPV||0)+(m.groupPV||0));
+                html += `<div class="fs-member-row">
+                    <div>
+                        <div class="fs-member-name">${m.name}</div>
+                        <div style="font-size:11px;color:rgba(255,255,255,0.5);">${m.distId} · Self: <strong style="color:#ffd700;">${fmtPV(m.selfPV)}</strong> + Group: <strong style="color:#93c5fd;">${fmtPV(m.groupPV)}</strong> = Total: <strong style="color:#f87171;">${fmtPV(tpv)}</strong> PV</div>
+                    </div>
+                    <span class="fs-shortfall-badge">⚠️ Need ${fmtPV(fs.shortfall)} more</span>
+                </div>`;
+            });
+        }
+
+        if (achieved.length > 0) {
+            html += `<div style="font-size:12px;font-weight:800;color:#6ee7b7;margin:14px 0 10px;letter-spacing:1px;">✅ ACHIEVED 8% — ${achieved.length} members</div>`;
+            achieved.forEach(m => {
+                const fs = getFastStartStatus(m.selfPV, m.groupPV, m.level);
+                const tpv = exactPV((m.selfPV||0)+(m.groupPV||0));
+                const reasonLabel = fs.reason === 'level'
+                    ? `<span style="background:#7c3aed;color:white;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:800;">👑 ${m.level}</span>`
+                    : `<span style="background:#059669;color:white;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:800;">Total ${fmtPV(tpv)} PV</span>`;
+                html += `<div class="fs-member-row">
+                    <div>
+                        <div class="fs-member-name">${m.name}</div>
+                        <div style="font-size:11px;color:rgba(255,255,255,0.5);">${m.distId} ${reasonLabel}</div>
+                    </div>
+                    <span class="fs-achieved-badge">⚡ 8% ✓</span>
+                </div>`;
+            });
+        }
+
+        if (entries.length === 0) {
+            html = '<div style="color:rgba(255,255,255,0.4);text-align:center;padding:20px;">No members added yet.</div>';
+        }
+
+        el.innerHTML = html;
+        document.getElementById('fastStartModal').style.display = 'flex';
+    }
+
+    function closeFastStartModal() { document.getElementById('fastStartModal').style.display = 'none'; }
+
+    function sendFastStartWAReminders() {
+        if (fastStartMembersCache.length === 0) { alert('All members have achieved Fast Start 8%!'); return; }
+        fastStartMembersCache.forEach((member, index) => {
+            const fs = getFastStartStatus(member.selfPV, member.groupPV, member.level);
+            const tpv = exactPV((member.selfPV||0)+(member.groupPV||0));
+            const waMessage = currentLanguage === 'en'
+                ? `Hello ${member.name}! 👋\n\n⚡ *FAST START 8% REMINDER — NFVT Team*\n\n🎯 Target: *Total PV ≥ 300* this month to unlock *8% Fast Start Bonus!*\n\n📊 Self PV: *${fmtPV(member.selfPV)}* + Group PV: *${fmtPV(member.groupPV)}* = Total: *${fmtPV(tpv)} PV*\n⚠️ Still Need: *${fmtPV(fs.shortfall)} PV*\n\n🔥 *Why reach 300 Total PV?*\n✅ Unlock 8% Fast Start Bonus\n✅ Boost your monthly income\n✅ Build a strong foundation for rank upgrade\n\n💪 Just *${fmtPV(fs.shortfall)} more PV* — you can do it!\n\n🌟 NFVT Team — Together we grow!`
+                : `வணக்கம் ${member.name}! 👋\n\n⚡ *FAST START 8% நினைவூட்டல் — NFVT Team*\n\n🎯 இலக்கு: மொத்த PV *300* அடைந்து *8% Fast Start போனஸ்* பெறுங்கள்!\n\n📊 Self PV: *${fmtPV(member.selfPV)}* + Group PV: *${fmtPV(member.groupPV)}* = மொத்தம்: *${fmtPV(tpv)} PV*\n⚠️ இன்னும் தேவை: *${fmtPV(fs.shortfall)} PV*\n\n💪 *${fmtPV(fs.shortfall)} PV மட்டுமே!* நீங்கள் செய்யலாம்!\n\n🌟 NFVT Team — ஒன்றாக வளருவோம்!`;
+            setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
+        });
+        closeFastStartModal();
+    }
+
+    // Desktop notification for Fast Start
+    function sendFastStartDesktopReminder() {
+        const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
+        const needPush = entries.filter(e => !getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved);
+        if (needPush.length === 0) return;
+        const lastNotif = localStorage.getItem('lastFastStartDesktopNotif');
+        const todayStr = new Date().toDateString();
+        if (lastNotif === todayStr) return;
+        if ('Notification' in window && Notification.permission === 'granted') {
+            new Notification('⚡ Fast Start 8% Reminder — NFVT', {
+                body: `${needPush.length} members need ${300} PV push for 8% Fast Start bonus!`,
+                icon: 'https://i.postimg.cc/9rn4BN6W/NFVT-Logo.jpg'
+            });
+            localStorage.setItem('lastFastStartDesktopNotif', todayStr);
+        } else if ('Notification' in window && Notification.permission !== 'denied') {
+            Notification.requestPermission().then(perm => {
+                if (perm === 'granted') { sendFastStartDesktopReminder(); }
+            });
+        }
+    }
+
     const dustStyle = document.createElement('style');
     dustStyle.textContent = `
-        @keyframes dustFloat {
-            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-200px) translateX(20px) scale(0.3); opacity: 0; }
-        }
-        @keyframes awardAppear {
-            from { opacity: 0; transform: scale(0.7) translateY(40px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        @keyframes crownFloat {
-            0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-6px) rotate(5deg); }
-        }
+        @keyframes dustFloat { 0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; } 10% { opacity: 0.8; } 90% { opacity: 0.3; } 100% { transform: translateY(-200px) translateX(20px) scale(0.3); opacity: 0; } }
+        @keyframes awardAppear { from { opacity: 0; transform: scale(0.7) translateY(40px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        @keyframes crownFloat { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-6px) rotate(5deg); } }
     `;
     document.head.appendChild(dustStyle);
 
@@ -857,8 +937,8 @@
     function sendNewJoinerWAReminders() {
         noJoinerMembersCache.forEach((member, index) => {
             const waMessage = currentLanguage === 'en'
-                ? `Hello ${member.name}! 👋\n\n📡 *DAILY TEAM CONFERENCE CALL REMINDER*\n\n🎯 You currently have *NO new joiners* this cycle.\n\n💡 *Key Action: Focus on Daily Conference Calls with your Upline!*\n\n🔥 *Your Daily Routine:*\n✅ Attend team conference call every day\n✅ Follow up on 5+ prospects\n✅ Share the business opportunity\n\n💪 *Remember:* Every big team started with ONE joiner!\n\n🌟 Saravanan DUCD Team - Together we grow!`
-                : `வணக்கம் ${member.name}! 👋\n\n📡 *தினசரி குழு கான்பரன்ஸ் கால் நினைவூட்டல்*\n\n🎯 இந்த சைக்கிளில் உங்களுக்கு *புதிய சேர்க்கை இல்லை*.\n\n💪 *நினைவில் வையுங்கள்:* ஒவ்வொரு பெரிய குழுவும் ஒரு சேர்க்கையிலிருந்து தொடங்கியது!\n\n🌟 Saravanan DUCD Team - ஒன்றாக வளருவோம்!`;
+                ? `Hello ${member.name}! 👋\n\n📡 *DAILY TEAM CONFERENCE CALL REMINDER*\n\n🎯 You currently have *NO new joiners* this cycle.\n\n💡 *Key Action: Focus on Daily Conference Calls with your Upline!*\n\n🔥 *Your Daily Routine:*\n✅ Attend team conference call every day\n✅ Follow up on 5+ prospects\n✅ Share the business opportunity\n\n💪 *Remember:* Every big team started with ONE joiner!\n\n🌟 NFVT Team - Together we grow!`
+                : `வணக்கம் ${member.name}! 👋\n\n📡 *தினசரி குழு கான்பரன்ஸ் கால் நினைவூட்டல்*\n\n🎯 இந்த சைக்கிளில் உங்களுக்கு *புதிய சேர்க்கை இல்லை*.\n\n💪 *நினைவில் வையுங்கள்:* ஒவ்வொரு பெரிய குழுவும் ஒரு சேர்க்கையிலிருந்து தொடங்கியது!\n\n🌟 NFVT Team — ஒன்றாக வளருவோம்!`;
             setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
         });
         closeNewJoinerModal();
@@ -893,8 +973,8 @@
         members.forEach((member, index) => {
             const needed = 100 - member.selfPV;
             const waMessage = currentLanguage === 'en'
-                ? `Hello ${member.name}! 👋\n\n⏰ *100PV CONSISTENCY REMINDER*\n\n📅 Deadline: Before 14th (${daysLeft} days left)\n📊 Your Current Self PV: ${member.selfPV}\n🎯 Target: 100 PV\n⚠️ Remaining: *${needed} PV*\n\n🎁 Complete 100 PV consistency and get *₹2500* voucher!\n\n💪 Complete your ${needed} PV before 14th!\n\n🌟 Saravanan DUCD Team - Success is yours!`
-                : `வணக்கம் ${member.name}! 👋\n\n⏰ *100PV தொடர்ச்சி நினைவூட்டல்*\n\n${needed} PV மீதம்! 14க்குள் முடிக்கவும்!\n\n🌟 Saravanan DUCD Team!`;
+                ? `Hello ${member.name}! 👋\n\n⏰ *100PV CONSISTENCY REMINDER*\n\n📅 Deadline: Before 14th (${daysLeft} days left)\n📊 Your Current Self PV: ${fmtPV(member.selfPV)}\n🎯 Target: 100 PV\n⚠️ Remaining: *${fmtPV(needed)} PV*\n\n🎁 Complete 100 PV consistency and get *₹2500* voucher!\n\n💪 NFVT Team - Success is yours!`
+                : `வணக்கம் ${member.name}! 👋\n\n⏰ *100PV தொடர்ச்சி நினைவூட்டல்*\n\n${fmtPV(needed)} PV மீதம்! 14க்குள் முடிக்கவும்!\n\n🌟 NFVT Team!`;
             setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
         });
     }
@@ -923,8 +1003,8 @@
         members.forEach((member, index) => {
             const { target, shortfall } = getGroupPVStatus(member.groupPV, member.level);
             const waMessage = currentLanguage === 'en'
-                ? `Hello ${member.name}! 👋\n\n⚠️ *Group PV (PGPV) IMPROVEMENT NEEDED*\n\n📊 Your Current Group PV (PGPV): ${member.groupPV}\n🎯 Target for ${member.level}: ${target} PV\n📈 Need to Improve: *${shortfall} PV*\n\n💡 Focus on team building & help your downlines!\n\n💪 Saravanan DUCD Team - Together we grow!`
-                : `வணக்கம் ${member.name}! 👋\n\n⚠️ குழு PV ${member.groupPV} - இலக்கு: ${target}\n${shortfall} PV தேவை!\n\n🌟 Saravanan DUCD Team!`;
+                ? `Hello ${member.name}! 👋\n\n⚠️ *Group PV (PGPV) IMPROVEMENT NEEDED*\n\n📊 Your Current Group PV (PGPV): ${fmtPV(member.groupPV)}\n🎯 Target for ${member.level}: ${target} PV\n📈 Need to Improve: *${fmtPV(shortfall)} PV*\n\n💡 Focus on team building & help your downlines!\n\n💪 NFVT Team - Together we grow!`
+                : `வணக்கம் ${member.name}! 👋\n\n⚠️ குழு PV ${fmtPV(member.groupPV)} - இலக்கு: ${target}\n${fmtPV(shortfall)} PV தேவை!\n\n🌟 NFVT Team!`;
             setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
         });
     }
@@ -958,8 +1038,8 @@
         members.forEach((member, index) => {
             const needed = 30 - member.selfPV;
             const waMessage = currentLanguage === 'en'
-                ? `Hello ${member.name}! 👋\n\n🚨 *URGENT - ID ACTIVATION ALERT*\n\n⚠️ Your ID will become INACTIVE!\n📊 Self PV: ${member.selfPV} | Need: *${needed} PV*\n⏰ Only *${daysLeft} days* left!\n\n📞 Contact your upline NOW!\n\n🌟 Saravanan DUCD Team - We support you!`
-                : `வணக்கம் ${member.name}! 👋\n\n🚨 ID செயல்படுத்தல்!\nPV: ${member.selfPV} - தேவை: ${needed}\n⏰ ${daysLeft} நாட்கள்!\n\n🌟 Saravanan DUCD Team!`;
+                ? `Hello ${member.name}! 👋\n\n🚨 *URGENT - ID ACTIVATION ALERT*\n\n⚠️ Your ID will become INACTIVE!\n📊 Self PV: ${fmtPV(member.selfPV)} | Need: *${fmtPV(needed)} PV*\n⏰ Only *${daysLeft} days* left!\n\n📞 Contact your upline NOW!\n\n🌟 NFVT Team - We support you!`
+                : `வணக்கம் ${member.name}! 👋\n\n🚨 ID செயல்படுத்தல்!\nPV: ${fmtPV(member.selfPV)} - தேவை: ${fmtPV(needed)}\n⏰ ${daysLeft} நாட்கள்!\n\n🌟 NFVT Team!`;
             setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
         });
     }
@@ -983,12 +1063,12 @@
     }
 
     function showMeetingReminder(time, members) {
-        const message = currentLanguage === 'en' 
+        const message = currentLanguage === 'en'
             ? `⏰ Meeting Alert!\n\nThe ${time} meeting is starting in 10 minutes.\n${members.length} members haven't attended recent meetings.`
             : `⏰ கூட்டம் எச்சரிக்கை!\n\n${time} கூட்டம் 10 நிமிடங்களில்!\n${members.length} உறுப்பினர்கள் கலந்துகொள்ளவில்லை.`;
         if (confirm(message + '\n\nSend WhatsApp reminders?')) {
             members.forEach((member, index) => {
-                const waMessage = `Hello ${member.name}! 👋\n\n⏰ Meeting Reminder!\nOur team meeting starts at ${time} (10 minutes).\n💪 See you there!`;
+                const waMessage = `Hello ${member.name}! 👋\n\n⏰ Meeting Reminder — NFVT Team\nOur team meeting starts at ${time} (10 minutes).\n💪 See you there!`;
                 setTimeout(() => { window.open(`https://wa.me/91${member.mobile}?text=${encodeURIComponent(waMessage)}`, '_blank'); }, index * 2000);
             });
         }
@@ -1053,6 +1133,11 @@
         checkLowGroupPV();
         checkInactiveIDs();
         setTimeout(checkNewJoiners, 2000);
+        // Fast Start desktop notification
+        if ('Notification' in window) {
+            Notification.requestPermission().then(perm => { if (perm === 'granted') sendFastStartDesktopReminder(); });
+        }
+        setTimeout(sendFastStartDesktopReminder, 3000);
         setInterval(checkMeetingTime, 60000);
         setInterval(() => { check100PVReminder(); checkLowGroupPV(); checkInactiveIDs(); checkNewJoiners(); }, 3600000);
     }
@@ -1062,20 +1147,20 @@
         const mobile = document.getElementById('mobileNo').value;
         const distId = document.getElementById('distId').value;
         const level = document.getElementById('memberLevel').value;
-        const selfPV = parseFloat(document.getElementById('selfPV').value) || 0;
-        const groupPV = parseFloat(document.getElementById('groupPV').value) || 0;
-        const totalPV = selfPV + groupPV;
+        const selfPV = exactPV(document.getElementById('selfPV').value);
+        const groupPV = exactPV(document.getElementById('groupPV').value);
+        const totalPV = exactPV(selfPV + groupPV);
         const date = document.getElementById('followUpDate').value;
         const consistency = document.getElementById('consistency').value;
         const meeting = document.getElementById('meeting').value;
         const newJoiners = document.getElementById('newJoiners').value;
-        if (!name || distId.length < 8 || !mobile) { 
-            alert(currentLanguage === 'en' ? "⚠️ Please fill Name, ID (8 digits), and Mobile!" : "⚠️ பெயர், ID (8 இலக்கங்கள்) மற்றும் மொபைல் நிரப்பவும்!"); 
-            return; 
+        if (!name || distId.length < 8 || !mobile) {
+            alert(currentLanguage === 'en' ? "⚠️ Please fill Name, ID (8 digits), and Mobile!" : "⚠️ பெயர், ID (8 இலக்கங்கள்) மற்றும் மொபைல் நிரப்பவும்!");
+            return;
         }
         const entry = { name, mobile, distId, level, selfPV, groupPV, totalPV, date, consistency, meeting, newJoiners, id: Date.now(), timestamp: new Date().toISOString(), addedBy: loggedInUser.id };
         let entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
-        entries.unshift(entry); 
+        entries.unshift(entry);
         localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(entries));
         updateActivityLog('add', entry);
         displayData();
@@ -1117,9 +1202,9 @@
             const oldEntry = {...entries[idx]};
             entries[idx].name = document.getElementById('editName').value;
             entries[idx].mobile = document.getElementById('editMobile').value;
-            entries[idx].selfPV = parseFloat(document.getElementById('editSelfPV').value) || 0;
-            entries[idx].groupPV = parseFloat(document.getElementById('editGroupPV').value) || 0;
-            entries[idx].totalPV = entries[idx].selfPV + entries[idx].groupPV;
+            entries[idx].selfPV = exactPV(document.getElementById('editSelfPV').value);
+            entries[idx].groupPV = exactPV(document.getElementById('editGroupPV').value);
+            entries[idx].totalPV = exactPV(entries[idx].selfPV + entries[idx].groupPV);
             entries[idx].date = document.getElementById('editDate').value;
             entries[idx].consistency = document.getElementById('editConsistency').value;
             entries[idx].meeting = document.getElementById('editMeeting').value;
@@ -1143,7 +1228,7 @@
         let totalTeamPV = 0;
         let alertCount = 0;
         entries.forEach(item => {
-            totalTeamPV += item.totalPV;
+            totalTeamPV = exactPV(totalTeamPV + item.totalPV);
             let rowClass = '';
             let statusBadges = '';
             const longRed = isLongRedAlert(item);
@@ -1193,32 +1278,48 @@
                 statusBadges += `<div class="alert-callout" style="display:inline-block;background:#dc2626;color:white;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:900;margin-top:4px;animation:flashText 1s ease-in-out infinite;">📞 CALL & FOLLOW UP NOW!</div>`;
             }
 
+            // Fast Start badge in status
+            const fs = getFastStartStatus(item.selfPV, item.groupPV, item.level);
+            const fsTotalPV = exactPV((item.selfPV||0)+(item.groupPV||0));
+            const fsBadge = fs.achieved
+                ? (fs.reason === 'level'
+                    ? '<span style="background:#7c3aed;color:white;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">⚡ 8% ✓ (Level)</span>'
+                    : '<span style="background:#059669;color:white;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">⚡ 8% ✓</span>')
+                : `<span style="background:#1e293b;color:#ffd700;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">⚡ Need ${fmtPV(fs.shortfall)} (${fmtPV(fsTotalPV)}/300)</span>`;
+
             let waMessage = currentLanguage === 'en' ? `Hello ${item.name}! 👋\n\n` : `வணக்கம் ${item.name}! 👋\n\n`;
             if (item.selfPV < 30) {
                 waMessage += currentLanguage === 'en'
-                    ? `🚨 *URGENT - ID ACTIVATION ALERT*\n\n📊 Self PV: ${item.selfPV} | Need: *${30-item.selfPV} PV*\n⏰ Complete before month end!\n📞 Contact upline NOW!\n\n`
-                    : `🚨 ID செயல்படுத்தல்!\nPV: ${item.selfPV} - தேவை: ${30-item.selfPV}\n\n`;
+                    ? `🚨 *URGENT - ID ACTIVATION ALERT*\n\n📊 Self PV: ${fmtPV(item.selfPV)} | Need: *${fmtPV(30-item.selfPV)} PV*\n⏰ Complete before month end!\n📞 Contact upline NOW!\n\n`
+                    : `🚨 ID செயல்படுத்தல்!\nPV: ${fmtPV(item.selfPV)} - தேவை: ${fmtPV(30-item.selfPV)}\n\n`;
             } else if (item.selfPV < 100) {
-                const needed = 100 - item.selfPV;
+                const needed = exactPV(100 - item.selfPV);
                 const today2 = new Date(); const dayOfMonth = today2.getDate();
                 if (dayOfMonth >= 2 && dayOfMonth <= 14) {
                     const daysLeft = 14 - dayOfMonth;
                     waMessage += currentLanguage === 'en'
-                        ? `⏰ *100PV CONSISTENCY REMINDER*\n\n📅 Deadline: Before 14th (${daysLeft} days left)\n📊 Self PV: ${item.selfPV} | Remaining: *${needed} PV*\n🎁 Complete 100 PV and get *₹2500* voucher!\n\n`
-                        : `⏰ 100PV நினைவூட்டல் - ${needed} PV மீதம்!\n\n`;
+                        ? `⏰ *100PV CONSISTENCY REMINDER*\n\n📅 Deadline: Before 14th (${daysLeft} days left)\n📊 Self PV: ${fmtPV(item.selfPV)} | Remaining: *${fmtPV(needed)} PV*\n🎁 Complete 100 PV and get *₹2500* voucher!\n\n`
+                        : `⏰ 100PV நினைவூட்டல் - ${fmtPV(needed)} PV மீதம்!\n\n`;
                 } else {
-                    waMessage += currentLanguage === 'en' ? `📊 Self PV: ${item.selfPV} - Push to 100!\n\n` : `📊 PV: ${item.selfPV}\n\n`;
+                    waMessage += currentLanguage === 'en' ? `📊 Self PV: ${fmtPV(item.selfPV)} - Push to 100!\n\n` : `📊 PV: ${fmtPV(item.selfPV)}\n\n`;
                 }
+            }
+            // Fast start in WA
+            const itemTotalPV = exactPV((item.selfPV||0)+(item.groupPV||0));
+            if (!fs.achieved) {
+                waMessage += currentLanguage === 'en'
+                    ? `⚡ *FAST START 8% REMINDER*\nSelf PV: ${fmtPV(item.selfPV)} + Group PV: ${fmtPV(item.groupPV)} = *${fmtPV(itemTotalPV)} Total PV*\nNeed *${fmtPV(fs.shortfall)} more PV* to reach 300 and unlock 8% bonus!\n\n`
+                    : `⚡ *Fast Start 8%* - மொத்தம் ${fmtPV(itemTotalPV)} PV, இன்னும் ${fmtPV(fs.shortfall)} PV தேவை!\n\n`;
             }
             if (!gvStatus.met) {
                 waMessage += currentLanguage === 'en'
-                    ? `⚠️ *Group PV IMPROVEMENT NEEDED*\nLevel: ${item.level} | Target: ${gvStatus.target} PV\nCurrent: ${item.groupPV} | Need: *${gvStatus.shortfall} PV*\n\n`
-                    : `⚠️ குழு PV ${item.groupPV} - இலக்கு: ${gvStatus.target}\n\n`;
+                    ? `⚠️ *Group PV IMPROVEMENT NEEDED*\nLevel: ${item.level} | Target: ${gvStatus.target} PV\nCurrent: ${fmtPV(item.groupPV)} | Need: *${fmtPV(gvStatus.shortfall)} PV*\n\n`
+                    : `⚠️ குழு PV ${fmtPV(item.groupPV)} - இலக்கு: ${gvStatus.target}\n\n`;
             }
             if (item.consistency === "No") { waMessage += currentLanguage === 'en' ? `⚠️ Maintain 100PV consistency!\n\n` : `⚠️ 100PV தொடர்ச்சி!\n\n`; }
             if (item.meeting === "No") { waMessage += currentLanguage === 'en' ? `🔔 Please attend daily meetings!\n\n` : `🔔 கூட்டத்தில் கலந்துகொள்ளுங்கள்!\n\n`; }
             if (!item.newJoiners || item.newJoiners === 'No') {
-                waMessage += currentLanguage === 'en' 
+                waMessage += currentLanguage === 'en'
                     ? `📡 *FOCUS ON DAILY CONFERENCE CALLS WITH UPLINE!*\nBring in new joiners this week!\n\n`
                     : `📡 Upline கான்பரன்ஸ் கால்! புதிய சேர்க்கை!\n\n`;
             }
@@ -1228,21 +1329,22 @@
                     : `🚨 *அவசர Follow-up தேவை!*\nபல நாட்களாக இலக்கு நிலுவையில் உள்ளது. இப்போதே Upline-ஐ அழைக்கவும்!\n\n`;
             }
             waMessage += currentLanguage === 'en'
-                ? `📈 Stats: Self PV: ${item.selfPV} | Group PV: ${item.groupPV} | Total: ${item.totalPV}\n\n💪 Saravanan DUCD Team - Success is yours!`
-                : `📈 PV: ${item.selfPV} | குழு: ${item.groupPV} | மொத்தம்: ${item.totalPV}\n\n💪 Saravanan DUCD Team!`;
+                ? `📈 Stats: Self PV: ${fmtPV(item.selfPV)} | Group PV: ${fmtPV(item.groupPV)} | Total: ${fmtPV(item.totalPV)}\n\n💪 NFVT Team - Success is yours!`
+                : `📈 PV: ${fmtPV(item.selfPV)} | குழு: ${fmtPV(item.groupPV)} | மொத்தம்: ${fmtPV(item.totalPV)}\n\n💪 NFVT Team!`;
             const waLink = `https://wa.me/91${item.mobile}?text=${encodeURIComponent(waMessage)}`;
 
             tableBody.innerHTML += `<tr class="${rowClass}">
-                <td style="min-width:140px;">${statusBadges||'<span style="color:#10b981;font-weight:800;font-size:13px;">✅ Good</span>'}</td>
+                <td style="min-width:160px;">${statusBadges||'<span style="color:#10b981;font-weight:800;font-size:13px;">✅ Good</span>'}</td>
                 <td><strong style="color:#1e293b;">${item.name}</strong><br><small style="color:#64748b;">${item.distId}</small></td>
                 <td><strong>${item.mobile}</strong></td>
                 <td><span style="background:#ddd6fe;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#5b21b6;">${item.level}</span></td>
-                <td><strong style="color:${item.selfPV>=100?'#059669':(item.selfPV>=30?'#f59e0b':'#dc2626')};">${item.selfPV}</strong></td>
+                <td><strong style="color:${item.selfPV>=100?'#059669':(item.selfPV>=30?'#f59e0b':'#dc2626')};">${fmtPV(item.selfPV)}</strong></td>
                 <td>
-                    <strong style="color:${gvStatus.met?'#059669':'#f59e0b'};">${item.groupPV}</strong>
+                    <strong style="color:${gvStatus.met?'#059669':'#f59e0b'};">${fmtPV(item.groupPV)}</strong>
                     <br><small style="color:#94a3b8;font-size:10px;">Target: ${gvStatus.target}</small>
                 </td>
-                <td><strong style="font-size:15px;color:#1e293b;">${item.totalPV}</strong></td>
+                <td><strong style="font-size:15px;color:#1e293b;">${fmtPV(item.totalPV)}</strong></td>
+                <td>${fsBadge}</td>
                 <td>${item.date}</td>
                 <td><span style="background:${item.consistency==='Yes'?'#dcfce7':'#fee2e2'};color:${item.consistency==='Yes'?'#166534':'#991b1b'};padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700;">${item.consistency}</span></td>
                 <td><span style="background:${item.meeting==='Yes'?'#dbeafe':'#fef3c7'};color:${item.meeting==='Yes'?'#1e40af':'#92400e'};padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700;">${item.meeting}</span></td>
@@ -1257,10 +1359,12 @@
 
         const statsEl = document.getElementById('totalStats');
         const statsText = currentLanguage === 'en'
-            ? `Total Team PV: ${totalTeamPV.toFixed(2)} | Members: ${entries.length} | 🔔 Alerts: ${alertCount}`
-            : `மொத்த குழு PV: ${totalTeamPV.toFixed(2)} | உறுப்பினர்கள்: ${entries.length} | 🔔 எச்சரிக்கைகள்: ${alertCount}`;
+            ? `Total Team PV: ${fmtPV(totalTeamPV)} | Members: ${entries.length} | 🔔 Alerts: ${alertCount}`
+            : `மொத்த குழு PV: ${fmtPV(totalTeamPV)} | உறுப்பினர்கள்: ${entries.length} | 🔔 எச்சரிக்கைகள்: ${alertCount}`;
         statsEl.querySelector('.lang-text').textContent = statsText;
         if (alertCount > 0) { statsEl.classList.add('has-alerts'); } else { statsEl.classList.remove('has-alerts'); }
+
+        updateFastStartBanner();
     }
 
     function deleteEntry(id) {
@@ -1295,6 +1399,8 @@
         const noJoiners    = entries.filter(e => !e.newJoiners || e.newJoiners === 'No').length;
         const goodGroupPV  = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
         const lowGroupPV   = entries.filter(e => !getGroupPVStatus(e.groupPV, e.level).met).length;
+        const fastAchieved = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
+        const fastNeed     = entries.filter(e => !getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
 
         const pct = (n) => total > 0 ? Math.round((n/total)*100) : 0;
         const grade = (p) => {
@@ -1305,8 +1411,8 @@
         const bar = (pct, color) => `<div style="background:#e2e8f0;border-radius:99px;height:10px;margin:5px 0 0 0;overflow:hidden;"><div style="width:${pct}%;height:100%;background:${color};border-radius:99px;"></div></div>`;
 
         const overallScore = Math.round((pct(active)*0.2 + pct(hit100)*0.2 + pct(consistency)*0.2 + pct(meetingYes)*0.15 + pct(withJoiners)*0.15 + pct(goodGroupPV)*0.1));
-        const overallGrade = overallScore >= 75 ? { emoji:'🏆', label:'Excellent', color:'#059669' } 
-                           : overallScore >= 50 ? { emoji:'⚡', label:'Average', color:'#b45309' } 
+        const overallGrade = overallScore >= 75 ? { emoji:'🏆', label:'Excellent', color:'#059669' }
+                           : overallScore >= 50 ? { emoji:'⚡', label:'Average', color:'#b45309' }
                            : { emoji:'🚨', label:'Needs Improvement', color:'#dc2626' };
 
         const params = [
@@ -1316,12 +1422,13 @@
             { name: 'Active IDs (Self PV ≥ 30)', pct: pct(active), bad: inactive, advice: 'Any ID below 30 PV will go inactive. Urgent action needed before month end.' },
             { name: 'Self PV ≥ 100', pct: pct(hit100), bad: low100, advice: 'Members with 100PV earn consistency voucher. Encourage product usage from family first.' },
             { name: 'Group PV Target Met (Level-wise)', pct: pct(goodGroupPV), bad: lowGroupPV, advice: 'Bronze Dir: 2600 | Silver Dir: 2100 | Gold Dir: 1800 | Others: 2600 PV target.' },
+            { name: '⚡ Fast Start 8% (Total PV ≥ 300 OR Level)', pct: pct(fastAchieved), bad: fastNeed, advice: 'Total PV (Self+Group) >= 300 OR Silver Dir+ = 8% Fast Start. Push team buying to hit 300 total PV!' },
         ].sort((a,b) => a.pct - b.pct);
 
         const worstParam = params[0];
         const focusParagraph = `
         <div style="background:linear-gradient(135deg,#1e293b,#334155);color:white;border-radius:16px;padding:20px;margin-bottom:20px;">
-            <div style="font-size:16px;font-weight:900;margin-bottom:10px;">🔍 Team Analysis Summary</div>
+            <div style="font-size:16px;font-weight:900;margin-bottom:10px;">🔍 NFVT Team Analysis Summary</div>
             <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.85);">
                 Out of <strong style="color:#fbbf24;">${total} members</strong>, team scored <strong style="color:${overallGrade.color};font-size:16px;"> ${overallScore}%</strong> ${overallGrade.emoji} — <em>${overallGrade.label}</em>.<br><br>
                 ${params.filter(p=>p.pct<50).length > 0 ? `<strong style="color:#f87171;">⚠️ Critical:</strong> ${params.filter(p=>p.pct<50).map(p=>`<span style="background:rgba(239,68,68,0.2);padding:2px 8px;border-radius:6px;">${p.name} (${p.pct}%)</span>`).join(' · ')}<br><br>` : `<strong style="color:#6ee7b7;">✅ All parameters above 50%!</strong><br><br>`}
@@ -1346,7 +1453,7 @@
         }).join('');
 
         const topMembers = [...entries].sort((a,b)=>b.totalPV-a.totalPV).slice(0,3);
-        const topList = topMembers.map((m,i)=>`<div style="padding:6px 0;border-bottom:1px solid #f1f5f9;font-size:13px;"><strong>${['🥇','🥈','🥉'][i]} ${m.name}</strong> <span style="color:#64748b;">(${m.distId})</span> — Total PV: <strong style="color:#059669;">${m.totalPV}</strong></div>`).join('');
+        const topList = topMembers.map((m,i)=>`<div style="padding:6px 0;border-bottom:1px solid #f1f5f9;font-size:13px;"><strong>${['🥇','🥈','🥉'][i]} ${m.name}</strong> <span style="color:#64748b;">(${m.distId})</span> — Total PV: <strong style="color:#059669;">${fmtPV(m.totalPV)}</strong></div>`).join('');
         const needsHelp = entries.filter(e => e.selfPV < 100 || e.consistency === 'No' || e.meeting === 'No' || !e.newJoiners || e.newJoiners === 'No').slice(0,5);
         const needsList = needsHelp.map(m=>{
             const issues = [];
@@ -1355,6 +1462,7 @@
             if(m.meeting==='No') issues.push('🔔 Missed Meeting');
             if(!m.newJoiners||m.newJoiners==='No') issues.push('👥 No Joiner');
             if(!getGroupPVStatus(m.groupPV,m.level).met) issues.push('⚠️ Low Group PV');
+            if(!getFastStartStatus(m.selfPV, m.groupPV, m.level).achieved) issues.push('⚡ No Fast Start');
             return `<div style="padding:6px 0;border-bottom:1px solid #fee2e2;font-size:12px;"><strong>${m.name}</strong> <span style="color:#94a3b8;">(${m.distId})</span><br><span style="color:#dc2626;">${issues.join(' · ')}</span></div>`;
         }).join('');
 
@@ -1373,6 +1481,7 @@
             </div>`;
     }
 
+    // FIX 4: Reports modal title = "NFVT Performance Report" (daily-based)
     function showReports() {
         const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const now = new Date();
@@ -1380,10 +1489,10 @@
         const reportHTML = `
         <div style="text-align:left;">
             <div style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;border-radius:14px;padding:18px;margin-bottom:20px;text-align:center;">
-                <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;">📊 Saravanan DUCD Team Performance Report</div>
+                <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;">📊 NFVT Performance Report</div>
                 <div style="font-size:12px;opacity:0.85;margin-top:4px;">${months[now.getMonth()]} ${now.getFullYear()} · By ${loggedInUser.name}</div>
-                <div style="font-size:13px;margin-top:8px;">Total Members: <strong>${entries.length}</strong> · Team PV: <strong>${entries.reduce((s,e)=>s+e.totalPV,0).toFixed(1)}</strong></div>
-                <div style="font-size:11px;margin-top:4px;opacity:0.8;">Business Month: 2nd of each month to 1st of next</div>
+                <div style="font-size:13px;margin-top:8px;">Total Members: <strong>${entries.length}</strong> · Team PV: <strong>${fmtPV(entries.reduce((s,e)=>exactPV(s+e.totalPV),0))}</strong></div>
+                <div style="font-size:11px;margin-top:4px;opacity:0.8;">Daily-updated report · Business Month: 2nd to 1st</div>
             </div>
             ${buildReportAnalysis(entries)}
         </div>`;
@@ -1393,12 +1502,12 @@
 
     function closeReportsModal() { document.getElementById('reportsModal').style.display = 'none'; }
 
+    // FIX 5: Monthly report title = "NFVT Monthly Performance Report", file = nfvt_...
     function downloadMonthlyReport() {
         if (currentLanguage === 'ta') {
             downloadMonthlyReport_Tamil();
             return;
         }
-        const isTa = currentLanguage === 'ta';
         const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const activityLog = JSON.parse(localStorage.getItem(STORAGE_KEY_LOG)) || [];
         const now = new Date();
@@ -1413,12 +1522,12 @@
         doc.setFillColor(30, 41, 59);
         doc.rect(0, 0, 210, 42, 'F');
         doc.setFontSize(15); doc.setTextColor(252, 246, 186); doc.setFont(undefined, 'bold');
-        doc.text('Saravanan DUCD Team Monthly Performance Report', 105, 13, { align: 'center' });
+        doc.text('NFVT Monthly Performance Report', 105, 13, { align: 'center' });
         doc.setFontSize(9); doc.setTextColor(180, 200, 220); doc.setFont(undefined, 'normal');
         doc.text(`Business Month: ${bizLabel}`, 105, 21, { align: 'center' });
         doc.text(`Generated by: ${loggedInUser.name} (ID: ${loggedInUser.id})  ·  ${now.toLocaleDateString()}`, 105, 28, { align: 'center' });
-        const totalPV = entries.reduce((sum,e)=>sum+e.totalPV,0);
-        doc.text(`Total Members: ${entries.length}  |  Team PV: ${totalPV.toFixed(1)}`, 105, 35, { align: 'center' });
+        const totalPV = exactPV(entries.reduce((sum,e)=>exactPV(sum+e.totalPV),0));
+        doc.text(`Total Members: ${entries.length}  |  Team PV: ${fmtPV(totalPV)}`, 105, 35, { align: 'center' });
 
         let y = 48;
 
@@ -1437,9 +1546,7 @@
             const d = new Date(ts);
             const dateStr = d.toISOString().split('T')[0];
             const dDate = new Date(dateStr);
-            if (dDate >= bizStart && dDate <= bizEnd) {
-                uniqueDaysSet.add(dateStr);
-            }
+            if (dDate >= bizStart && dDate <= bizEnd) { uniqueDaysSet.add(dateStr); }
         });
         const uniqueDays = Array.from(uniqueDaysSet).sort();
 
@@ -1460,17 +1567,47 @@
         doc.text(daysWrapped, 14, y);
         y += daysWrapped.length * 4 + 6;
 
-        if (y > 230) { doc.addPage(); y = 20; }
+        // Fast Start section
+        if (y > 220) { doc.addPage(); y = 20; }
+        doc.setFontSize(12); doc.setTextColor(30, 41, 59); doc.setFont(undefined, 'bold');
+        doc.text('⚡ FAST START 8% SUMMARY', 14, y); y += 4;
+        doc.setDrawColor(191, 149, 63); doc.setLineWidth(0.5); doc.line(14, y, 196, y); y += 6;
+        const fsAchieved = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved);
+        const fsNeed = entries.filter(e => !getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved);
+        doc.setFontSize(9); doc.setTextColor(51,65,85); doc.setFont(undefined, 'normal');
+        doc.text(`Rule: Total PV (Self+Group) >= 300, OR Silver Director+ level → 8% Fast Start Bonus.`, 14, y); y += 5;
+        doc.setFillColor(fsAchieved.length > fsNeed.length ? 209 : 254, fsAchieved.length > fsNeed.length ? 250 : 215, fsAchieved.length > fsNeed.length ? 229 : 170);
+        doc.roundedRect(14, y, 182, 12, 2, 2, 'F');
+        doc.setFontSize(10); doc.setTextColor(30,41,59); doc.setFont(undefined, 'bold');
+        doc.text(`Achieved 8%: ${fsAchieved.length} members  |  Need Push (Total PV < 300): ${fsNeed.length} members`, 105, y+8, { align: 'center' });
+        y += 16;
+
+        if (fsNeed.length > 0) {
+            const fsNeedRows = fsNeed.map(e => {
+                const fss = getFastStartStatus(e.selfPV, e.groupPV, e.level);
+                const tpv = exactPV((e.selfPV||0)+(e.groupPV||0));
+                return [e.name, e.distId, fmtPV(e.selfPV), fmtPV(e.groupPV), fmtPV(tpv), `${fmtPV(fss.shortfall)} PV`];
+            });
+            doc.autoTable({
+                head: [['Name', 'ID', 'Self PV', 'Group PV', 'Total PV', 'Need for 8%']],
+                body: fsNeedRows, startY: y,
+                styles: { fontSize: 7.5 },
+                headStyles: { fillColor: [185,28,28], textColor: [255,255,255] },
+                alternateRowStyles: { fillColor: [254,242,242] }
+            });
+            y = doc.lastAutoTable.finalY + 8;
+        }
+
+        if (y > 220) { doc.addPage(); y = 20; }
         doc.setFontSize(12); doc.setTextColor(30, 41, 59); doc.setFont(undefined, 'bold');
         doc.text('LEVEL-WISE GROUP PV (PGPV) ANALYSIS', 14, y); y += 4;
         doc.setDrawColor(191, 149, 63); doc.setLineWidth(0.5); doc.line(14, y, 196, y); y += 6;
-
         doc.setFillColor(248, 250, 252);
         doc.rect(14, y, 182, 16, 'F');
         doc.setFontSize(8); doc.setTextColor(30,41,59); doc.setFont(undefined, 'bold');
         doc.text('PGPV Targets by Level:', 16, y+5);
         doc.setFont(undefined, 'normal');
-        doc.text('Bronze Director: 2600 PV  |  Silver Director: 2100 PV  |  Gold Director: 1800 PV  |  Others (below Bronze): 2600 PV', 16, y+11);
+        doc.text('Bronze Director: 2600 PV  |  Silver Director: 2100 PV  |  Gold Director: 1800 PV  |  Others: 2600 PV', 16, y+11);
         y += 20;
 
         const levelGroups = {};
@@ -1482,20 +1619,17 @@
             else levelGroups[lv].notMet++;
             levelGroups[lv].members.push(e);
         });
-
         const lvRows = Object.entries(levelGroups).map(([lv, data]) => {
             const target = getGroupPVTarget(lv);
             const total2 = data.met + data.notMet;
             const pctMet = total2 > 0 ? Math.round((data.met/total2)*100) : 0;
-            const avgGPV = total2 > 0 ? Math.round(data.members.reduce((s,e)=>s+e.groupPV,0)/total2) : 0;
+            const avgGPV = total2 > 0 ? fmtPV(data.members.reduce((s,e)=>exactPV(s+e.groupPV),0)/total2) : '0';
             return [lv, `${target} PV`, `${data.met}/${total2}`, `${pctMet}%`, `${avgGPV} PV`];
         });
-
         if (y > 220) { doc.addPage(); y = 20; }
         doc.autoTable({
             head: [['Level', 'PGPV Target', 'Met / Total', 'Achievement %', 'Avg Group PV']],
-            body: lvRows,
-            startY: y,
+            body: lvRows, startY: y,
             styles: { fontSize: 8 },
             headStyles: { fillColor: [30,41,59], textColor: [252,246,186] },
             alternateRowStyles: { fillColor: [248,250,252] },
@@ -1517,12 +1651,11 @@
             doc.text(`Members NOT Meeting PGPV Target (${notMetMembers.length} members):`, 14, y); y += 4;
             const notMetRows = notMetMembers.map(e => {
                 const { target, shortfall } = getGroupPVStatus(e.groupPV, e.level);
-                return [e.name, e.distId, e.level, `${e.groupPV}`, `${target}`, `${shortfall}`];
+                return [e.name, e.distId, e.level, fmtPV(e.groupPV), `${target}`, fmtPV(shortfall)];
             });
             doc.autoTable({
                 head: [['Name', 'ID', 'Level', 'Current PGPV', 'Target', 'Shortfall']],
-                body: notMetRows,
-                startY: y,
+                body: notMetRows, startY: y,
                 styles: { fontSize: 7.5 },
                 headStyles: { fillColor: [185,28,28], textColor: [255,255,255] },
                 alternateRowStyles: { fillColor: [254,242,242] }
@@ -1556,13 +1689,15 @@
 
         const rows = entries.map(e=>{
             const gvs = getGroupPVStatus(e.groupPV, e.level);
-            return [e.name, e.distId, e.level, e.selfPV, e.groupPV, `${gvs.target}`, gvs.met?'✓ Met':'✗ Not Met', e.totalPV, e.consistency, e.meeting, e.newJoiners||'No', e.date];
+            const fs = getFastStartStatus(e.selfPV, e.groupPV, e.level);
+            const fsTotalPV = fmtPV(exactPV((e.selfPV||0)+(e.groupPV||0)));
+            const fsCell = fs.achieved ? (fs.reason==='level' ? 'Level OK' : '8% OK') : (fsTotalPV+'/300 Need '+fmtPV(fs.shortfall));
+            return [e.name, e.distId, e.level, fmtPV(e.selfPV), fmtPV(e.groupPV), String(gvs.target), gvs.met?'Met':'Not Met', fmtPV(e.totalPV), fsCell, e.consistency, e.meeting, e.newJoiners||'No', e.date];
         });
 
         doc.autoTable({
-            head: [['Name','ID','Level','Self PV','Group PV','PV Target','Target Met','Total','100PV','Meet','Joiners','Date']],
-            body: rows,
-            startY: y+2,
+            head: [['Name','ID','Level','Self PV','Group PV','PV Target','Target Met','Total','Fast Start','100PV','Meet','Joiners','Date']],
+            body: rows, startY: y+2,
             styles: { fontSize: 6.5 },
             headStyles: { fillColor: [30,41,59], textColor: [252,246,186] },
             alternateRowStyles: { fillColor: [248,250,252] },
@@ -1572,18 +1707,25 @@
                     if (data.column.index === 3) {
                         if (selfPV < 30) { data.cell.styles.fillColor = [254,202,202]; }
                         else if (selfPV < 100) { data.cell.styles.fillColor = [254,215,170]; }
-                        else { data.cell.styles.fillColor = [209,250,229]; }
+                        else if (selfPV >= 300) { data.cell.styles.fillColor = [209,250,229]; }
+                        else { data.cell.styles.fillColor = [220,252,231]; }
                     }
                     if (data.column.index === 6) {
                         const val = rows[data.row.index][6];
                         if (val === '✗ Not Met') data.cell.styles.fillColor = [254,202,202];
                         else data.cell.styles.fillColor = [209,250,229];
                     }
+                    if (data.column.index === 8) {
+                        const val = rows[data.row.index][8];
+                        if (val.startsWith('✓')) data.cell.styles.fillColor = [209,250,229];
+                        else data.cell.styles.fillColor = [254,215,170];
+                    }
                 }
             }
         });
 
-        doc.save(`Saravanan_DUCD_Team_Monthly_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`);
+        // FIX 5: file saved as nfvt_...
+        doc.save(`nfvt_monthly_report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`);
     }
 
     function downloadMonthlyReport_Tamil() {
@@ -1592,7 +1734,7 @@
         const months_ta = ['ஜனவரி','பிப்ரவரி','மார்ச்','ஏப்ரல்','மே','ஜூன்','ஜூலை','ஆகஸ்ட்','செப்டம்பர்','அக்டோபர்','நவம்பர்','டிசம்பர்'];
         const { start: bizStart } = getBusinessMonthRange(now);
         const bizLabel = months_ta[bizStart.getMonth()] + ' ' + bizStart.getFullYear() + ' சுழற்சி (2-1)';
-        const totalPV = entries.reduce((s,e)=>s+e.totalPV,0);
+        const totalPV = exactPV(entries.reduce((s,e)=>exactPV(s+e.totalPV),0));
         const total = entries.length;
         const pct = (n) => total>0?Math.round((n/total)*100):0;
         const active = entries.filter(e=>e.selfPV>=30).length;
@@ -1600,6 +1742,7 @@
         const goodGPV = entries.filter(e=>getGroupPVStatus(e.groupPV,e.level).met).length;
         const meetYes = entries.filter(e=>e.meeting==='Yes').length;
         const joinYes = entries.filter(e=>e.newJoiners==='Yes').length;
+        const fsAchieved = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
         const overall = Math.round((pct(active)*0.2+pct(entries.filter(e=>e.selfPV>=100).length)*0.2+pct(consist)*0.2+pct(meetYes)*0.15+pct(joinYes)*0.15+pct(goodGPV)*0.1));
         const gradeColor = (p) => p>=75?'#059669':p>=50?'#b45309':'#dc2626';
         const gradeText = (p) => p>=75?'நல்லது':p>=50?'சராசரி':'கவனிக்கவும்';
@@ -1611,22 +1754,25 @@
             {label:'கூட்டம் வருகை',pct:pct(meetYes),count:meetYes,bad:total-meetYes},
             {label:'செயலில் உள்ள IDs (PV>=30)',pct:pct(active),count:active,bad:total-active},
             {label:'குழு PV இலக்கு (நிலை வாரியாக)',pct:pct(goodGPV),count:goodGPV,bad:total-goodGPV},
+            {label:'⚡ Fast Start 8% (PV>=300)',pct:pct(fsAchieved),count:fsAchieved,bad:total-fsAchieved},
         ];
         const topMembers = [...entries].sort((a,b)=>b.totalPV-a.totalPV).slice(0,5);
         const needsHelp = entries.filter(e=>e.selfPV<100||e.consistency==='No'||e.meeting==='No'||!e.newJoiners||e.newJoiners==='No').slice(0,8);
 
         const rowsHtml = entries.map(e=>{
             const gvs=getGroupPVStatus(e.groupPV,e.level);
+            const fs=getFastStartStatus(e.selfPV, e.groupPV, e.level);
             const pvC=e.selfPV>=100?'#059669':e.selfPV>=30?'#b45309':'#dc2626';
             return `<tr style="border-bottom:1px solid #e2e8f0;">
                 <td style="padding:5px 6px;font-size:10px;font-weight:700;">${e.name}</td>
                 <td style="padding:5px 6px;font-size:9px;color:#64748b;">${e.distId}</td>
                 <td style="padding:5px 6px;font-size:9px;">${e.level.replace('Director','Dir.')}</td>
-                <td style="padding:5px 6px;font-size:10px;color:${pvC};font-weight:700;">${e.selfPV}</td>
-                <td style="padding:5px 6px;font-size:10px;color:${gvs.met?'#059669':'#b45309'};">${e.groupPV}/${gvs.target}</td>
+                <td style="padding:5px 6px;font-size:10px;color:${pvC};font-weight:700;">${fmtPV(e.selfPV)}</td>
+                <td style="padding:5px 6px;font-size:10px;color:${gvs.met?'#059669':'#b45309'};">${fmtPV(e.groupPV)}/${gvs.target}</td>
                 <td style="padding:5px 6px;font-size:10px;background:${e.consistency==='Yes'?'#dcfce7':'#fee2e2'};text-align:center;">${e.consistency==='Yes'?'✓':'✗'}</td>
                 <td style="padding:5px 6px;font-size:10px;background:${e.meeting==='Yes'?'#dbeafe':'#fef3c7'};text-align:center;">${e.meeting==='Yes'?'✓':'✗'}</td>
                 <td style="padding:5px 6px;font-size:10px;background:${(e.newJoiners||'No')==='Yes'?'#dcfce7':'#f3e8ff'};text-align:center;">${(e.newJoiners||'No')==='Yes'?'✓':'✗'}</td>
+                <td style="padding:5px 6px;font-size:10px;background:${fs.achieved?'#dcfce7':fs.reason==='level'?'#ede9fe':'#fef3c7'};text-align:center;">${fs.achieved?(fs.reason==='level'?'⚡ நிலை':'⚡ ✓'):'Need '+fmtPV(fs.shortfall)+' ('+ fmtPV(exactPV((e.selfPV||0)+(e.groupPV||0)))+'/300)'}</td>
                 <td style="padding:5px 6px;font-size:9px;">${e.date}</td>
             </tr>`;
         }).join('');
@@ -1637,9 +1783,9 @@
         <style>*{font-family:'Noto Sans Tamil',sans-serif!important;} body{margin:0;padding:20px;background:#fff;color:#1e293b;font-size:12px;}</style>
         </head><body>
         <div style="background:#1e293b;color:#fcf6ba;padding:18px 20px;border-radius:10px;margin-bottom:14px;text-align:center;">
-            <div style="font-size:17px;font-weight:700;margin-bottom:4px;">NFVT குழு மாதாந்திர அறிக்கை</div>
+            <div style="font-size:17px;font-weight:700;margin-bottom:4px;">NFVT மாதாந்திர செயல்திறன் அறிக்கை</div>
             <div style="font-size:11px;color:#94a3b8;">வணிக மாதம்: ${bizLabel} &nbsp;|&nbsp; உறுப்பினர்: ${loggedInUser.name} (${loggedInUser.id})</div>
-            <div style="font-size:11px;color:#cbd5e1;margin-top:4px;">மொத்த உறுப்பினர்கள்: ${total} &nbsp;|&nbsp; குழு PV: ${totalPV.toFixed(1)}</div>
+            <div style="font-size:11px;color:#cbd5e1;margin-top:4px;">மொத்த உறுப்பினர்கள்: ${total} &nbsp;|&nbsp; குழு PV: ${fmtPV(totalPV)}</div>
         </div>
         <div style="background:${gradeColor(overall)};color:white;padding:12px;border-radius:8px;text-align:center;margin-bottom:14px;font-size:14px;font-weight:700;">
             மொத்த குழு மதிப்பு: ${overall}% — ${overall>=75?'சிறப்பான நிலை':overall>=50?'சராசரி':'மேம்படுத்தல் தேவை'}
@@ -1656,7 +1802,7 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;">
             <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:12px;">
                 <div style="font-weight:700;color:#166534;margin-bottom:8px;font-size:12px;">🏆 சிறந்த உறுப்பினர்கள்</div>
-                ${topMembers.map((m,i)=>`<div style="padding:4px 0;border-bottom:1px solid #dcfce7;font-size:11px;">${['🥇','🥈','🥉','4.','5.'][i]} <strong>${m.name}</strong> — ${m.totalPV} PV</div>`).join('')}
+                ${topMembers.map((m,i)=>`<div style="padding:4px 0;border-bottom:1px solid #dcfce7;font-size:11px;">${['🥇','🥈','🥉','4.','5.'][i]} <strong>${m.name}</strong> — ${fmtPV(m.totalPV)} PV</div>`).join('')}
             </div>
             <div style="background:#fef2f2;border:1.5px solid #fecaca;border-radius:10px;padding:12px;">
                 <div style="font-weight:700;color:#991b1b;margin-bottom:8px;font-size:12px;">🚨 கவனம் தேவை</div>
@@ -1666,6 +1812,7 @@
                     if(m.consistency==='No')iss.push('100PV இல்லை');
                     if(m.meeting==='No')iss.push('கூட்டம் இல்லை');
                     if(!m.newJoiners||m.newJoiners==='No')iss.push('சேர்க்கை இல்லை');
+                    if(!getFastStartStatus(m.selfPV, m.groupPV, m.level).achieved) iss.push('Fast Start இல்லை');
                     return `<div style="padding:4px 0;border-bottom:1px solid #fee2e2;font-size:10px;"><strong>${m.name}</strong><br><span style="color:#dc2626;">${iss.join(' · ')}</span></div>`;
                 }).join('')}
             </div>
@@ -1676,32 +1823,24 @@
                 <th style="padding:6px;text-align:left;">பெயர்</th><th style="padding:6px;">ID</th>
                 <th style="padding:6px;">நிலை</th><th style="padding:6px;">சொந்த PV</th>
                 <th style="padding:6px;">குழு PV/இலக்கு</th><th style="padding:6px;">100PV</th>
-                <th style="padding:6px;">கூட்டம்</th><th style="padding:6px;">சேர்க்கை</th><th style="padding:6px;">தேதி</th>
+                <th style="padding:6px;">கூட்டம்</th><th style="padding:6px;">சேர்க்கை</th><th style="padding:6px;">⚡8%</th><th style="padding:6px;">தேதி</th>
             </tr></thead>
             <tbody>${rowsHtml}</tbody>
         </table>
         <div style="margin-top:12px;font-size:9px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:8px;">
-            குழு PV இலக்கு: Bronze Dir=2600 | Silver Dir=2100 | Gold Dir=1800 | மற்றவர்கள்=2600 &nbsp;|&nbsp; வணிக மாதம்: 2-ம் தேதி முதல் 1-ம் தேதி வரை
+            குழு PV இலக்கு: Bronze Dir=2600 | Silver Dir=2100 | Gold Dir=1800 | மற்றவர்கள்=2600 &nbsp;|&nbsp; வணிக மாதம்: 2-ம் தேதி முதல் 1-ம் தேதி வரை &nbsp;|&nbsp; Fast Start 8%: மொத்த PV (Self+Group) >= 300 அல்லது Silver Dir+ நிலை
         </div>
         </body></html>`;
 
-        // Render off-screen (opacity:0) — avoids cursor/coordinate mismatch
         const wrapper = document.createElement('div');
         wrapper.style.cssText = 'position:absolute;top:0;left:0;width:794px;opacity:0;pointer-events:none;z-index:-1;overflow:hidden;';
         const container = document.createElement('div');
         container.innerHTML = html;
         wrapper.appendChild(container);
         document.body.appendChild(wrapper);
-        // Force font load
         document.fonts.ready.then(() => {
             setTimeout(() => {
-                html2canvas(container, {
-                    scale: 1.5, useCORS: true, allowTaint: true,
-                    width: 794, backgroundColor: '#ffffff',
-                    scrollX: 0, scrollY: 0,
-                    x: 0, y: 0,
-                    windowWidth: 794
-                }).then(canvas => {
+                html2canvas(container, { scale: 1.5, useCORS: true, allowTaint: true, width: 794, backgroundColor: '#ffffff', scrollX: 0, scrollY: 0, x: 0, y: 0, windowWidth: 794 }).then(canvas => {
                     const imgData = canvas.toDataURL('image/jpeg', 0.95);
                     const { jsPDF } = window.jspdf;
                     const pdf = new jsPDF({ orientation:'portrait', unit:'pt', format:'a4' });
@@ -1715,23 +1854,17 @@
                         pdf.addImage(imgData, 'JPEG', 0, -yOff, pdfW, scaledH);
                         yOff += pdfH; page++;
                     }
-                    pdf.save(`NFVT_Tamil_Monthly_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`);
+                    pdf.save(`nfvt_monthly_report_tamil_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`);
                     document.body.removeChild(wrapper);
-                }).catch(err => { console.error('html2canvas error:', err); document.body.removeChild(wrapper); alert('PDF உருவாக்கத்தில் பிழை.'); });
+                }).catch(err => { console.error(err); document.body.removeChild(wrapper); alert('PDF உருவாக்கத்தில் பிழை.'); });
             }, 1800);
         });
     }
 
     function downloadPDF() {
-        const isTa = currentLanguage === 'ta';
-        if (isTa) {
-            downloadPDF_Tamil();
-        } else {
-            downloadPDF_English();
-        }
+        if (currentLanguage === 'ta') { downloadPDF_Tamil(); } else { downloadPDF_English(); }
     }
 
-    /* ── TAMIL PDF: html2canvas renders actual Tamil glyphs ── */
     function downloadPDF_Tamil() {
         const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const now = new Date();
@@ -1742,6 +1875,7 @@
         const active      = entries.filter(e => e.selfPV >= 30).length;
         const consist     = entries.filter(e => e.consistency === 'Yes').length;
         const goodGroupPV = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
+        const fsAchieved  = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
         const todayEdited = entries.filter(e => (e.lastModified||e.timestamp||e.date||'').substring(0,10) === todayStr);
         const meetingToday = todayEdited.filter(e => e.meeting === 'Yes').length;
         const recruitToday = todayEdited.filter(e => e.newJoiners === 'Yes').length;
@@ -1751,35 +1885,38 @@
         const gv = Math.round(pct(goodGroupPV)*countFactor);
         const mt = Math.round((total>0?Math.round(meetingToday/total*100):0)*countFactor);
         const rc = Math.round((total>0?Math.round(recruitToday/total*100):0)*countFactor);
-        const overall = Math.round(ac*0.25+cn*0.25+gv*0.15+mt*0.2+rc*0.15);
+        const fs = Math.round(pct(fsAchieved)*countFactor);
+        const overall = Math.round(ac*0.22+cn*0.22+gv*0.13+mt*0.18+rc*0.13+fs*0.12);
         const greenMembers = entries.filter(e => e.selfPV >= 100).length;
         const excellenceThreshold = 26;
         const overallLabel = (overall>=75&&greenMembers>=excellenceThreshold)?'சிறப்பான நிலை':overall>=75?'நல்லது (26+ பச்சை உறுப்பினர்கள் தேவை)':overall>=50?'சராசரி':'மேம்படுத்தல் தேவை';
         const gradeText = (p) => p>=75?'நல்லது':p>=50?'சராசரி':'கவனிக்கவும்';
         const gradeColor = (p) => p>=75?'#059669':p>=50?'#b45309':'#dc2626';
-        const totalPV = entries.reduce((s,e)=>s+e.totalPV,0);
+        const totalPV = exactPV(entries.reduce((s,e)=>exactPV(s+e.totalPV),0));
+        const barHtml = (pct, color) => `<div style="background:#e2e8f0;border-radius:4px;height:8px;width:100%;"><div style="width:${pct}%;height:100%;background:${color};border-radius:4px;"></div></div>`;
 
         const params = [
-            { label:'செயலில் உள்ள IDs (PV>=30)',  adj:ac, count:active },
-            { label:'100PV தொடர்ச்சி (CNC)',        adj:cn, count:consist },
-            { label:'குழு PV இலக்கு (நிலை வாரியாக)', adj:gv, count:goodGroupPV },
-            { label:'கூட்டம் (தினசரி திருத்தப்பட்டது)', adj:mt, count:meetingToday },
-            { label:'புதிய சேர்க்கை (தினசரி)',       adj:rc, count:recruitToday },
+            { label:'செயலில் உள்ள IDs (PV>=30)',          adj:ac,  count:active },
+            { label:'100PV தொடர்ச்சி (CNC)',               adj:cn,  count:consist },
+            { label:'குழு PV இலக்கு (நிலை வாரியாக)',        adj:gv,  count:goodGroupPV },
+            { label:'கூட்டம் (தினசரி திருத்தப்பட்டது)',      adj:mt,  count:meetingToday },
+            { label:'புதிய சேர்க்கை (தினசரி)',              adj:rc,  count:recruitToday },
+            { label:'⚡ Fast Start 8% (Total PV ≥ 300 OR Level)',      adj:fs,  count:fsAchieved },
         ];
-
-        const barHtml = (pct, color) => `<div style="background:#e2e8f0;border-radius:4px;height:8px;width:100%;"><div style="width:${pct}%;height:100%;background:${color};border-radius:4px;"></div></div>`;
 
         const rowsHtml = entries.map(e => {
             const gvs = getGroupPVStatus(e.groupPV, e.level);
+            const fss = getFastStartStatus(e.selfPV, e.groupPV, e.level);
             const pvColor = e.selfPV>=100?'#059669':e.selfPV>=30?'#b45309':'#dc2626';
             return `<tr style="border-bottom:1px solid #e2e8f0;">
                 <td style="padding:5px 6px;font-size:11px;font-weight:700;">${e.name}</td>
                 <td style="padding:5px 6px;font-size:10px;color:#64748b;">${e.distId}</td>
-                <td style="padding:5px 6px;font-size:11px;color:${pvColor};font-weight:700;">${e.selfPV}</td>
+                <td style="padding:5px 6px;font-size:11px;color:${pvColor};font-weight:700;">${fmtPV(e.selfPV)}</td>
                 <td style="padding:5px 6px;font-size:10px;background:${e.consistency==='Yes'?'#dcfce7':'#fee2e2'};text-align:center;">${e.consistency==='Yes'?'✓ ஆம்':'✗ இல்லை'}</td>
                 <td style="padding:5px 6px;font-size:10px;background:${e.meeting==='Yes'?'#dbeafe':'#fef3c7'};text-align:center;">${e.meeting==='Yes'?'✓ ஆம்':'✗ இல்லை'}</td>
                 <td style="padding:5px 6px;font-size:10px;background:${(e.newJoiners||'No')==='Yes'?'#dcfce7':'#f3e8ff'};text-align:center;">${(e.newJoiners||'No')==='Yes'?'✓ ஆம்':'✗ இல்லை'}</td>
-                <td style="padding:5px 6px;font-size:10px;color:${gvs.met?'#059669':'#b45309'};">${e.groupPV} / ${gvs.target}</td>
+                <td style="padding:5px 6px;font-size:10px;color:${gvs.met?'#059669':'#b45309'};">${fmtPV(e.groupPV)} / ${gvs.target}</td>
+                <td style="padding:5px 6px;font-size:10px;background:${fss.achieved?'#dcfce7':fss.reason==='level'?'#ede9fe':'#fef3c7'};text-align:center;">${fss.achieved?(fss.reason==='level'?'⚡ நிலை':'⚡ ✓'):'Need '+fmtPV(fss.shortfall)+' ('+fmtPV(exactPV((e.selfPV||0)+(e.groupPV||0)))+'/300)'}</td>
                 <td style="padding:5px 6px;font-size:10px;">${e.date}</td>
             </tr>`;
         }).join('');
@@ -1787,26 +1924,19 @@
         const html = `<!DOCTYPE html><html><head>
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
-        <style>
-            body { font-family:'Noto Sans Tamil',sans-serif; margin:0; padding:20px; background:#fff; color:#1e293b; font-size:12px; }
-            h1,h2,h3,p,td,th,span,div { font-family:'Noto Sans Tamil',sans-serif !important; }
-        </style></head><body>
+        <style>body{font-family:'Noto Sans Tamil',sans-serif;margin:0;padding:20px;background:#fff;color:#1e293b;font-size:12px;}h1,h2,h3,p,td,th,span,div{font-family:'Noto Sans Tamil',sans-serif!important;}</style>
+        </head><body>
         <div style="background:#1e293b;color:#fcf6ba;padding:18px 20px;border-radius:10px;margin-bottom:16px;text-align:center;">
             <div style="font-size:17px;font-weight:700;margin-bottom:4px;">NFVT குழு அனுதின அறிக்கை</div>
-            <div style="font-size:11px;color:#cbd5e1;">உறுப்பினர்: ${loggedInUser.name} (ID: ${loggedInUser.id}) &nbsp;|&nbsp; தேதி: ${now.toLocaleDateString('ta-IN')} &nbsp;|&nbsp; உறுப்பினர்கள்: ${total} &nbsp;|&nbsp; குழு PV: ${totalPV.toFixed(1)}</div>
+            <div style="font-size:11px;color:#cbd5e1;">உறுப்பினர்: ${loggedInUser.name} (ID: ${loggedInUser.id}) &nbsp;|&nbsp; தேதி: ${now.toLocaleDateString('ta-IN')} &nbsp;|&nbsp; உறுப்பினர்கள்: ${total} &nbsp;|&nbsp; குழு PV: ${fmtPV(totalPV)}</div>
         </div>
-
         <div style="background:${overall>=75?'#059669':overall>=50?'#b45309':'#dc2626'};color:white;padding:12px 16px;border-radius:8px;text-align:center;margin-bottom:14px;font-size:15px;font-weight:700;">
             மொத்த குழு மதிப்பு: ${overall}% — ${overallLabel}
         </div>
-
         <div style="margin-bottom:16px;">
             <div style="font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:4px;border-bottom:2px solid #e2e8f0;">📊 செயல்திறன் சுருக்கம்</div>
             ${params.map(p=>`<div style="background:#f8fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:12px;">
-                <div style="flex:1;">
-                    <div style="font-weight:700;font-size:12px;margin-bottom:4px;">${p.label}</div>
-                    ${barHtml(p.adj,gradeColor(p.adj))}
-                </div>
+                <div style="flex:1;"><div style="font-weight:700;font-size:12px;margin-bottom:4px;">${p.label}</div>${barHtml(p.adj,gradeColor(p.adj))}</div>
                 <div style="text-align:right;min-width:80px;">
                     <span style="font-size:16px;font-weight:700;color:${gradeColor(p.adj)};">${p.adj}%</span><br>
                     <span style="font-size:10px;color:#64748b;">${p.count}/${total} உறுப்பினர்கள்</span><br>
@@ -1814,52 +1944,35 @@
                 </div>
             </div>`).join('')}
         </div>
-
         <div style="background:${greenMembers>=excellenceThreshold?'#f0fdf4':'#fef9c3'};border:1.5px solid ${greenMembers>=excellenceThreshold?'#86efac':'#fde047'};border-radius:8px;padding:10px 14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
             <span style="font-weight:700;">பச்சை உறுப்பினர்கள் (Self PV >= 100)</span>
             <span style="font-size:15px;font-weight:700;color:${greenMembers>=excellenceThreshold?'#059669':'#b45309'};">${greenMembers} / ${total}${greenMembers<excellenceThreshold?' ('+( excellenceThreshold-greenMembers)+' மேலும் தேவை)':' ✓'}</span>
         </div>
-
         <div style="font-size:13px;font-weight:700;margin-bottom:8px;padding-bottom:4px;border-bottom:2px solid #e2e8f0;">👥 உறுப்பினர் விவரங்கள்</div>
         <table style="width:100%;border-collapse:collapse;font-size:11px;">
-            <thead>
-                <tr style="background:#1e293b;color:#fcf6ba;">
-                    <th style="padding:7px 6px;text-align:left;">பெயர்</th>
-                    <th style="padding:7px 6px;">ID</th>
-                    <th style="padding:7px 6px;">சொந்த PV</th>
-                    <th style="padding:7px 6px;">100PV</th>
-                    <th style="padding:7px 6px;">கூட்டம்</th>
-                    <th style="padding:7px 6px;">சேர்க்கை</th>
-                    <th style="padding:7px 6px;">குழு PV/இலக்கு</th>
-                    <th style="padding:7px 6px;">தேதி</th>
-                </tr>
-            </thead>
+            <thead><tr style="background:#1e293b;color:#fcf6ba;">
+                <th style="padding:7px 6px;text-align:left;">பெயர்</th><th style="padding:7px 6px;">ID</th>
+                <th style="padding:7px 6px;">சொந்த PV</th><th style="padding:7px 6px;">100PV</th>
+                <th style="padding:7px 6px;">கூட்டம்</th><th style="padding:7px 6px;">சேர்க்கை</th>
+                <th style="padding:7px 6px;">குழு PV/இலக்கு</th><th style="padding:7px 6px;">⚡8%</th><th style="padding:7px 6px;">தேதி</th>
+            </tr></thead>
             <tbody>${rowsHtml}</tbody>
         </table>
-
         <div style="margin-top:14px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:10px;">
-            * கூட்டம் % & சேர்க்கை % = இன்று திருத்தப்படவில்லை எனில் 0% &nbsp;|&nbsp; * EXCELLENT: மதிப்பு >= 75% மற்றும் >= ${excellenceThreshold} பச்சை உறுப்பினர்கள் தேவை<br>
-            * குழு PV இலக்கு: Bronze Dir=2600 | Silver Dir=2100 | Gold Dir=1800 | மற்றவர்கள்=2600 &nbsp;|&nbsp; வணிக மாதம்: 2-ம் தேதி முதல் 1-ம் தேதி வரை
+            * Fast Start 8% = மொத்த PV (Self+Group) >= 300 அல்லது Silver Dir+ நிலை → 8% போனஸ் &nbsp;|&nbsp; குழு PV இலக்கு: Bronze=2600 | Silver=2100 | Gold=1800 | மற்றவர்கள்=2600<br>
+            * EXCELLENT: மதிப்பு >= 75% மற்றும் >= ${excellenceThreshold} பச்சை உறுப்பினர்கள் தேவை
         </div>
         </body></html>`;
 
-        // Render off-screen (opacity:0) — avoids cursor/coordinate mismatch
         const wrapper = document.createElement('div');
         wrapper.style.cssText = 'position:absolute;top:0;left:0;width:794px;opacity:0;pointer-events:none;z-index:-1;overflow:hidden;';
         const container = document.createElement('div');
         container.innerHTML = html;
         wrapper.appendChild(container);
         document.body.appendChild(wrapper);
-        // Force font load
         document.fonts.ready.then(() => {
             setTimeout(() => {
-                html2canvas(container, {
-                    scale: 1.5, useCORS: true, allowTaint: true,
-                    width: 794, backgroundColor: '#ffffff',
-                    scrollX: 0, scrollY: 0,
-                    x: 0, y: 0,
-                    windowWidth: 794
-                }).then(canvas => {
+                html2canvas(container, { scale: 1.5, useCORS: true, allowTaint: true, width: 794, backgroundColor: '#ffffff', scrollX: 0, scrollY: 0, x: 0, y: 0, windowWidth: 794 }).then(canvas => {
                     const imgData = canvas.toDataURL('image/jpeg', 0.95);
                     const { jsPDF } = window.jspdf;
                     const pdf = new jsPDF({ orientation:'portrait', unit:'pt', format:'a4' });
@@ -1873,16 +1986,14 @@
                         pdf.addImage(imgData, 'JPEG', 0, -yOff, pdfW, scaledH);
                         yOff += pdfH; page++;
                     }
-                    pdf.save(`NFVT_Tamil_${loggedInUser.id}_${todayStr}.pdf`);
+                    pdf.save(`nfvt_daily_report_tamil_${loggedInUser.id}_${todayStr}.pdf`);
                     document.body.removeChild(wrapper);
-                }).catch(err => { console.error('html2canvas error:', err); document.body.removeChild(wrapper); alert('PDF உருவாக்கத்தில் பிழை.'); });
+                }).catch(err => { console.error(err); document.body.removeChild(wrapper); alert('PDF உருவாக்கத்தில் பிழை.'); });
             }, 1500);
         });
     }
 
-    /* ── ENGLISH PDF: original jsPDF text approach ── */
     function downloadPDF_English() {
-        const isTa = false;
         const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const now = new Date();
         const todayStr = now.toISOString().split('T')[0];
@@ -1894,32 +2005,25 @@
         const active       = entries.filter(e => e.selfPV >= 30).length;
         const consist      = entries.filter(e => e.consistency === 'Yes').length;
         const goodGroupPV  = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
+        const fsAchieved   = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
 
-        const todayEdited = entries.filter(e => {
-            const d = (e.lastModified || e.timestamp || e.date || '').substring(0,10);
-            return d === todayStr;
-        });
+        const todayEdited = entries.filter(e => (e.lastModified || e.timestamp || e.date || '').substring(0,10) === todayStr);
         const meetingToday  = todayEdited.filter(e => e.meeting === 'Yes').length;
         const recruitToday  = todayEdited.filter(e => e.newJoiners === 'Yes').length;
 
-        const rawActive   = pct(active);
-        const rawConsist  = pct(consist);
-        const rawGroupPV  = pct(goodGroupPV);
-        const rawMeeting  = total > 0 ? Math.round((meetingToday / total) * 100) : 0;
-        const rawRecruit  = total > 0 ? Math.round((recruitToday / total) * 100) : 0;
-
         const countFactor = total >= 10 ? 1 : total / 10;
-        const ac = Math.round(rawActive * countFactor);
-        const cn = Math.round(rawConsist * countFactor);
-        const gv = Math.round(rawGroupPV * countFactor);
-        const mt = Math.round(rawMeeting * countFactor);
-        const rc = Math.round(rawRecruit * countFactor);
-        const overall = Math.round((ac * 0.25 + cn * 0.25 + gv * 0.15 + mt * 0.2 + rc * 0.15));
+        const ac = Math.round(pct(active) * countFactor);
+        const cn = Math.round(pct(consist) * countFactor);
+        const gv = Math.round(pct(goodGroupPV) * countFactor);
+        const mt = Math.round((total > 0 ? Math.round((meetingToday / total) * 100) : 0) * countFactor);
+        const rc = Math.round((total > 0 ? Math.round((recruitToday / total) * 100) : 0) * countFactor);
+        const fs = Math.round(pct(fsAchieved) * countFactor);
+        const overall = Math.round((ac * 0.22 + cn * 0.22 + gv * 0.13 + mt * 0.18 + rc * 0.13 + fs * 0.12));
 
         const greenMembers = entries.filter(e => e.selfPV >= 100).length;
         const excellenceThreshold = 26;
         const overallLabel = (overall >= 75 && greenMembers >= excellenceThreshold) ? 'EXCELLENT'
-                           : overall >= 75 ? 'GOOD (Need 26+ Green Members for Excellent)'
+                           : overall >= 75 ? 'GOOD (Need 26+ Green Members)'
                            : overall >= 50 ? 'AVERAGE' : 'NEEDS IMPROVEMENT';
 
         const gradeColor = (p) => p >= 75 ? [5,150,105] : p >= 50 ? [180,100,0] : [185,28,28];
@@ -1928,17 +2032,17 @@
         doc.setFillColor(30, 41, 59);
         doc.rect(0, 0, 210, 42, 'F');
         doc.setFontSize(15); doc.setTextColor(252, 246, 186); doc.setFont(undefined, 'bold');
-        doc.text('NFVT Team Followup Report', 105, 13, { align: 'center' });
+        doc.text('NFVT Performance Report', 105, 13, { align: 'center' });
         doc.setFontSize(9); doc.setTextColor(200, 215, 235); doc.setFont(undefined, 'normal');
-        doc.text(`By: ${loggedInUser.name} (ID: ${loggedInUser.id})`, 105, 21, { align: 'center' });
-        const totalPV = entries.reduce((s,e)=>s+e.totalPV,0);
-        doc.text(`Members: ${total}  |  Team PV: ${totalPV.toFixed(1)}  |  Date: ${now.toLocaleDateString()}`, 105, 29, { align: 'center' });
+        doc.text(`By: ${loggedInUser.name} (ID: ${loggedInUser.id})  ·  ${now.toLocaleDateString()}`, 105, 21, { align: 'center' });
+        const totalPV = exactPV(entries.reduce((s,e)=>exactPV(s+e.totalPV),0));
+        doc.text(`Members: ${total}  |  Team PV: ${fmtPV(totalPV)}  |  Date: ${now.toLocaleDateString()}`, 105, 29, { align: 'center' });
         doc.setFontSize(7); doc.setTextColor(255,220,80);
-        doc.text(`Green Members (Self PV >= 100): ${greenMembers}/${total}${greenMembers < excellenceThreshold ? ` — Need ${excellenceThreshold-greenMembers} more for EXCELLENT rating` : ' ✓ EXCELLENT threshold met'}`, 105, 37, { align: 'center' });
+        doc.text(`Green Members (Self PV >= 100): ${greenMembers}/${total}${greenMembers < excellenceThreshold ? ` — Need ${excellenceThreshold-greenMembers} more for EXCELLENT` : ' ✓ EXCELLENT threshold met'}`, 105, 37, { align: 'center' });
 
         let y = 47;
         doc.setFontSize(11); doc.setTextColor(30, 41, 59); doc.setFont(undefined, 'bold');
-        doc.text('% PERFORMANCE SUMMARY (MINIMAL REPORT)', 14, y); y += 4;
+        doc.text('% PERFORMANCE SUMMARY — DAILY REPORT', 14, y); y += 4;
         doc.setDrawColor(191, 149, 63); doc.setLineWidth(0.6); doc.line(14, y, 196, y); y += 5;
 
         const [gr,gg,gb] = gradeColor(overall);
@@ -1949,11 +2053,12 @@
         y += 20;
 
         const params = [
-            { label:'Active IDs (Self PV >= 30)', raw: rawActive, adj: ac, count: active },
-            { label:'100PV Consistency (CNC)',     raw: rawConsist, adj: cn, count: consist },
-            { label:'Group PV Target Met (Level-wise)', raw: rawGroupPV, adj: gv, count: goodGroupPV },
-            { label:'Meeting (Daily Edited Yes)',  raw: rawMeeting, adj: mt, count: meetingToday },
-            { label:'Recruitment / New Joiners (Daily Edit)', raw: rawRecruit, adj: rc, count: recruitToday },
+            { label:'Active IDs (Self PV >= 30)', adj: ac, count: active },
+            { label:'100PV Consistency (CNC)',     adj: cn, count: consist },
+            { label:'Group PV Target Met (Level-wise)', adj: gv, count: goodGroupPV },
+            { label:'Meeting (Daily Edited Yes)',  adj: mt, count: meetingToday },
+            { label:'Recruitment / New Joiners (Daily Edit)', adj: rc, count: recruitToday },
+            { label:'⚡ Fast Start 8% (Total PV ≥ 300 OR Level)', adj: fs, count: fsAchieved },
         ];
 
         params.forEach((p, i) => {
@@ -1971,7 +2076,7 @@
             doc.setFontSize(10); doc.setTextColor(r,g,b); doc.setFont(undefined, 'bold');
             doc.text(`${p.adj}%`, 174, y+7.5, { align: 'right' });
             doc.setFontSize(7); doc.setTextColor(100,116,139); doc.setFont(undefined, 'normal');
-            doc.text(`(${p.count}/${total}${p.raw !== p.adj ? ` · raw ${p.raw}%` : ''})`, 176, y+7.5);
+            doc.text(`(${p.count}/${total})`, 176, y+7.5);
             doc.setFontSize(7); doc.setTextColor(r,g,b); doc.setFont(undefined, 'bold');
             doc.text(gradeText(p.adj), 16, y+12);
             y += 16;
@@ -1983,18 +2088,18 @@
         doc.setFontSize(9); doc.setTextColor(30,41,59); doc.setFont(undefined, 'bold');
         doc.text(`Green Members (Self PV >= 100): ${greenMembers} / ${total}`, 16, y+6);
         const greenStatus = greenMembers >= excellenceThreshold ? `✓ EXCELLENT threshold met (${excellenceThreshold}+)` : `Need ${excellenceThreshold-greenMembers} more for EXCELLENT`;
-        if (greenMembers >= excellenceThreshold) doc.setTextColor(5,150,105); 
-        else doc.setTextColor(185,28,28);
+        if (greenMembers >= excellenceThreshold) doc.setTextColor(5,150,105); else doc.setTextColor(185,28,28);
         doc.text(greenStatus, 16, y+11.5);
-        y += 18;
+        y += 20;
 
         doc.setFontSize(8); doc.setTextColor(71,85,105); doc.setFont(undefined, 'italic');
         doc.text('Notes:', 14, y); y += 5;
         doc.setFontSize(7);
         const notes = [
+            `* Fast Start 8% = Total PV (Self+Group) >= 300 OR Silver Dir+ Level unlocks 8% bonus`,
             `* Meeting % & Recruitment % = 0% if not edited to Yes today`,
             `* If total members < 10, % score is reduced proportionally`,
-            `* EXCELLENT rating requires: Score >= 75% AND >= ${excellenceThreshold} members with Self PV >= 100`,
+            `* EXCELLENT: Score >= 75% AND >= ${excellenceThreshold} members with Self PV >= 100`,
             `* Group PV Target: Bronze Dir=2600 | Silver Dir=2100 | Gold Dir=1800 | Others=2600`,
             `* Business month cycle: 2nd of month to 1st of next month`
         ];
@@ -2013,21 +2118,24 @@
 
         const rows = entries.map(e => {
             const gvs = getGroupPVStatus(e.groupPV, e.level);
+            const fss = getFastStartStatus(e.selfPV, e.groupPV, e.level);
+            const fssTotalPV = fmtPV(exactPV((e.selfPV||0)+(e.groupPV||0)));
+            const fssCell = fss.achieved ? (fss.reason==='level' ? 'Level OK' : '8% OK') : (fssTotalPV+'/300 Need '+fmtPV(fss.shortfall));
             return [
-                e.name, e.distId, e.selfPV,
+                e.name, e.distId, fmtPV(e.selfPV),
                 e.consistency === 'Yes' ? 'YES' : 'NO',
                 e.meeting === 'Yes' ? 'YES' : 'NO',
                 (e.newJoiners || 'No') === 'Yes' ? 'YES' : 'NO',
-                `${e.groupPV}/${gvs.target}`,
+                fmtPV(e.groupPV)+'/'+gvs.target,
                 gvs.met ? 'Y' : 'N',
+                fssCell,
                 e.date
             ];
         });
 
         doc.autoTable({
-            head: [['Name','ID','Self PV','100PV','Meeting','Joiner','Group PV/Target','Target','Date']],
-            body: rows,
-            startY: y + 3,
+            head: [['Name','ID','Self PV','100PV','Meeting','Joiner','Group PV/Target','GrpTgt','Fast Start','Date']],
+            body: rows, startY: y + 3,
             styles: { fontSize: 7 },
             headStyles: { fillColor: [30,41,59], textColor: [252,246,186], fontStyle: 'bold' },
             alternateRowStyles: { fillColor: [248,250,252] },
@@ -2036,7 +2144,8 @@
                     const v = parseFloat(rows[data.row.index][2]);
                     if (v < 30) data.cell.styles.fillColor = [254,202,202];
                     else if (v < 100) data.cell.styles.fillColor = [254,215,170];
-                    else data.cell.styles.fillColor = [209,250,229];
+                    else if (v >= 300) data.cell.styles.fillColor = [209,250,229];
+                    else data.cell.styles.fillColor = [220,252,231];
                 }
                 if (data.section === 'body' && data.column.index === 3) {
                     if (rows[data.row.index][3] === 'NO') data.cell.styles.fillColor = [254,202,202];
@@ -2045,9 +2154,14 @@
                     if (rows[data.row.index][7] === 'N') data.cell.styles.fillColor = [254,202,202];
                     else data.cell.styles.fillColor = [209,250,229];
                 }
+                if (data.section === 'body' && data.column.index === 8) {
+                    if (rows[data.row.index][8].startsWith('✓')) data.cell.styles.fillColor = [209,250,229];
+                    else data.cell.styles.fillColor = [254,215,170];
+                }
             }
         });
-        doc.save(`NFVT_Daily_Report_${loggedInUser.id}_${todayStr}.pdf`);
+        // FIX 5: file saved as nfvt_...
+        doc.save(`nfvt_daily_report_${loggedInUser.id}_${todayStr}.pdf`);
     }
 
     function generateSmartAnalysisText(entries) {
@@ -2065,6 +2179,8 @@
         const noJoiners   = entries.filter(e => !e.newJoiners || e.newJoiners === 'No').length;
         const goodGroupPV = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
         const lowGroupPV  = entries.filter(e => !getGroupPVStatus(e.groupPV, e.level).met).length;
+        const fsAchieved  = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
+        const fsNeed      = entries.filter(e => !getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
 
         const overallScore = Math.round((pct(active)*0.2 + pct(hit100)*0.2 + pct(consistency)*0.2 + pct(meetingYes)*0.15 + pct(withJoiners)*0.15 + pct(goodGroupPV)*0.1));
         const overallLabel = overallScore >= 75 ? 'EXCELLENT' : overallScore >= 50 ? 'AVERAGE' : 'NEEDS IMPROVEMENT';
@@ -2074,12 +2190,13 @@
             { name: 'Self PV >= 100',             done: hit100, bad: total-hit100, pct: pct(hit100), advice: 'Consistency voucher ₹2500. Encourage family product usage.' },
             { name: '100PV Consistency (CNC)',    done: consistency, bad: noConsist, pct: pct(consistency), advice: 'Remind members to order before 14th every cycle.' },
             { name: 'Meeting Attendance',          done: meetingYes, bad: meetingNo, pct: pct(meetingYes), advice: 'Members who attend daily meetings grow 3x faster.' },
-            { name: 'Group PV Target (Level-wise)',done: goodGroupPV, bad: lowGroupPV, pct: pct(goodGroupPV), advice: 'Bronze:2600 | Silver:2100 | Gold:1800 | Others:2600 PV. Help downlines hit targets.' },
+            { name: 'Group PV Target (Level-wise)',done: goodGroupPV, bad: lowGroupPV, pct: pct(goodGroupPV), advice: 'Bronze:2600 | Silver:2100 | Gold:1800 | Others:2600 PV.' },
             { name: 'Recruitment (New Joiners)',   done: withJoiners, bad: noJoiners, pct: pct(withJoiners), advice: 'Daily upline conference calls. Share business with 5+ prospects daily.' },
+            { name: '⚡ Fast Start 8% (Total PV ≥ 300 OR Level)', done: fsAchieved, bad: fsNeed, pct: pct(fsAchieved), advice: 'Total PV (Self+Group) >= 300 OR Silver Dir+ = 8% Fast Start. Encourage team buying to hit 300 total PV!' },
         ].sort((a,b) => a.pct - b.pct);
 
         const lines = [];
-        lines.push({ text: `TEAM HEALTH SCORE: ${overallScore}% — ${overallLabel}`, style: 'header' });
+        lines.push({ text: `NFVT TEAM HEALTH SCORE: ${overallScore}% — ${overallLabel}`, style: 'header' });
         lines.push({ text: `Analysis of ${total} members (Business Month: 2nd to 1st cycle):`, style: 'normal' });
         lines.push({ text: '', style: 'spacer' });
         params.forEach(p => {
@@ -2104,11 +2221,12 @@
         const entries = JSON.parse(localStorage.getItem(STORAGE_KEY_DATA)) || [];
         const now = new Date();
         const pct = (n) => entries.length > 0 ? Math.round((n/entries.length)*100) : 0;
-        const consistency = entries.filter(e => e.consistency === 'Yes').length;
-        const meetingYes = entries.filter(e => e.meeting === 'Yes').length;
-        const withJoiners = entries.filter(e => e.newJoiners === 'Yes').length;
-        const active = entries.filter(e => e.selfPV >= 30).length;
-        const goodGroupPV = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
+        const consistency  = entries.filter(e => e.consistency === 'Yes').length;
+        const meetingYes   = entries.filter(e => e.meeting === 'Yes').length;
+        const withJoiners  = entries.filter(e => e.newJoiners === 'Yes').length;
+        const active       = entries.filter(e => e.selfPV >= 30).length;
+        const goodGroupPV  = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
+        const fsAchieved   = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
         let csv = `"NFVT Team Followup Report"\n"Generated: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}"\n"Report By: ${loggedInUser.name} (ID: ${loggedInUser.id})"\n"Business Month: ${getBusinessMonthLabel(now)}"\n\n`;
         csv += `"=== PERFORMANCE SUMMARY ==="\n`;
         csv += `"Parameter","Count","Percentage","Status"\n`;
@@ -2117,15 +2235,17 @@
         csv += `"Group PV Target Met (Level-wise)","${goodGroupPV} of ${entries.length}","${pct(goodGroupPV)}%","${pct(goodGroupPV)>=80?'GOOD':pct(goodGroupPV)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"Meeting Attendance","${meetingYes} of ${entries.length}","${pct(meetingYes)}%","${pct(meetingYes)>=80?'GOOD':pct(meetingYes)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"New Joiners","${withJoiners} of ${entries.length}","${pct(withJoiners)}%","${pct(withJoiners)>=80?'GOOD':pct(withJoiners)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
+        csv += `"Fast Start 8% (TotalPV>=300 OR Level)","${fsAchieved} of ${entries.length}","${pct(fsAchieved)}%","${pct(fsAchieved)>=80?'GOOD':pct(fsAchieved)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"Group PV Targets","Bronze Dir:2600 | Silver Dir:2100 | Gold Dir:1800 | Others:2600","",""\n\n`;
         csv += `"=== MEMBER DATA ==="\n`;
-        csv += "Name,ID,Mobile,Level,SelfPV,GroupPV,GroupPV_Target,GroupPV_Met,TotalPV,Date,100PV_CNC,Meeting,NewJoiners,Timestamp\n";
+        csv += "Name,ID,Mobile,Level,SelfPV,GroupPV,GroupPV_Target,GroupPV_Met,TotalPV,FastStart8%,Date,100PV_CNC,Meeting,NewJoiners,Timestamp\n";
         entries.forEach(e => {
             const gvs = getGroupPVStatus(e.groupPV, e.level);
-            csv += `"${e.name}","${e.distId}","${e.mobile}","${e.level}","${e.selfPV}","${e.groupPV}","${gvs.target}","${gvs.met?'Yes':'No'}","${e.totalPV}","${e.date}","${e.consistency}","${e.meeting}","${e.newJoiners||'No'}","${e.timestamp||''}"\n`;
+            const fss = getFastStartStatus(e.selfPV, e.groupPV, e.level);
+            csv += `"${e.name}","${e.distId}","${e.mobile}","${e.level}","${fmtPV(e.selfPV)}","${fmtPV(e.groupPV)}","${gvs.target}","${gvs.met?'Yes':'No'}","${fmtPV(e.totalPV)}","${fss.achieved?'Yes':'No (Need '+fmtPV(fss.shortfall)+')'}","${e.date}","${e.consistency}","${e.meeting}","${e.newJoiners||'No'}","${e.timestamp||''}"\n`;
         });
         const b = new Blob([csv],{type:'text/csv'});
-        const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download=`Saravanan_DUCD_Team_Report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.csv`; a.click();
+        const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download=`nfvt_report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.csv`; a.click();
     }
 
     function toggleTrash() {
@@ -2133,7 +2253,7 @@
         ts.style.display = (ts.style.display === 'none' || ts.style.display === '') ? 'block' : 'none';
         if(ts.style.display === 'block') {
             const trash = JSON.parse(localStorage.getItem(STORAGE_KEY_TRASH)) || [];
-            document.getElementById('trashBody').innerHTML = trash.map(i => 
+            document.getElementById('trashBody').innerHTML = trash.map(i =>
                 `<tr style="background:white;">
                     <td><strong>${i.name}</strong></td><td>${i.distId}</td>
                     <td>
@@ -2182,9 +2302,10 @@
         const r = document.getElementById("tableBody").getElementsByTagName("tr");
         for (let row of r) { row.style.display = row.innerText.toUpperCase().includes(q) ? "" : "none"; }
     }
+
+    function closeAwardModal() { document.getElementById('awardModal').style.display = 'none'; }
 </script>
 
-<!-- FIX 2: Girish S Signature — 10% transparency, elegant gold Cormorant style -->
 <div style="position:fixed;bottom:16px;right:16px;z-index:1;pointer-events:none;user-select:none;opacity:0.10;transform:rotate(-12deg);">
   <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:#bf953f;letter-spacing:3px;text-shadow:0 1px 4px rgba(191,149,63,0.4);">✦ Girish S ✦</span>
 </div>
