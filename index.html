@@ -626,7 +626,7 @@
         const daysDiff = Math.floor((today - entryDate) / (1000 * 60 * 60 * 24));
         let redFlags = 0;
         if (entry.selfPV < 30) redFlags += 3;
-        else if (entry.selfPV < 100) redFlags += 2;
+        else if (entry.selfPV < 150) redFlags += 2;
         if (entry.consistency === 'No') redFlags++;
         if (entry.meeting === 'No') redFlags++;
         if (!entry.newJoiners || entry.newJoiners === 'No') redFlags++;
@@ -955,7 +955,7 @@
                     ? '<span style="background:#fee2e2;color:#dc2626;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">🚨 INACTIVE</span>'
                     : '<span style="background:#fee2e2;color:#dc2626;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">🚨 செயலற்றது</span>';
                 alertCount++;
-            } else if (item.selfPV < 100) {
+            } else if (item.selfPV < 150) {
                 rowClass = 'low-pv-warning';
                 statusBadges += currentLanguage === 'en'
                     ? '<span style="background:#fed7aa;color:#ea580c;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">📊 LOW PV</span>'
@@ -980,7 +980,7 @@
                 alertCount++;
             }
             if (item.meeting === "No") {
-                if (rowClass === '' && item.selfPV >= 100) rowClass = 'no-meeting';
+                if (rowClass === '' && item.selfPV >= 150) rowClass = 'no-meeting';
                 statusBadges += currentLanguage === 'en'
                     ? '<span style="background:#e0e7ff;color:#4f46e5;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">🔔 MEETING</span>'
                     : '<span style="background:#e0e7ff;color:#4f46e5;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">🔔 கூட்டம்</span>';
@@ -1012,7 +1012,7 @@
                 waMessage += currentLanguage === 'en'
                     ? `🚨 *URGENT - ID ACTIVATION ALERT*\n\n📊 Self PV: ${fmtPV(item.selfPV)} | Need: *${fmtPV(30-item.selfPV)} PV*\n⏰ Complete before month end!\n📞 Contact upline NOW!\n\n`
                     : `🚨 ID செயல்படுத்தல்!\nPV: ${fmtPV(item.selfPV)} - தேவை: ${fmtPV(30-item.selfPV)}\n\n`;
-            } else if (item.selfPV < 100) {
+            } else if (item.selfPV < 150) {
                 const needed = exactPV(100 - item.selfPV);
                 waMessage += currentLanguage === 'en'
                     ? `📊 Self PV: ${fmtPV(item.selfPV)} | Remaining to 150PV: *${fmtPV(needed)} PV*\n\n`
@@ -1051,7 +1051,7 @@
                 <td><strong style="color:#1e293b;">${item.name}</strong><br><small style="color:#64748b;">${item.distId}</small></td>
                 <td><strong>${item.mobile}</strong></td>
                 <td><span style="background:#ddd6fe;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#5b21b6;">${item.level}</span></td>
-                <td><strong style="color:${item.selfPV>=100?'#059669':(item.selfPV>=30?'#f59e0b':'#dc2626')};">${fmtPV(item.selfPV)}</strong></td>
+                <td><strong style="color:${item.selfPV>=150?'#059669':(item.selfPV>=150?'#f59e0b':'#dc2626')};">${fmtPV(item.selfPV)}</strong></td>
                 <td>
                     <strong style="color:${gvStatus.met?'#059669':'#f59e0b'};">${fmtPV(item.groupPV)}</strong>
                     <br><small style="color:#94a3b8;font-size:10px;">Target: ${gvStatus.target}</small>
@@ -1097,10 +1097,10 @@
     function buildReportAnalysis(entries) {
         const total = entries.length;
         if (total === 0) return '<p style="color:#64748b;">No members added yet.</p>';
-        const active       = entries.filter(e => e.selfPV >= 30).length;
-        const inactive     = entries.filter(e => e.selfPV < 30).length;
-        const hit100       = entries.filter(e => e.selfPV >= 100).length;
-        const low100       = entries.filter(e => e.selfPV >= 30 && e.selfPV < 100).length;
+        const active       = entries.filter(e => e.selfPV >= 40).length;
+        const inactive     = entries.filter(e => e.selfPV < 40).length;
+        const hit100       = entries.filter(e => e.selfPV >= 150).length;
+        const low150       = entries.filter(e => e.selfPV >= 40 && e.selfPV < 150).length;
         const consistency  = entries.filter(e => e.consistency === 'Yes').length;
         const noConsist    = entries.filter(e => e.consistency === 'No').length;
         const meetingYes   = entries.filter(e => e.meeting === 'Yes').length;
@@ -1111,8 +1111,8 @@
         const lowGroupPV   = entries.filter(e => !getGroupPVStatus(e.groupPV, e.level).met).length;
         const fastAchieved = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
         const fastNeed     = entries.filter(e => !getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
-        const greenMembers = entries.filter(e => e.selfPV >= 100).length;
-        const excellenceThreshold = 26;
+        const greenMembers = entries.filter(e => e.selfPV >= 150).length;
+        const excellenceThreshold = 150;
         const pct = (n) => total > 0 ? Math.round((n/total)*100) : 0;
         const grade = (p) => {
             if (p >= 80) return { label: '🟢 GOOD', color: '#059669', bg: '#dcfce7' };
@@ -1135,10 +1135,10 @@
                     : { emoji:'🚨', label:'Needs Improvement', color:'#dc2626' };
         const params = [
             { name: 'Recruitment (New Joiners)', pct: pct(withJoiners), bad: noJoiners, advice: 'Focus on daily upline conference calls & sharing business opportunity with 5+ prospects daily.' },
-            { name: '150PV Consistency', pct: pct(consistency), bad: noConsist, advice: 'Remind members to order before 14th. Consistency gives ₹2500 voucher benefit.' },
+            { name: '150PV Consistency', pct: pct(consistency), bad: noConsist, advice: 'Remind members to order before 14th. Consistency gives ₹4100 voucher benefit.' },
             { name: 'Meeting Attendance', pct: pct(meetingYes), bad: meetingNo, advice: 'Push for 6PM & 8PM daily meetings. Members who attend meetings grow 3x faster.' },
             { name: 'Active IDs (Self PV ≥ 100)', pct: pct(active), bad: inactive, advice: 'Any ID below 100 PV will go inactive. Urgent action needed before month end.' },
-            { name: 'Self PV ≥ 150', pct: pct(hit100), bad: low100, advice: 'Members with 150PV earn consistency voucher. Encourage product usage from family first.' },
+            { name: 'Self PV ≥ 150', pct: pct(hit100), bad: low150, advice: 'Members with 150PV earn consistency voucher. Encourage product usage from family first.' },
             { name: 'Group PV Target Met (Level-wise)', pct: pct(goodGroupPV), bad: lowGroupPV, advice: 'Bronze Dir: 2600 | Silver Dir: 2100 | Gold Dir: 1800 | Others: 2600 PV target.' },
             { name: '⚡ Fast Start 8% (Distributor: Total PV ≥ 300 / Senior Dist+: Above 8%)', pct: pct(fastAchieved), bad: fastNeed, advice: 'Distributor: Total PV >= 300 = 8% Fast Start. Senior Dist and above already earn 8%+.' },
         ].sort((a,b) => a.pct - b.pct);
@@ -1441,7 +1441,7 @@
         const totalPV = exactPV(entries.reduce((s,e) => exactPV(s + exactPV((e.selfPV||0)+(e.groupPV||0))), 0));
         const total = entries.length;
         const pct = (n) => total > 0 ? Math.round((n/total)*100) : 0;
-        const active      = entries.filter(e => e.selfPV >= 30).length;
+        const active      = entries.filter(e => e.selfPV >= 150).length;
         const consist     = entries.filter(e => e.consistency === 'Yes').length;
         const goodGPV     = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
         const meetYes     = entries.filter(e => e.meeting === 'Yes').length;
@@ -1463,7 +1463,7 @@
             {label:'Recruitment (New Joiners)',          pct:pct(joinYes),  count:joinYes,  bad:total-joinYes},
             {label:'150PV Consistency (CNC)',             pct:pct(consist),  count:consist,  bad:total-consist},
             {label:'Meeting Attendance',                  pct:pct(meetYes),  count:meetYes,  bad:total-meetYes},
-            {label:'Active IDs (Self PV >= 30)',          pct:pct(active),   count:active,   bad:total-active},
+            {label:'Active IDs (Self PV >= 100)',          pct:pct(active),   count:active,   bad:total-active},
             {label:'Group PV Target (Level-wise)',        pct:pct(goodGPV),  count:goodGPV,  bad:total-goodGPV},
             {label:'Fast Start 8% (Dist>=300 / Snr+)',   pct:pct(fsAchieved),count:fsAchieved,bad:total-fsAchieved},
         ];
@@ -1477,8 +1477,8 @@
             const gvs = getGroupPVStatus(e.groupPV, e.level);
             const fss = getFastStartStatus(e.selfPV, e.groupPV, e.level);
             const tpv = exactPV((e.selfPV||0)+(e.groupPV||0));
-            const pvBg = e.selfPV>=100?'#dcfce7':e.selfPV>=30?'#fef3c7':'#fee2e2';
-            const pvC  = e.selfPV>=100?'#166534':e.selfPV>=30?'#92400e':'#991b1b';
+            const pvBg = e.selfPV>=100?'#dcfce7':e.selfPV>=150?'#fef3c7':'#fee2e2';
+            const pvC  = e.selfPV>=100?'#166534':e.selfPV>=150?'#92400e':'#991b1b';
             const fsCell = fss.reason==='above_distributor'?'👑 Above 8%':fss.achieved?'⚡ OK':'Need '+fmtPV(exactPV(300-tpv<0?0:300-tpv))+' ('+fmtPV(tpv)+'/300)';
             const fsBg = fss.reason==='above_distributor'?'#ede9fe':fss.achieved?'#dcfce7':'#fee2e2';
             const fsC  = fss.reason==='above_distributor'?'#5b21b6':fss.achieved?'#166534':'#991b1b';
@@ -1590,7 +1590,7 @@
         const totalPV = exactPV(entries.reduce((s,e) => exactPV(s + exactPV((e.selfPV||0)+(e.groupPV||0))), 0));
         const total = entries.length;
         const pct = (n) => total>0?Math.round((n/total)*100):0;
-        const active = entries.filter(e=>e.selfPV>=30).length;
+        const active = entries.filter(e=>e.selfPV>=150).length;
         const consist = entries.filter(e=>e.consistency==='Yes').length;
         const goodGPV = entries.filter(e=>getGroupPVStatus(e.groupPV,e.level).met).length;
         const meetYes = entries.filter(e=>e.meeting==='Yes').length;
@@ -1629,8 +1629,8 @@
             const gvs=getGroupPVStatus(e.groupPV,e.level);
             const fs=getFastStartStatus(e.selfPV, e.groupPV, e.level);
             const tpv = exactPV((e.selfPV||0)+(e.groupPV||0));
-            const pvBg=e.selfPV>=100?'#dcfce7':e.selfPV>=30?'#fef3c7':'#fee2e2';
-            const pvC=e.selfPV>=100?'#166534':e.selfPV>=30?'#92400e':'#991b1b';
+            const pvBg=e.selfPV>=100?'#dcfce7':e.selfPV>=150?'#fef3c7':'#fee2e2';
+            const pvC=e.selfPV>=100?'#166534':e.selfPV>=150?'#92400e':'#991b1b';
             const fsCellTa = fs.reason==='above_distributor'?'👑 8%+ நிலை':fs.achieved?'⚡ ✓':'Need '+fmtPV(exactPV(300-tpv<0?0:300-tpv))+' ('+fmtPV(tpv)+'/300)';
             const fsBg = fs.reason==='above_distributor'?'#ede9fe':fs.achieved?'#dcfce7':'#fee2e2';
             const fsC  = fs.reason==='above_distributor'?'#5b21b6':fs.achieved?'#166534':'#991b1b';
@@ -1738,7 +1738,7 @@
         const todayStr = now.toISOString().split('T')[0];
         const total = entries.length;
         const pct = (n) => total > 0 ? Math.round((n/total)*100) : 0;
-        const active      = entries.filter(e => e.selfPV >= 30).length;
+        const active      = entries.filter(e => e.selfPV >= 150).length;
         const hit100Ta    = entries.filter(e => e.selfPV >= 100).length;
         const consist     = entries.filter(e => e.consistency === 'Yes').length;
         const goodGroupPV = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
@@ -1774,8 +1774,8 @@
             const gvs = getGroupPVStatus(e.groupPV, e.level);
             const fss = getFastStartStatus(e.selfPV, e.groupPV, e.level);
             const tpv = exactPV((e.selfPV||0)+(e.groupPV||0));
-            const pvBg = e.selfPV>=100?'#dcfce7':e.selfPV>=30?'#fef3c7':'#fee2e2';
-            const pvColor = e.selfPV>=100?'#166534':e.selfPV>=30?'#92400e':'#991b1b';
+            const pvBg = e.selfPV>=100?'#dcfce7':e.selfPV>=150?'#fef3c7':'#fee2e2';
+            const pvColor = e.selfPV>=100?'#166534':e.selfPV>=150?'#92400e':'#991b1b';
             const fsCellTa = fss.reason==='above_distributor'?'👑 8%+ நிலை':fss.achieved?'⚡ ✓':'Need '+fmtPV(exactPV(300-tpv<0?0:300-tpv))+' ('+fmtPV(tpv)+'/300)';
             const fsBg = fss.reason==='above_distributor'?'#ede9fe':fss.achieved?'#dcfce7':'#fee2e2';
             const fsC  = fss.reason==='above_distributor'?'#5b21b6':fss.achieved?'#166534':'#991b1b';
@@ -1862,7 +1862,7 @@
         const todayStr = now.toISOString().split('T')[0];
         const total = entries.length;
         const pct = (n) => total > 0 ? Math.round((n/total)*100) : 0;
-        const active       = entries.filter(e => e.selfPV >= 30).length;
+        const active       = entries.filter(e => e.selfPV >= 150).length;
         const hit100       = entries.filter(e => e.selfPV >= 100).length;
         const consist      = entries.filter(e => e.consistency === 'Yes').length;
         const goodGroupPV  = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
@@ -1886,7 +1886,7 @@
         const barHtml = (p, c) => `<div style="background:#e2e8f0;border-radius:4px;height:8px;width:100%;"><div style="width:${p}%;height:100%;background:${c};border-radius:4px;"></div></div>`;
 
         const params = [
-            { label:'Active IDs (Self PV >= 30)',            adj: pct(active),      count: active },
+            { label:'Active IDs (Self PV >= 100)',            adj: pct(active),      count: active },
             { label:'Self PV >= 100 (Green IDs)',            adj: pct(hit100),      count: hit100 },
             { label:'150PV Consistency (CNC)',                adj: pct(consist),     count: consist },
             { label:'Meeting Attendance',                     adj: pct(meetingYes),  count: meetingYes },
@@ -1899,8 +1899,8 @@
             const gvs = getGroupPVStatus(e.groupPV, e.level);
             const fss = getFastStartStatus(e.selfPV, e.groupPV, e.level);
             const tpv = exactPV((e.selfPV||0)+(e.groupPV||0));
-            const pvBg  = e.selfPV>=100?'#dcfce7':e.selfPV>=30?'#fef3c7':'#fee2e2';
-            const pvC   = e.selfPV>=100?'#166534':e.selfPV>=30?'#92400e':'#991b1b';
+            const pvBg  = e.selfPV>=100?'#dcfce7':e.selfPV>=150?'#fef3c7':'#fee2e2';
+            const pvC   = e.selfPV>=100?'#166534':e.selfPV>=150?'#92400e':'#991b1b';
             const fsCell = fss.reason==='above_distributor'?'👑 Above 8%':fss.achieved?'⚡ OK':'Need '+fmtPV(exactPV(300-tpv<0?0:300-tpv))+' ('+fmtPV(tpv)+'/300)';
             const fsBg  = fss.reason==='above_distributor'?'#ede9fe':fss.achieved?'#dcfce7':'#fee2e2';
             const fsC   = fss.reason==='above_distributor'?'#5b21b6':fss.achieved?'#166534':'#991b1b';
@@ -1984,7 +1984,7 @@
         const total = entries.length;
         if (total === 0) return [];
         const pct = (n) => total > 0 ? Math.round((n/total)*100) : 0;
-        const active      = entries.filter(e => e.selfPV >= 30).length;
+        const active      = entries.filter(e => e.selfPV >= 150).length;
         const inactive    = entries.filter(e => e.selfPV < 30).length;
         const hit100      = entries.filter(e => e.selfPV >= 100).length;
         const consistency = entries.filter(e => e.consistency === 'Yes').length;
@@ -2011,7 +2011,7 @@
                            : overallScore >= 50 ? 'AVERAGE' : 'NEEDS IMPROVEMENT';
 
         const params = [
-            { name: 'Active IDs (Self PV >= 30)', done: active, bad: inactive, pct: pct(active), advice: 'IDs below 100 PVgo inactive. Urgent action before month end.' },
+            { name: 'Active IDs (Self PV >= 100)', done: active, bad: inactive, pct: pct(active), advice: 'IDs below 100 PVgo inactive. Urgent action before month end.' },
             { name: 'Self PV >= 100',             done: hit100, bad: total-hit100, pct: pct(hit100), advice: 'Consistency voucher ₹2500. Encourage family product usage.' },
             { name: '150PV Consistency (CNC)',    done: consistency, bad: noConsist, pct: pct(consistency), advice: 'Remind members to order before 14th every cycle.' },
             { name: 'Meeting Attendance',          done: meetingYes, bad: meetingNo, pct: pct(meetingYes), advice: 'Members who attend daily meetings grow 3x faster.' },
@@ -2050,7 +2050,7 @@
         const consistency  = entries.filter(e => e.consistency === 'Yes').length;
         const meetingYes   = entries.filter(e => e.meeting === 'Yes').length;
         const withJoiners  = entries.filter(e => e.newJoiners === 'Yes').length;
-        const active       = entries.filter(e => e.selfPV >= 30).length;
+        const active       = entries.filter(e => e.selfPV >= 150).length;
         const goodGroupPV  = entries.filter(e => getGroupPVStatus(e.groupPV, e.level).met).length;
         const fsAchieved   = entries.filter(e => getFastStartStatus(e.selfPV, e.groupPV, e.level).achieved).length;
         const greenMembers = entries.filter(e => e.selfPV >= 100).length;
