@@ -2058,7 +2058,7 @@
         let csv = `"NFVT Team Followup Report"\n"Generated: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}"\n"Report By: ${loggedInUser.name} (ID: ${loggedInUser.id})"\n"Business Month: ${getBusinessMonthLabel(now)}"\n\n`;
         csv += `"=== PERFORMANCE SUMMARY ==="\n`;
         csv += `"Parameter","Count","Percentage","Status"\n`;
-        csv += `"Active IDs (PV>=30)","${active} of ${entries.length}","${pct(active)}%","${pct(active)>=80?'GOOD':pct(active)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
+        csv += `"Active IDs (PV>=100)","${active} of ${entries.length}","${pct(active)}%","${pct(active)>=80?'GOOD':pct(active)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"150PV Consistency","${consistency} of ${entries.length}","${pct(consistency)}%","${pct(consistency)>=80?'GOOD':pct(consistency)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"Group PV Target Met (Level-wise)","${goodGroupPV} of ${entries.length}","${pct(goodGroupPV)}%","${pct(goodGroupPV)>=80?'GOOD':pct(goodGroupPV)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"Meeting Attendance","${meetingYes} of ${entries.length}","${pct(meetingYes)}%","${pct(meetingYes)>=80?'GOOD':pct(meetingYes)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
