@@ -320,7 +320,7 @@
         <div class="fast-start-icon">⚡</div>
         <div class="fast-start-content">
             <div class="fast-start-title">Fast Start 8% Achievement Tracker</div>
-            <div class="fast-start-sub lang-text" data-en="Distributor level: Total PV ≥ 300 for 8% Fast Start · Senior Dist+ already above 8% (2600 PV target) · Click details" data-ta="Distributor நிலை: மொத்த PV ≥ 300 → 8% Fast Start · Senior Dist+ ஏற்கனவே 8%+ (2600 PV இலக்கு) · விவரங்களை காண கிளிக்">Distributor level: Total PV ≥ 300 for 8% Fast Start · Senior Dist+ already above 8% (2600 PV target) · Click details</div>
+            <div class="fast-start-sub lang-text" data-en="Distributor level: Total PV ≥ 300 for 8% Fast Start · Senior Dist+ already above 8% (3000 PV target) · Click details" data-ta="Distributor நிலை: மொத்த PV ≥ 300 → 8% Fast Start · Senior Dist+ ஏற்கனவே 8%+ (3000 PV இலக்கு) · விவரங்களை காண கிளிக்">Distributor level: Total PV ≥ 300 for 8% Fast Start · Senior Dist+ already above 8% (3000 PV target) · Click details</div>
         </div>
         <div class="fast-start-stats" id="fastStartStats">
             <div class="fs-stat achieved">
@@ -538,7 +538,7 @@
                 <div style="font-size:13px;color:rgba(255,255,255,0.9);line-height:1.8;">
                     📋 <strong style="color:#fcf6ba;">Fast Start 8% Rule:</strong><br>
                     <strong style="color:#ffd700;">Distributor level only:</strong> Total PV (Self + Group) ≥ <strong style="color:#6ee7b7;">300</strong> → unlocks <strong style="color:#6ee7b7;">8% Fast Start Bonus</strong>.<br>
-                    <strong style="color:#c4b5fd;">Senior Distributor and above</strong> already earn 8%+ — their monthly target is <strong style="color:#fbbf24;">2600 PV</strong>.
+                    <strong style="color:#c4b5fd;">Senior Distributor and above</strong> already earn 8%+ — their monthly target is <strong style="color:#fbbf24;">3000 PV</strong>.
                 </div>
             </div>
             <div id="fastStartModalContent" style="max-height:340px;overflow-y:auto;"></div>
@@ -607,12 +607,12 @@
     }
 
     function getGroupPVTarget(level) {
-        if (!level) return 2600;
+        if (!level) return 3000;
         const l = level.toLowerCase();
-        if (l.includes('bronze director')) return 2600;
-        if (l.includes('silver director')) return 2100;
-        if (l.includes('gold director')) return 1800;
-        return 2600;
+        if (l.includes('bronze director')) return 3000;
+        if (l.includes('silver director')) return 2400;
+        if (l.includes('gold director')) return 2000;
+        return 3000;
     }
 
     function getGroupPVStatus(groupPV, level) {
@@ -636,7 +636,7 @@
     }
 
     // CHANGE 2: isDistributorLevel — only pure Distributor (or blank) needs 300 PV for 8%
-    // Senior Distributor and above already earn 8%+ — show "Above 8%" badge, target 2600 PV
+    // Senior Distributor and above already earn 8%+ — show "Above 8%" badge, target 3000 PV
     function isDistributorLevel(level) {
         if (!level || level.trim() === '') return true;
         const l = level.toLowerCase().trim();
@@ -644,7 +644,7 @@
     }
 
     function getFastStartStatus(selfPV, groupPV, level) {
-        // Senior Distributor and above: already above 8%, monthly target = 2600 PV
+        // Senior Distributor and above: already above 8%, monthly target = 3000 PV
         if (!isDistributorLevel(level)) {
             return { achieved: true, target: 300, shortfall: 0, reason: 'above_distributor' };
         }
@@ -714,7 +714,7 @@
         }
 
         if (aboveDistributor.length > 0) {
-            html += `<div style="font-size:12px;font-weight:800;color:#c4b5fd;margin:14px 0 10px;letter-spacing:1px;">👑 ABOVE 8% (Senior Dist+) — ${aboveDistributor.length} members · Target: 2600 PV/month</div>`;
+            html += `<div style="font-size:12px;font-weight:800;color:#c4b5fd;margin:14px 0 10px;letter-spacing:1px;">👑 ABOVE 8% (Senior Dist+) — ${aboveDistributor.length} members · Target: 3000 PV/month</div>`;
             aboveDistributor.forEach(m => {
                 const gvStatus = getGroupPVStatus(m.groupPV, m.level);
                 html += `<div class="fs-member-row">
@@ -1139,7 +1139,7 @@
             { name: 'Meeting Attendance', pct: pct(meetingYes), bad: meetingNo, advice: 'Push for 6PM & 8PM daily meetings. Members who attend meetings grow 3x faster.' },
             { name: 'Active IDs (Self PV ≥ 100)', pct: pct(active), bad: inactive, advice: 'Any ID below 100 PV will go inactive. Urgent action needed before month end.' },
             { name: 'Self PV ≥ 150', pct: pct(hit100), bad: low150, advice: 'Members with 150PV earn consistency voucher. Encourage product usage from family first.' },
-            { name: 'Group PV Target Met (Level-wise)', pct: pct(goodGroupPV), bad: lowGroupPV, advice: 'Bronze Dir: 2600 | Silver Dir: 2100 | Gold Dir: 1800 | Others: 2600 PV target.' },
+            { name: 'Group PV Target Met (Level-wise)', pct: pct(goodGroupPV), bad: lowGroupPV, advice: 'Bronze Dir: 3000 | Silver Dir: 2400 | Gold Dir: 2000 | Others: 3000 PV target.' },
             { name: '⚡ Fast Start 8% (Distributor: Total PV ≥ 300 / Senior Dist+: Above 8%)', pct: pct(fastAchieved), bad: fastNeed, advice: 'Distributor: Total PV >= 300 = 8% Fast Start. Senior Dist and above already earn 8%+.' },
         ].sort((a,b) => a.pct - b.pct);
         const worstParam = params[0];
@@ -1569,13 +1569,13 @@
         </table>
         ${dayWiseHtml}
         <div style="margin-top:12px;font-size:9px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:8px;line-height:1.7;">
-            * Group PV Target: Bronze Dir=2600 | Silver Dir=2100 | Gold Dir=1800 | Others=2600 &nbsp;|&nbsp;
+            * Group PV Target: Bronze Dir=3000 | Silver Dir=2400 | Gold Dir=2000 | Others=3000 &nbsp;|&nbsp;
             Fast Start: Distributor Total PV >= 300 = 8% | Senior Dist+ already earn 8%+ &nbsp;|&nbsp;
             Excellent = Score >= 75% AND 26+ green members &nbsp;|&nbsp; Business month: 2nd to 1st
         </div>
         </body></html>`;
 
-        renderHtmlToPdfPages(html, `nfvt_monthly_report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`, 1800);
+        renderHtmlToPdfPages(html, `nfvt_monthly_report_${loggedInUser.id}_${now.toISOString().split('T')[0]}.pdf`, 2000);
     }
 
     // CHANGE 3 & 4: Tamil Monthly Report — Tamil font @import + increased delay + 26-green gate
@@ -1720,7 +1720,7 @@
             <tbody>${rowsHtml}</tbody>
         </table>
         <div style="margin-top:12px;font-size:9px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:8px;">
-            குழு PV இலக்கு: Bronze Dir=2600 | Silver Dir=2100 | Gold Dir=1800 | மற்றவர்கள்=2600 &nbsp;|&nbsp; Fast Start 8%: Distributor மட்டும் மொத்த PV >= 300 | Senior Dist+ ஏற்கனவே 8%+ | சிறப்பான நிலைக்கு 26+ பச்சை உறுப்பினர்கள் தேவை
+            குழு PV இலக்கு: Bronze Dir=3000 | Silver Dir=2400 | Gold Dir=2000 | மற்றவர்கள்=3000 &nbsp;|&nbsp; Fast Start 8%: Distributor மட்டும் மொத்த PV >= 300 | Senior Dist+ ஏற்கனவே 8%+ | சிறப்பான நிலைக்கு 26+ பச்சை உறுப்பினர்கள் தேவை
         </div>
         </body></html>`;
 
@@ -1849,7 +1849,7 @@
         </table>
         ${dayWiseHtmlTa}
         <div style="margin-top:14px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:10px;">
-            * Fast Start 8%: Distributor = மொத்த PV >= 300 | Senior Dist+ = ஏற்கனவே 8%+ (👑 நிலை) &nbsp;|&nbsp; குழு PV இலக்கு: Bronze=2600 | Silver=2100 | Gold=1800 &nbsp;|&nbsp; சிறப்பான நிலை = 75%+ மதிப்பு மற்றும் 26+ பச்சை உறுப்பினர்கள்
+            * Fast Start 8%: Distributor = மொத்த PV >= 300 | Senior Dist+ = ஏற்கனவே 8%+ (👑 நிலை) &nbsp;|&nbsp; குழு PV இலக்கு: Bronze=3000 | Silver=2400 | Gold=2000 &nbsp;|&nbsp; சிறப்பான நிலை = 75%+ மதிப்பு மற்றும் 26+ பச்சை உறுப்பினர்கள்
         </div>
         </body></html>`;
 
@@ -1971,7 +1971,7 @@
         </table>
         <div style="margin-top:14px;font-size:9px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:8px;line-height:1.7;">
             * Fast Start: Distributor = Total PV >= 300 unlocks 8% | Senior Dist+ already earn 8%+ (shown as Above 8%) &nbsp;|&nbsp;
-            Group PV Target: Bronze Dir=2600 | Silver Dir=2100 | Gold Dir=1800 | Others=2600 &nbsp;|&nbsp;
+            Group PV Target: Bronze Dir=3000 | Silver Dir=2400 | Gold Dir=2000 | Others=3000 &nbsp;|&nbsp;
             EXCELLENT = Score >= 75% AND 26+ green members (Self PV >= 100) &nbsp;|&nbsp;
             Meeting % = today's edited Yes entries | Business month: 2nd to 1st
         </div>
@@ -2015,7 +2015,7 @@
             { name: 'Self PV >= 100',             done: hit100, bad: total-hit100, pct: pct(hit100), advice: 'Consistency voucher ₹2500. Encourage family product usage.' },
             { name: '150PV Consistency (CNC)',    done: consistency, bad: noConsist, pct: pct(consistency), advice: 'Remind members to order before 14th every cycle.' },
             { name: 'Meeting Attendance',          done: meetingYes, bad: meetingNo, pct: pct(meetingYes), advice: 'Members who attend daily meetings grow 3x faster.' },
-            { name: 'Group PV Target (Level-wise)',done: goodGroupPV, bad: lowGroupPV, pct: pct(goodGroupPV), advice: 'Bronze:2600 | Silver:2100 | Gold:1800 | Others:2600 PV.' },
+            { name: 'Group PV Target (Level-wise)',done: goodGroupPV, bad: lowGroupPV, pct: pct(goodGroupPV), advice: 'Bronze:3000 | Silver:2400 | Gold:2000 | Others:3000 PV.' },
             { name: 'Recruitment (New Joiners)',   done: withJoiners, bad: noJoiners, pct: pct(withJoiners), advice: 'Daily upline conference calls. Share business with 5+ prospects daily.' },
             { name: '⚡ Fast Start 8% (Dist only)', done: fsAchieved, bad: fsNeed, pct: pct(fsAchieved), advice: 'Distributor: Total PV >= 300 = 8% Fast Start. Senior Dist+ already above 8%.' },
         ].sort((a,b) => a.pct - b.pct);
@@ -2065,7 +2065,7 @@
         csv += `"New Joiners","${withJoiners} of ${entries.length}","${pct(withJoiners)}%","${pct(withJoiners)>=80?'GOOD':pct(withJoiners)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"Fast Start 8% (Dist: TotalPV>=300 / Senior Dist+: Above 8%)","${fsAchieved} of ${entries.length}","${pct(fsAchieved)}%","${pct(fsAchieved)>=80?'GOOD':pct(fsAchieved)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"Green Members (Self PV >= 100)","${greenMembers} of ${entries.length}","","${greenMembers>=excellenceThreshold?'EXCELLENT threshold met':'Need '+(excellenceThreshold-greenMembers)+' more for EXCELLENT'}"\n`;
-        csv += `"Group PV Targets","Bronze Dir:2600 | Silver Dir:2100 | Gold Dir:1800 | Others:2600","",""\n\n`;
+        csv += `"Group PV Targets","Bronze Dir:3000 | Silver Dir:2400 | Gold Dir:2000 | Others:3000","",""\n\n`;
         csv += `"=== MEMBER DATA ==="\n`;
         csv += "Name,ID,Mobile,Level,SelfPV,GroupPV,GroupPV_Target,GroupPV_Met,TotalPV,FastStart8%,Date,150PV_CNC,Meeting,NewJoiners,Timestamp\n";
         entries.forEach(e => {
