@@ -385,7 +385,7 @@
                 <input type="date" id="followUpDate">
             </div>
             <div class="input-group">
-                <label class="lang-text" data-en="100PV CNC" data-ta="100PV தொடர்ச்சி">100PV CNC</label>
+                <label class="lang-text" data-en="150PV CNC" data-ta="150PV தொடர்ச்சி">150PV CNC</label>
                 <select id="consistency">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -442,7 +442,7 @@
                     <th class="lang-text" data-en="Total PV" data-ta="மொத்த PV">Total PV</th>
                     <th class="lang-text" data-en="Fast Start" data-ta="Fast Start">Fast Start</th>
                     <th class="lang-text" data-en="Date" data-ta="தேதி">Date</th>
-                    <th class="lang-text" data-en="100PV" data-ta="100PV">100PV</th>
+                    <th class="lang-text" data-en="150PV" data-ta="150PV">150PV</th>
                     <th class="lang-text" data-en="Meeting" data-ta="கூட்டம்">Meeting</th>
                     <th class="lang-text" data-en="New Joiners" data-ta="புதிய சேர்க்கை">New Joiners</th>
                     <th class="lang-text" data-en="Actions" data-ta="செயல்கள்">Actions</th>
@@ -480,7 +480,7 @@
                     <div class="input-group"><label class="lang-text" data-en="Self PV" data-ta="சொந்த PV">Self PV</label><input type="number" id="editSelfPV" step="1"></div>
                     <div class="input-group"><label class="lang-text" data-en="Group PV (PGPV)" data-ta="குழு PV">Group PV (PGPV)</label><input type="number" id="editGroupPV" step="1"></div>
                     <div class="input-group"><label class="lang-text" data-en="Date" data-ta="தேதி">Date</label><input type="date" id="editDate"></div>
-                    <div class="input-group"><label class="lang-text" data-en="100PV CNC" data-ta="100PV தொடர்ச்சி">100PV CNC</label><select id="editConsistency"><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                    <div class="input-group"><label class="lang-text" data-en="150PV CNC" data-ta="150PV தொடர்ச்சி">150PV CNC</label><select id="editConsistency"><option value="Yes">Yes</option><option value="No">No</option></select></div>
                     <div class="input-group"><label class="lang-text" data-en="Meeting" data-ta="கூட்டம்">Meeting</label><select id="editMeeting"><option value="Yes">Yes</option><option value="No">No</option></select></div>
                     <div class="input-group"><label class="lang-text" data-en="Any New Joiners?" data-ta="புதிய சேர்க்கை?">Any New Joiners?</label><select id="editNewJoiners"><option value="Yes">Yes</option><option value="No">No</option></select></div>
                 </div>
@@ -975,8 +975,8 @@
             if (item.consistency === "No") {
                 if (rowClass === '') rowClass = 'no-consistency';
                 statusBadges += currentLanguage === 'en'
-                    ? '<span style="background:#fee2e2;color:#991b1b;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">❌ NO 100PV</span>'
-                    : '<span style="background:#fee2e2;color:#991b1b;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">❌ 100PV இல்லை</span>';
+                    ? '<span style="background:#fee2e2;color:#991b1b;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">❌ NO 150PV</span>'
+                    : '<span style="background:#fee2e2;color:#991b1b;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-right:3px;display:inline-block;margin-bottom:3px;">❌ 150PV இல்லை</span>';
                 alertCount++;
             }
             if (item.meeting === "No") {
@@ -1015,7 +1015,7 @@
             } else if (item.selfPV < 100) {
                 const needed = exactPV(100 - item.selfPV);
                 waMessage += currentLanguage === 'en'
-                    ? `📊 Self PV: ${fmtPV(item.selfPV)} | Remaining to 100PV: *${fmtPV(needed)} PV*\n\n`
+                    ? `📊 Self PV: ${fmtPV(item.selfPV)} | Remaining to 150PV: *${fmtPV(needed)} PV*\n\n`
                     : `📊 PV: ${fmtPV(item.selfPV)}\n\n`;
             }
             // Only add Fast Start reminder for Distributor level
@@ -1029,7 +1029,7 @@
                     ? `⚠️ *Group PV IMPROVEMENT NEEDED*\nLevel: ${item.level} | Target: ${gvStatus.target} PV\nCurrent: ${fmtPV(item.groupPV)} | Need: *${fmtPV(gvStatus.shortfall)} PV*\n\n`
                     : `⚠️ குழு PV ${fmtPV(item.groupPV)} - இலக்கு: ${gvStatus.target}\n\n`;
             }
-            if (item.consistency === "No") { waMessage += currentLanguage === 'en' ? `⚠️ Maintain 100PV consistency!\n\n` : `⚠️ 100PV தொடர்ச்சி!\n\n`; }
+            if (item.consistency === "No") { waMessage += currentLanguage === 'en' ? `⚠️ Maintain 150PV consistency!\n\n` : `⚠️ 150PV தொடர்ச்சி!\n\n`; }
             if (item.meeting === "No") { waMessage += currentLanguage === 'en' ? `🔔 Please attend daily meetings!\n\n` : `🔔 கூட்டத்தில் கலந்துகொள்ளுங்கள்!\n\n`; }
             if (!item.newJoiners || item.newJoiners === 'No') {
                 waMessage += currentLanguage === 'en'
@@ -1135,10 +1135,10 @@
                     : { emoji:'🚨', label:'Needs Improvement', color:'#dc2626' };
         const params = [
             { name: 'Recruitment (New Joiners)', pct: pct(withJoiners), bad: noJoiners, advice: 'Focus on daily upline conference calls & sharing business opportunity with 5+ prospects daily.' },
-            { name: '100PV Consistency', pct: pct(consistency), bad: noConsist, advice: 'Remind members to order before 14th. Consistency gives ₹2500 voucher benefit.' },
+            { name: '150PV Consistency', pct: pct(consistency), bad: noConsist, advice: 'Remind members to order before 14th. Consistency gives ₹2500 voucher benefit.' },
             { name: 'Meeting Attendance', pct: pct(meetingYes), bad: meetingNo, advice: 'Push for 6PM & 8PM daily meetings. Members who attend meetings grow 3x faster.' },
             { name: 'Active IDs (Self PV ≥ 30)', pct: pct(active), bad: inactive, advice: 'Any ID below 30 PV will go inactive. Urgent action needed before month end.' },
-            { name: 'Self PV ≥ 100', pct: pct(hit100), bad: low100, advice: 'Members with 100PV earn consistency voucher. Encourage product usage from family first.' },
+            { name: 'Self PV ≥ 100', pct: pct(hit100), bad: low100, advice: 'Members with 150PV earn consistency voucher. Encourage product usage from family first.' },
             { name: 'Group PV Target Met (Level-wise)', pct: pct(goodGroupPV), bad: lowGroupPV, advice: 'Bronze Dir: 2600 | Silver Dir: 2100 | Gold Dir: 1800 | Others: 2600 PV target.' },
             { name: '⚡ Fast Start 8% (Distributor: Total PV ≥ 300 / Senior Dist+: Above 8%)', pct: pct(fastAchieved), bad: fastNeed, advice: 'Distributor: Total PV >= 300 = 8% Fast Start. Senior Dist and above already earn 8%+.' },
         ].sort((a,b) => a.pct - b.pct);
@@ -1181,7 +1181,7 @@
         const needsList = needsHelp.map(m=>{
             const issues = [];
             if(m.selfPV<30) issues.push('🚨 Inactive'); else if(m.selfPV<100) issues.push('📊 Low PV');
-            if(m.consistency==='No') issues.push('❌ No 100PV');
+            if(m.consistency==='No') issues.push('❌ No 150PV');
             if(m.meeting==='No') issues.push('🔔 Missed Meeting');
             if(!m.newJoiners||m.newJoiners==='No') issues.push('👥 No Joiner');
             if(!getGroupPVStatus(m.groupPV,m.level).met) issues.push('⚠️ Low Group PV');
@@ -1461,7 +1461,7 @@
 
         const params = [
             {label:'Recruitment (New Joiners)',          pct:pct(joinYes),  count:joinYes,  bad:total-joinYes},
-            {label:'100PV Consistency (CNC)',             pct:pct(consist),  count:consist,  bad:total-consist},
+            {label:'150PV Consistency (CNC)',             pct:pct(consist),  count:consist,  bad:total-consist},
             {label:'Meeting Attendance',                  pct:pct(meetYes),  count:meetYes,  bad:total-meetYes},
             {label:'Active IDs (Self PV >= 30)',          pct:pct(active),   count:active,   bad:total-active},
             {label:'Group PV Target (Level-wise)',        pct:pct(goodGPV),  count:goodGPV,  bad:total-goodGPV},
@@ -1543,7 +1543,7 @@
                 ${needsHelp.map(m=>{
                     const iss=[];
                     if(m.selfPV<30)iss.push('Inactive');else if(m.selfPV<100)iss.push('Low PV');
-                    if(m.consistency==='No')iss.push('No 100PV');
+                    if(m.consistency==='No')iss.push('No 150PV');
                     if(m.meeting==='No')iss.push('No Meeting');
                     if(!m.newJoiners||m.newJoiners==='No')iss.push('No Joiner');
                     if(isDistributorLevel(m.level)&&!getFastStartStatus(m.selfPV,m.groupPV,m.level).achieved)iss.push('No Fast Start');
@@ -1559,7 +1559,7 @@
                 <th style="padding:6px;">Level</th>
                 <th style="padding:6px;">Self PV</th>
                 <th style="padding:6px;">Group PV/Target</th>
-                <th style="padding:6px;">100PV</th>
+                <th style="padding:6px;">150PV</th>
                 <th style="padding:6px;">Meeting</th>
                 <th style="padding:6px;">Joiner</th>
                 <th style="padding:6px;">Fast Start</th>
@@ -1612,7 +1612,7 @@
 
         const params = [
             {label:'புதிய சேர்க்கை',pct:pct(joinYes),count:joinYes,bad:total-joinYes},
-            {label:'100PV தொடர்ச்சி',pct:pct(consist),count:consist,bad:total-consist},
+            {label:'150PV தொடர்ச்சி',pct:pct(consist),count:consist,bad:total-consist},
             {label:'கூட்டம் வருகை',pct:pct(meetYes),count:meetYes,bad:total-meetYes},
             {label:'செயலில் உள்ள IDs (PV>=30)',pct:pct(active),count:active,bad:total-active},
             {label:'குழு PV இலக்கு (நிலை வாரியாக)',pct:pct(goodGPV),count:goodGPV,bad:total-goodGPV},
@@ -1701,7 +1701,7 @@
                 ${needsHelp.map(m=>{
                     const iss=[];
                     if(m.selfPV<30)iss.push('செயலற்றது');else if(m.selfPV<100)iss.push('குறைந்த PV');
-                    if(m.consistency==='No')iss.push('100PV இல்லை');
+                    if(m.consistency==='No')iss.push('150PV இல்லை');
                     if(m.meeting==='No')iss.push('கூட்டம் இல்லை');
                     if(!m.newJoiners||m.newJoiners==='No')iss.push('சேர்க்கை இல்லை');
                     if(isDistributorLevel(m.level)&&!getFastStartStatus(m.selfPV, m.groupPV, m.level).achieved) iss.push('Fast Start இல்லை');
@@ -1714,7 +1714,7 @@
             <thead><tr style="background:#1e293b;color:#fcf6ba;">
                 <th style="padding:6px;text-align:left;">பெயர்</th><th style="padding:6px;">ID</th>
                 <th style="padding:6px;">நிலை</th><th style="padding:6px;">சொந்த PV</th>
-                <th style="padding:6px;">குழு PV/இலக்கு</th><th style="padding:6px;">100PV</th>
+                <th style="padding:6px;">குழு PV/இலக்கு</th><th style="padding:6px;">150PV</th>
                 <th style="padding:6px;">கூட்டம்</th><th style="padding:6px;">சேர்க்கை</th><th style="padding:6px;">⚡8%</th><th style="padding:6px;">தேதி</th>
             </tr></thead>
             <tbody>${rowsHtml}</tbody>
@@ -1763,7 +1763,7 @@
         const params = [
             { label:'செயலில் உள்ள IDs (PV>=30)',              adj:pct(active),      count:active },
             { label:'Self PV >= 100 (பச்சை IDs)',              adj:pct(hit100Ta),    count:hit100Ta },
-            { label:'100PV தொடர்ச்சி (CNC)',                   adj:pct(consist),     count:consist },
+            { label:'150PV தொடர்ச்சி (CNC)',                   adj:pct(consist),     count:consist },
             { label:'கூட்டம் வருகை',                           adj:pct(meetingYes),  count:meetingYes },
             { label:'புதிய சேர்க்கை',                          adj:pct(recruitYes),  count:recruitYes },
             { label:'குழு PV இலக்கு (நிலை வாரியாக)',            adj:pct(goodGroupPV), count:goodGroupPV },
@@ -1841,7 +1841,7 @@
         <table style="width:100%;border-collapse:collapse;font-size:11px;">
             <thead><tr style="background:#1e293b;color:#fcf6ba;">
                 <th style="padding:7px 6px;text-align:left;">பெயர்</th><th style="padding:7px 6px;">ID</th>
-                <th style="padding:7px 6px;">சொந்த PV</th><th style="padding:7px 6px;">100PV</th>
+                <th style="padding:7px 6px;">சொந்த PV</th><th style="padding:7px 6px;">150PV</th>
                 <th style="padding:7px 6px;">கூட்டம்</th><th style="padding:7px 6px;">சேர்க்கை</th>
                 <th style="padding:7px 6px;">குழு PV/இலக்கு</th><th style="padding:7px 6px;">⚡8%</th><th style="padding:7px 6px;">தேதி</th>
             </tr></thead>
@@ -1888,7 +1888,7 @@
         const params = [
             { label:'Active IDs (Self PV >= 30)',            adj: pct(active),      count: active },
             { label:'Self PV >= 100 (Green IDs)',            adj: pct(hit100),      count: hit100 },
-            { label:'100PV Consistency (CNC)',                adj: pct(consist),     count: consist },
+            { label:'150PV Consistency (CNC)',                adj: pct(consist),     count: consist },
             { label:'Meeting Attendance',                     adj: pct(meetingYes),  count: meetingYes },
             { label:'Recruitment / New Joiners',              adj: pct(joinYes),     count: joinYes },
             { label:'Group PV Target Met (Level-wise)',       adj: pct(goodGroupPV), count: goodGroupPV },
@@ -1960,7 +1960,7 @@
                 <th style="padding:7px 6px;text-align:left;">Name</th>
                 <th style="padding:7px 6px;">ID</th>
                 <th style="padding:7px 6px;">Self PV</th>
-                <th style="padding:7px 6px;">100PV</th>
+                <th style="padding:7px 6px;">150PV</th>
                 <th style="padding:7px 6px;">Meeting</th>
                 <th style="padding:7px 6px;">Joiner</th>
                 <th style="padding:7px 6px;">Group PV/Target</th>
@@ -2013,7 +2013,7 @@
         const params = [
             { name: 'Active IDs (Self PV >= 30)', done: active, bad: inactive, pct: pct(active), advice: 'IDs below 30 PV go inactive. Urgent action before month end.' },
             { name: 'Self PV >= 100',             done: hit100, bad: total-hit100, pct: pct(hit100), advice: 'Consistency voucher ₹2500. Encourage family product usage.' },
-            { name: '100PV Consistency (CNC)',    done: consistency, bad: noConsist, pct: pct(consistency), advice: 'Remind members to order before 14th every cycle.' },
+            { name: '150PV Consistency (CNC)',    done: consistency, bad: noConsist, pct: pct(consistency), advice: 'Remind members to order before 14th every cycle.' },
             { name: 'Meeting Attendance',          done: meetingYes, bad: meetingNo, pct: pct(meetingYes), advice: 'Members who attend daily meetings grow 3x faster.' },
             { name: 'Group PV Target (Level-wise)',done: goodGroupPV, bad: lowGroupPV, pct: pct(goodGroupPV), advice: 'Bronze:2600 | Silver:2100 | Gold:1800 | Others:2600 PV.' },
             { name: 'Recruitment (New Joiners)',   done: withJoiners, bad: noJoiners, pct: pct(withJoiners), advice: 'Daily upline conference calls. Share business with 5+ prospects daily.' },
@@ -2059,7 +2059,7 @@
         csv += `"=== PERFORMANCE SUMMARY ==="\n`;
         csv += `"Parameter","Count","Percentage","Status"\n`;
         csv += `"Active IDs (PV>=30)","${active} of ${entries.length}","${pct(active)}%","${pct(active)>=80?'GOOD':pct(active)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
-        csv += `"100PV Consistency","${consistency} of ${entries.length}","${pct(consistency)}%","${pct(consistency)>=80?'GOOD':pct(consistency)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
+        csv += `"150PV Consistency","${consistency} of ${entries.length}","${pct(consistency)}%","${pct(consistency)>=80?'GOOD':pct(consistency)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"Group PV Target Met (Level-wise)","${goodGroupPV} of ${entries.length}","${pct(goodGroupPV)}%","${pct(goodGroupPV)>=80?'GOOD':pct(goodGroupPV)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"Meeting Attendance","${meetingYes} of ${entries.length}","${pct(meetingYes)}%","${pct(meetingYes)>=80?'GOOD':pct(meetingYes)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
         csv += `"New Joiners","${withJoiners} of ${entries.length}","${pct(withJoiners)}%","${pct(withJoiners)>=80?'GOOD':pct(withJoiners)>=50?'AVERAGE':'NEEDS FOCUS'}"\n`;
@@ -2067,7 +2067,7 @@
         csv += `"Green Members (Self PV >= 100)","${greenMembers} of ${entries.length}","","${greenMembers>=excellenceThreshold?'EXCELLENT threshold met':'Need '+(excellenceThreshold-greenMembers)+' more for EXCELLENT'}"\n`;
         csv += `"Group PV Targets","Bronze Dir:2600 | Silver Dir:2100 | Gold Dir:1800 | Others:2600","",""\n\n`;
         csv += `"=== MEMBER DATA ==="\n`;
-        csv += "Name,ID,Mobile,Level,SelfPV,GroupPV,GroupPV_Target,GroupPV_Met,TotalPV,FastStart8%,Date,100PV_CNC,Meeting,NewJoiners,Timestamp\n";
+        csv += "Name,ID,Mobile,Level,SelfPV,GroupPV,GroupPV_Target,GroupPV_Met,TotalPV,FastStart8%,Date,150PV_CNC,Meeting,NewJoiners,Timestamp\n";
         entries.forEach(e => {
             const gvs = getGroupPVStatus(e.groupPV, e.level);
             const fss = getFastStartStatus(e.selfPV, e.groupPV, e.level);
