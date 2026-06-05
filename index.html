@@ -1097,10 +1097,10 @@
     function buildReportAnalysis(entries) {
         const total = entries.length;
         if (total === 0) return '<p style="color:#64748b;">No members added yet.</p>';
-        const active       = entries.filter(e => e.selfPV >= 40).length;
-        const inactive     = entries.filter(e => e.selfPV < 40).length;
+        const active       = entries.filter(e => e.selfPV >= 150).length;
+        const inactive     = entries.filter(e => e.selfPV < 150).length;
         const hit100       = entries.filter(e => e.selfPV >= 150).length;
-        const low150       = entries.filter(e => e.selfPV >= 40 && e.selfPV < 150).length;
+        const low150       = entries.filter(e => e.selfPV >= 150 && e.selfPV < 150).length;
         const consistency  = entries.filter(e => e.consistency === 'Yes').length;
         const noConsist    = entries.filter(e => e.consistency === 'No').length;
         const meetingYes   = entries.filter(e => e.meeting === 'Yes').length;
