@@ -1137,8 +1137,8 @@
             { name: 'Recruitment (New Joiners)', pct: pct(withJoiners), bad: noJoiners, advice: 'Focus on daily upline conference calls & sharing business opportunity with 5+ prospects daily.' },
             { name: '150PV Consistency', pct: pct(consistency), bad: noConsist, advice: 'Remind members to order before 14th. Consistency gives ₹2500 voucher benefit.' },
             { name: 'Meeting Attendance', pct: pct(meetingYes), bad: meetingNo, advice: 'Push for 6PM & 8PM daily meetings. Members who attend meetings grow 3x faster.' },
-            { name: 'Active IDs (Self PV ≥ 30)', pct: pct(active), bad: inactive, advice: 'Any ID below 30 PV will go inactive. Urgent action needed before month end.' },
-            { name: 'Self PV ≥ 100', pct: pct(hit100), bad: low100, advice: 'Members with 150PV earn consistency voucher. Encourage product usage from family first.' },
+            { name: 'Active IDs (Self PV ≥ 100)', pct: pct(active), bad: inactive, advice: 'Any ID below 100 PV will go inactive. Urgent action needed before month end.' },
+            { name: 'Self PV ≥ 150', pct: pct(hit100), bad: low100, advice: 'Members with 150PV earn consistency voucher. Encourage product usage from family first.' },
             { name: 'Group PV Target Met (Level-wise)', pct: pct(goodGroupPV), bad: lowGroupPV, advice: 'Bronze Dir: 2600 | Silver Dir: 2100 | Gold Dir: 1800 | Others: 2600 PV target.' },
             { name: '⚡ Fast Start 8% (Distributor: Total PV ≥ 300 / Senior Dist+: Above 8%)', pct: pct(fastAchieved), bad: fastNeed, advice: 'Distributor: Total PV >= 300 = 8% Fast Start. Senior Dist and above already earn 8%+.' },
         ].sort((a,b) => a.pct - b.pct);
@@ -1148,7 +1148,7 @@
             <div style="font-size:16px;font-weight:900;margin-bottom:10px;">🔍 NFVT Team Analysis Summary</div>
             <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.85);">
                 Out of <strong style="color:#fbbf24;">${total} members</strong>, team scored <strong style="color:${overallGrade.color};font-size:16px;"> ${overallScore}%</strong> ${overallGrade.emoji} — <em>${overallGrade.label}</em>.<br>
-                Green Members (Self PV ≥ 100): <strong style="color:${greenMembers>=excellenceThreshold?'#6ee7b7':'#f87171'};">${greenMembers} / ${total}</strong>${greenMembers < excellenceThreshold ? ` <span style="color:#fbbf24;">(Need ${excellenceThreshold-greenMembers} more for Excellent)</span>` : ' ✓'}<br><br>
+                Green Members (Self PV ≥ 150): <strong style="color:${greenMembers>=excellenceThreshold?'#6ee7b7':'#f87171'};">${greenMembers} / ${total}</strong>${greenMembers < excellenceThreshold ? ` <span style="color:#fbbf24;">(Need ${excellenceThreshold-greenMembers} more for Excellent)</span>` : ' ✓'}<br><br>
                 ${params.filter(p=>p.pct<50).length > 0 ? `<strong style="color:#f87171;">⚠️ Critical:</strong> ${params.filter(p=>p.pct<50).map(p=>`<span style="background:rgba(239,68,68,0.2);padding:2px 8px;border-radius:6px;">${p.name} (${p.pct}%)</span>`).join(' · ')}<br><br>` : `<strong style="color:#6ee7b7;">✅ All parameters above 50%!</strong><br><br>`}
                 <strong style="color:#fbbf24;">🎯 #1 Priority:</strong> <span style="color:white;">${worstParam.name} — <strong style="color:#f87171;">${worstParam.pct}%</strong> (${worstParam.bad} members struggling)</span><br>
                 <span style="color:rgba(255,255,255,0.7);font-size:12px;">→ ${worstParam.advice}</span>
@@ -2011,7 +2011,7 @@
                            : overallScore >= 50 ? 'AVERAGE' : 'NEEDS IMPROVEMENT';
 
         const params = [
-            { name: 'Active IDs (Self PV >= 30)', done: active, bad: inactive, pct: pct(active), advice: 'IDs below 30 PV go inactive. Urgent action before month end.' },
+            { name: 'Active IDs (Self PV >= 30)', done: active, bad: inactive, pct: pct(active), advice: 'IDs below 100 PVgo inactive. Urgent action before month end.' },
             { name: 'Self PV >= 100',             done: hit100, bad: total-hit100, pct: pct(hit100), advice: 'Consistency voucher ₹2500. Encourage family product usage.' },
             { name: '150PV Consistency (CNC)',    done: consistency, bad: noConsist, pct: pct(consistency), advice: 'Remind members to order before 14th every cycle.' },
             { name: 'Meeting Attendance',          done: meetingYes, bad: meetingNo, pct: pct(meetingYes), advice: 'Members who attend daily meetings grow 3x faster.' },
