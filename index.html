@@ -1010,8 +1010,8 @@
             let waMessage = currentLanguage === 'en' ? `Hello ${item.name}! 👋\n\n` : `வணக்கம் ${item.name}! 👋\n\n`;
             if (item.selfPV < 30) {
                 waMessage += currentLanguage === 'en'
-                    ? `🚨 *URGENT - ID ACTIVATION ALERT*\n\n📊 Self PV: ${fmtPV(item.selfPV)} | Need: *${fmtPV(30-item.selfPV)} PV*\n⏰ Complete before month end!\n📞 Contact upline NOW!\n\n`
-                    : `🚨 ID செயல்படுத்தல்!\nPV: ${fmtPV(item.selfPV)} - தேவை: ${fmtPV(30-item.selfPV)}\n\n`;
+                    ? `🚨 *URGENT - ID ACTIVATION ALERT*\n\n📊 Self PV: ${fmtPV(item.selfPV)} | Need: *${fmtPV(150-item.selfPV)} PV*\n⏰ Complete before month end!\n📞 Contact upline NOW!\n\n`
+                    : `🚨 ID செயல்படுத்தல்!\nPV: ${fmtPV(item.selfPV)} - தேவை: ${fmtPV(150-item.selfPV)}\n\n`;
             } else if (item.selfPV < 150) {
                 const needed = exactPV(100 - item.selfPV);
                 waMessage += currentLanguage === 'en'
